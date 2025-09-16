@@ -90,6 +90,19 @@ header img {
 }
 
 /************* Sections ********************/
+/* NEW spacing + heading styles */
+.section {
+  margin: 2.5rem 0;   /* more vertical breathing room */
+}
+
+h2 {
+  font-size: 1.75rem;     /* larger than body */
+  font-weight: 700;       /* bold */
+  margin-bottom: 1rem;    /* spacing under heading */
+  border-bottom: 2px solid #e5e7eb; /* subtle underline */
+  padding-bottom: .25rem;
+}
+
 hr {
   border: 0;
   height: 1px;
