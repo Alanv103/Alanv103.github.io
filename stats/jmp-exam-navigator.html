@@ -1,0 +1,1370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light dark}body{margin:0;font:14px/1.5 system-ui,sans-serif;background:#eef1f4}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>JMP Exam Navigator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa;
+  --ink:#15202b; --ink-2:#4c5d6d; --ink-3:#74838f;
+  --line:#d6dee5; --line-2:#e6ecf1;
+  --accent:#24486b; --accent-soft:#e3ecf5;
+  --rt:#bf3322; --rt-soft:#fbe9e6;
+  --ans:#0d6b63; --ans-soft:#e0f0ee;
+  --fx:#8a5712; --fx-soft:#f7eddc;
+  --warn:#8d4a00;
+  --radius:10px;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  --disp:"Archivo","IBM Plex Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e141a; --surface:#161f29; --surface-2:#1b262f;
+    --ink:#e8eef4; --ink-2:#a3b3c1; --ink-3:#7d8d9b;
+    --line:#293742; --line-2:#212d37;
+    --accent:#8ab4de; --accent-soft:#1c2e42;
+    --rt:#ff8577; --rt-soft:#3a1f1c;
+    --ans:#54cfc3; --ans-soft:#12312e;
+    --fx:#e4b166; --fx-soft:#33270f;
+    --warn:#e0a765;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e141a; --surface:#161f29; --surface-2:#1b262f;
+  --ink:#e8eef4; --ink-2:#a3b3c1; --ink-3:#7d8d9b;
+  --line:#293742; --line-2:#212d37;
+  --accent:#8ab4de; --accent-soft:#1c2e42;
+  --rt:#ff8577; --rt-soft:#3a1f1c;
+  --ans:#54cfc3; --ans-soft:#12312e;
+  --fx:#e4b166; --fx-soft:#33270f;
+  --warn:#e0a765;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px; margin:0 auto; padding-inline:16px; padding-block:0 64px}
+
+/* ---------- header ---------- */
+header.top{
+  background:var(--surface); border-bottom:1px solid var(--line);
+}
+.head-in{max-width:1040px; margin:0 auto; padding-inline:16px; padding-block:26px 20px}
+h1{
+  font-family:var(--disp); font-weight:700; font-size:clamp(26px,5vw,38px);
+  letter-spacing:-.02em; margin:0 0 6px; text-wrap:balance;
+}
+.sub{color:var(--ink-2); margin:0 0 18px; max-width:62ch; font-size:14.5px}
+.sub b{color:var(--ink); font-weight:600}
+
+.legend{display:flex; flex-wrap:wrap; gap:8px 14px; font-size:12.5px; color:var(--ink-2); margin-top:14px}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+/* ---------- sticky control bar ---------- */
+.bar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  background:var(--surface); border-bottom:1px solid var(--line);
+  padding-block:10px;
+}
+.bar-in{max-width:1040px;margin:0 auto;padding-inline:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.searchbox{position:relative; flex:1 1 260px; min-width:0}
+#find{
+  width:100%; font-family:var(--sans); font-size:14.5px; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--line);
+  border-radius:8px; padding:9px 34px 9px 12px;
+}
+#find::placeholder{color:var(--ink-3)}
+#find:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:transparent}
+.clear{
+  position:absolute; right:4px; top:50%; transform:translateY(-50%);
+  border:0; background:none; color:var(--ink-3); cursor:pointer;
+  font-size:17px; line-height:1; padding:6px 8px; border-radius:6px;
+}
+.clear:hover{color:var(--ink)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{
+  font-family:var(--disp); font-weight:600; font-size:12px; letter-spacing:.02em;
+  text-decoration:none; color:var(--ink-2); background:var(--surface-2);
+  border:1px solid var(--line); border-radius:999px; padding:6px 11px; white-space:nowrap;
+}
+.chip:hover{color:var(--ink); border-color:var(--accent)}
+.chip b{color:var(--accent); font-weight:700; margin-right:5px}
+#count{font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; flex:none}
+
+/* ---------- sections ---------- */
+section{margin-top:42px; scroll-margin-top:110px}
+.sec-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:6px}
+.sec-num{
+  font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--surface); background:var(--ink);
+  padding:4px 9px; border-radius:5px;
+}
+.sec-head h2{font-family:var(--disp); font-weight:700; font-size:clamp(20px,3.4vw,26px); letter-spacing:-.015em; margin:0}
+.sec-note{color:var(--ink-2); font-size:13.5px; margin:10px 0 18px; max-width:70ch}
+h3.grp{
+  font-family:var(--disp); font-weight:600; font-size:12.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin:28px 0 10px;
+}
+
+/* ---------- question cards ---------- */
+.q{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:14px 16px; margin-bottom:10px;
+}
+.ask{
+  font-family:var(--disp); font-weight:600; font-size:15.5px; letter-spacing:-.005em;
+  margin:0 0 11px; color:var(--ink); text-wrap:balance;
+}
+.rows{display:grid; grid-template-columns:76px 1fr; gap:7px 12px; align-items:start}
+.lbl{
+  font-family:var(--disp); font-weight:600; font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; padding-top:3px; white-space:nowrap;
+}
+.l-path{color:var(--accent)} .l-ans{color:var(--ans)} .l-fx{color:var(--fx)} .l-note{color:var(--ink-3)}
+.val{min-width:0; font-size:14px}
+.path{font-family:var(--mono); font-size:13px; line-height:1.65; color:var(--ink)}
+.path i{color:var(--ink-3); font-style:normal; padding:0 3px}
+.path em{font-style:normal; font-weight:600}
+.rt{
+  color:var(--rt); background:var(--rt-soft); font-weight:600;
+  padding:1px 5px; border-radius:4px; white-space:nowrap;
+}
+.ans{color:var(--ink)}
+.ans b{background:var(--ans-soft); color:var(--ans); font-weight:600; padding:1px 5px; border-radius:4px; font-family:var(--mono); font-size:12.5px}
+.fx{
+  font-family:var(--mono); font-size:13px; line-height:1.7; color:var(--ink);
+  background:var(--fx-soft); border-left:3px solid var(--fx);
+  padding:8px 11px; border-radius:0 6px 6px 0; overflow-x:auto;
+}
+.note{font-size:13px; color:var(--ink-2)}
+.note b,.ans strong,.note strong{font-weight:600; color:var(--ink)}
+.flag{
+  display:inline-block; font-family:var(--disp); font-size:10.5px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--warn);
+  border:1px solid currentColor; border-radius:4px; padding:1px 6px; margin-right:7px;
+}
+
+/* ---------- callout ---------- */
+.call{
+  background:var(--accent-soft); border:1px solid var(--line);
+  border-radius:var(--radius); padding:14px 16px; margin:16px 0;
+}
+.call h4{font-family:var(--disp); font-weight:700; font-size:13.5px; margin:0 0 8px; letter-spacing:.01em}
+.call ul{margin:0; padding-left:19px}
+.call li{margin-bottom:5px; font-size:13.5px}
+.call li:last-child{margin-bottom:0}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px}
+th,td{text-align:left; padding:9px 13px; border-bottom:1px solid var(--line-2); vertical-align:top}
+th{
+  font-family:var(--disp); font-weight:600; font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); background:var(--surface-2);
+  border-bottom:1px solid var(--line);
+}
+tr:last-child td{border-bottom:0}
+td code,.ic{font-family:var(--mono); font-size:12.5px}
+
+.empty{display:none; text-align:center; color:var(--ink-3); padding:40px 16px; font-size:14px}
+.empty.on{display:block}
+section.hide,.q.hide,h3.grp.hide{display:none}
+
+footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--ink-3); font-size:12.5px}
+
+@media (max-width:560px){
+  .rows{grid-template-columns:1fr; gap:3px}
+  .lbl{padding-top:8px}
+  .head-in{padding-block:20px 16px}
+}
+@media print{
+  .bar,.legend{display:none}
+  body{background:#fff; font-size:10.5pt}
+  .q{break-inside:avoid; border-color:#bbb}
+  section{break-before:auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="head-in">
+    <h1>JMP Exam Navigator</h1>
+    <p class="sub">Every question type on the review — <b>one-sample mean</b>, <b>power</b>, <b>two proportions</b>, <b>correlation &amp; simple regression</b>, <b>multiple &amp; polynomial regression</b> — with the exact menu path, the exact panel the number sits in, and the formula for anything JMP won't compute.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--accent)"></i>Menu path, clicked in order</span>
+      <span><i class="dot" style="background:var(--ans)"></i>Where the number appears</span>
+      <span><i class="dot" style="background:var(--fx)"></i>Hand-computed formula</span>
+      <span><span class="rt">&#9660;</span>= the red triangle on that report title</span>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="searchbox">
+      <input id="find" type="search" autocomplete="off" placeholder="Filter: prediction interval, power, quadratic, Shapiro, slope&hellip;">
+      <button class="clear" id="clearbtn" aria-label="Clear filter" hidden>&times;</button>
+    </div>
+    <nav class="chips">
+      <a class="chip" href="#p1"><b>1</b>One mean</a>
+      <a class="chip" href="#p2"><b>2</b>Power</a>
+      <a class="chip" href="#p3"><b>3</b>Proportions</a>
+      <a class="chip" href="#p4"><b>4</b>Simple reg</a>
+      <a class="chip" href="#p5"><b>5</b>Multiple reg</a>
+      <a class="chip" href="#pf">Formulas</a>
+      <a class="chip" href="#pw">Wording</a>
+    </nav>
+    <span id="count"></span>
+  </div>
+</div>
+
+<div class="wrap">
+<p class="empty" id="empty">No question matches that. Try a shorter word &mdash; <span class="ic">interval</span>, <span class="ic">residual</span>, <span class="ic">power</span>.</p>
+
+<!-- ============ ONE-SAMPLE MEAN ============ -->
+<section id="p1">
+  <div class="sec-head"><span class="sec-num">Part 1</span><h2>Inference for one mean</h2></div>
+  <p class="sec-note">Everything here starts from <span class="ic">Analyze &#8250; Distribution</span>. Put the quantitative variable in <b>Y, Columns</b> and click OK &mdash; then every test, interval and plot hangs off the <span class="rt">&#9660;</span> next to the <em>variable's name</em> (not the one next to "Distributions").</p>
+
+  <h3 class="grp">Setting up &amp; describing</h3>
+
+  <article class="q" data-k="is the variable categorical or quantitative identify">
+    <p class="ask">Is the variable categorical or quantitative?</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">QUANTITATIVE = a measured number you could average
+   (weight in oz, diameter in inches, home price,
+    perceived distance in feet, pounds of recycling)
+
+CATEGORICAL = a label putting each unit in a group
+   (accepted / rejected, smoker / non-smoker, yes / no)</div>
+      <span class="lbl l-note">Note</span><div class="val note">This decides the whole rest of the problem: quantitative &#8594; a <strong>mean</strong> (Parts 1&ndash;2), categorical &#8594; a <strong>proportion</strong> (Part 3). Zip codes and jersey numbers are numbers but categorical.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="define the parameter in context mu population mean">
+    <p class="ask">Define the parameter in the context of the problem</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">&#956; = the TRUE MEAN [variable, with units]
+    for ALL [units in the population]</div>
+      <span class="lbl l-note">Note</span><div class="val note">Three required pieces: the word <strong>mean</strong>, the <strong>variable with its units</strong>, and the <strong>population</strong>. Depth Perception: "&#956; = the true mean judged distance, in feet, for all airline pilots over 50 at this airline." Recycling: "&#956; = the true mean weekly weight of recyclable material, in pounds, per household in this city."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="open data set jmp file import">
+    <p class="ask">Open the data file</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">File <i>&#8250;</i> Open <i>&#8250;</i> select the <em>.jmp</em> file <i>&#8250;</i> Open</div>
+      <span class="lbl l-note">Note</span><div class="val note">Check each column's modeling type in the data table: quantitative variables must show the blue continuous icon <span class="ic">&#9652;</span>. If one shows red bars (nominal), right-click the column header <i>&#8250;</i> Column Info <i>&#8250;</i> Modeling Type <i>&#8250;</i> Continuous.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="histogram shape distribution skewed symmetric outlier boxplot summary statistics mean standard deviation">
+    <p class="ask">Describe the shape / get x&#772;, s, and n</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> Y, Columns = <em>variable</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The histogram + box plot for shape. Numbers are in the <b>Summary Statistics</b> panel: <b>Mean</b>, <b>Std Dev</b>, <b>N</b>, and <b>Std Err Mean</b> (= s/&#8730;n).</div>
+      <span class="lbl l-note">Note</span><div class="val note">Describe <strong>shape</strong> (symmetric / skewed right / skewed left), <strong>center</strong>, <strong>spread</strong>, and any <strong>outliers</strong> shown as dots past the box whiskers.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="sampling distribution of xbar central limit theorem mean standard deviation standard error describe">
+    <p class="ask">Describe the sampling distribution of x&#772;</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">No JMP</span>Hand-computed from &#956;, &#963;, n.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">Mean of x&#772;  = &#956;
+SD of x&#772;    = &#963; / &#8730;n      (this is the "standard error")
+Shape       = Normal if the population is normal,
+              or approx. Normal by the CLT if n &#8805; 30</div>
+      <span class="lbl l-note">Note</span><div class="val note">Write all three parts &mdash; shape, mean, SD &mdash; and say <em>why</em> the shape is normal (stated normal population, or CLT with n &#8805; 30).</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="probability normal distribution chance average more than less than z score calculate">
+    <p class="ask">"What's the chance the sample average is more than ___?"</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Cols <i>&#8250;</i> New Column <i>&#8250;</i> Column Properties <i>&#8250;</i> Formula <i>&#8250;</i> Functions <i>&#8250;</i> Probability <i>&#8250;</i> <em>Normal Distribution</em>(x, mean, SD)</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">z = (x&#772; &minus; &#956;) / (&#963;/&#8730;n)
+
+P(x&#772; &lt; a) = Normal Distribution(a, &#956;, &#963;/&#8730;n)
+P(x&#772; &gt; a) = 1 &minus; Normal Distribution(a, &#956;, &#963;/&#8730;n)</div>
+      <span class="lbl l-note">Note</span><div class="val note">Faster on a test: compute z by hand and read the standard normal table. Use <strong>&#963;/&#8730;n</strong>, not &#963; &mdash; the question is about an <em>average</em>, not one observation.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">The hypothesis test</h3>
+
+  <article class="q" data-k="null alternative hypotheses claim set up ho ha one tailed two tailed">
+    <p class="ask">State the null and alternative hypotheses</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">No JMP</span>Read the claim's wording.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: &#956; = &#956;&#8320;        (always "=", always the claimed number)
+
+"less than / decreased / lower"    &#8594;  H&#8321;: &#956; &lt; &#956;&#8320;
+"greater than / increased / higher" &#8594;  H&#8321;: &#956; &gt; &#956;&#8320;
+"different from / changed"          &#8594;  H&#8321;: &#956; &#8800; &#956;&#8320;</div>
+      <span class="lbl l-note">Note</span><div class="val note">&#956; is the <strong>population</strong> mean &mdash; define it in words ("&#956; = mean landings per trap since the restriction"). Never write x&#772; in a hypothesis.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="t test one sample mean sigma unknown test mean p value test statistic">
+    <p class="ask">Run a one-sample <em>t</em> test (&#963; NOT given)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> Y, Columns = <em>variable</em> <i>&#8250;</i> OK <i>&#8250;</i> <span class="rt">&#9660;</span> next to the variable name <i>&#8250;</i> <em>Test Mean</em> <i>&#8250;</i> type the hypothesized value <i>&#8250;</i> leave the "true standard deviation" box <em>empty</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A <b>Test Mean</b> panel appears: <b>t Test</b> row gives the test statistic, then three p-values &mdash; <b>Prob &gt; |t|</b>, <b>Prob &gt; t</b>, <b>Prob &lt; t</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Pick the p-value that matches H&#8321;: <strong>&#8800;</strong> &#8594; Prob &gt; |t| &nbsp;&middot;&nbsp; <strong>&gt;</strong> &#8594; Prob &gt; t &nbsp;&middot;&nbsp; <strong>&lt;</strong> &#8594; Prob &lt; t. Ignore the Signed-Rank row (that's a nonparametric test).</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="z test sigma known population standard deviation true standard deviation">
+    <p class="ask">Run a one-sample <em>z</em> test (&#963; IS given)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Same as above, but in the Test Mean box also fill in <em>"Enter True Standard Deviation to do z-test rather than t test"</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The panel now shows a <b>z Test</b> row with <b>Prob &gt; |z|</b>, <b>Prob &gt; z</b>, <b>Prob &lt; z</b>.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">z = (x&#772; &minus; &#956;&#8320;) / (&#963;/&#8730;n)        t = (x&#772; &minus; &#956;&#8320;) / (s/&#8730;n),  df = n &minus; 1</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="only summary statistics given no raw data mean sample size variance s squared hand compute">
+    <p class="ask">Only summary statistics are given (no data table)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">No JMP</span>Distribution needs raw data. Compute t by hand.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">If they give s&#178; (a VARIANCE), take the square root first.
+
+   t = (x&#772; &minus; &#956;&#8320;) / (s/&#8730;n)        df = n &minus; 1
+
+p-value in JMP (Cols &#8250; New Column &#8250; Formula &#8250; Probability):
+   two-tailed  p = 2*(1 &minus; t Distribution(|t|, df))
+   right-tail  p = 1 &minus; t Distribution(t, df)
+   left-tail   p = t Distribution(t, df)</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Home Prices): s&#178; = 7,317,400,000 &#8594; s = 85,542. SE = 85,542/&#8730;69 = 10,298. t = (141,400 &minus; 155,000)/10,298 = <strong>&minus;1.32</strong>, df = 68, two-tailed p &#8776; 0.19 &gt; .05 &#8594; fail to reject; no evidence the mean price differs from $155,000.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="test statistic given standard errors below hypothesized value reaction time">
+    <p class="ask">"The sample statistic is 1.03 standard errors below the hypothesized value. Find the test statistic."</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">No JMP</span>Read it straight off the sentence.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">t = &minus;1.03      ("below" &#8594; negative;  "above" &#8594; positive)
+
+The test statistic IS the number of standard errors
+the sample mean sits from &#956;&#8320;. df = n &minus; 1.</div>
+      <span class="lbl l-note">Note</span><div class="val note">For the p-value with n = 9 &#8594; df = 8, two-tailed: p = 2 &#215; P(T&#8328; &lt; &minus;1.03). In JMP: <span class="ic">1 &minus; t Distribution(1.03, 8)</span> doubled, or use the t table.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="p value interpret meaning probability assuming null true">
+    <p class="ask">Interpret the p-value</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Wording</span>Read it off the Test Mean panel, then say this:</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">"If &#956; really were &#956;&#8320;, there is a ___% chance of getting a
+sample mean at least this extreme purely by random sampling."</div>
+      <span class="lbl l-note">Note</span><div class="val note">It is <strong>not</strong> the probability H&#8320; is true. It is a probability computed <em>assuming</em> H&#8320; is true.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="conclusion reject fail to reject significance level alpha decision context">
+    <p class="ask">State the conclusion at level &#945;</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">p &#8804; &#945;  &#8594;  REJECT H&#8320;.
+   "There IS sufficient evidence at the &#945; level that [H&#8321; in words]."
+
+p &gt; &#945;  &#8594;  FAIL TO REJECT H&#8320;.
+   "There is NOT sufficient evidence at the &#945; level that [H&#8321; in words]."</div>
+      <span class="lbl l-note">Note</span><div class="val note">Never say "accept H&#8320;" and never say you "proved" anything. Always finish the sentence in the units of the problem.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="assumption condition valid normality independence random sample t test">
+    <p class="ask">"What assumption must be met for the p-value to be valid?"</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">1. Random sample / independent observations
+2. Population is Normal  &mdash; needed when n is small (n &lt; 30).
+   If n &#8805; 30 the CLT covers it and only a wild
+   outlier or extreme skew is a problem.</div>
+      <span class="lbl l-note">Note</span><div class="val note">For the small-n examples (9 athletes, 10 gallons of paint, 20 traps) the answer they want is <strong>the population distribution is approximately normal</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="check the conditions for the t test independence normality random sample 10 percent">
+    <p class="ask">Check the conditions for using the t-test</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">INDEPENDENCE
+   Stated random sample? &#8594; yes.
+   Sample is less than 10% of the population? &#8594; yes.
+   One measurement per unit (not repeated on the same person)?
+
+NORMALITY  &mdash; any ONE of these is enough:
+   The problem says the population is "approximately
+     bell-shaped" / "follows a normal distribution", OR
+   n &#8805; 30, so the CLT applies, OR
+   the histogram is roughly symmetric with no outliers
+     AND Shapiro-Wilk gives Prob &lt; W above &#945;.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Recycling (n = 50): the data are clearly right-skewed (mean 12.46 vs. median 8.6, max 48.5), but <strong>n = 50 &#8805; 30</strong>, so the CLT makes the t-test valid anyway &mdash; say both halves of that. Peanuts / Apples / Depth Perception (n = 16, 12, 14): normality is met only because the problem <em>states</em> the population is bell-shaped.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="normality check shapiro wilk goodness of fit normal quantile plot residual assumption">
+    <p class="ask">Check the normality assumption</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">In the Distribution report: <span class="rt">&#9660;</span> next to the variable name <i>&#8250;</i> <em>Normal Quantile Plot</em><br>then <span class="rt">&#9660;</span> <i>&#8250;</i> Continuous Fit <i>&#8250;</i> <em>Normal</em> <i>&#8250;</i> <span class="rt">&#9660;</span> next to "Fitted Normal" <i>&#8250;</i> <em>Goodness of Fit</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The <b>Shapiro-Wilk W Test</b> table: read <b>Prob &lt; W</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><strong>Prob &lt; W &gt; &#945;</strong> &#8594; normality is reasonable. Also say the histogram looks roughly symmetric and the points on the normal quantile plot follow the straight line inside the confidence bands.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Confidence interval for the mean</h3>
+
+  <article class="q" data-k="confidence interval for the mean 95 99 90 upper lower mean">
+    <p class="ask">Confidence interval for &#956;</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> OK &#8594; read <b>Summary Statistics</b> for the 95% one.<br>For any other level: <span class="rt">&#9660;</span> next to the variable name <i>&#8250;</i> <em>Confidence Interval</em> <i>&#8250;</i> 0.90 / 0.95 / 0.99 / Other&hellip;</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Summary Statistics rows <b>Upper 95% Mean</b> and <b>Lower 95% Mean</b>, or the separate <b>Confidence Intervals</b> table for other levels.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">x&#772; &#177; t(&#945;/2, n&minus;1) &#183; s/&#8730;n        (&#963; unknown)
+x&#772; &#177; z(&#945;/2)      &#183; &#963;/&#8730;n        (&#963; known)</div>
+      <span class="lbl l-note">Note</span><div class="val note">Interpretation: "We are 95% confident the <strong>population mean</strong> [variable] is between ___ and ___ [units]."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="type I type II error describe context alpha beta">
+    <p class="ask">Describe Type I and Type II errors in context</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Type I  = reject H&#8320; when H&#8320; is actually TRUE.   P = &#945;
+   "We conclude [H&#8321; in words] when really [H&#8320; in words]."
+
+Type II = fail to reject H&#8320; when H&#8321; is actually TRUE.  P = &#946;
+   "We conclude there's not enough evidence for [H&#8321;]
+    when really [H&#8321;] is true."</div>
+      <span class="lbl l-note">Note</span><div class="val note">Both sentences must name the actual variable &mdash; e.g. "we conclude the additive raises mean coverage above 440 sq ft when it really doesn't."</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ POWER ============ -->
+<section id="p2">
+  <div class="sec-head"><span class="sec-num">Part 2</span><h2>Power and Type II error</h2></div>
+  <p class="sec-note">Almost all of this part is <strong>hand-computed</strong> &mdash; JMP has one power calculator and it only answers the last question type. Work it in a fixed order: <b>(1)</b> find the rejection region in x&#772; units, <b>(2)</b> re-standardize that boundary using the <em>true</em> mean, <b>(3)</b> &#946; is the probability of landing in the fail-to-reject region, <b>(4)</b> power = 1 &minus; &#946;.</p>
+
+  <article class="q" data-k="rejection region for what values of sample mean will reject ho critical value xbar">
+    <p class="ask">"For what values of the sample mean will H&#8320; be rejected?"</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Step 1</span>Hand-computed. This is the <em>rejection region in x&#772; units</em>.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">LEFT-tailed  (H&#8321;: &#956; &lt; &#956;&#8320;)
+   reject if  x&#772; &lt; &#956;&#8320; &minus; z&#945; &#183; &#963;/&#8730;n
+
+RIGHT-tailed (H&#8321;: &#956; &gt; &#956;&#8320;)
+   reject if  x&#772; &gt; &#956;&#8320; + z&#945; &#183; &#963;/&#8730;n
+
+TWO-tailed   (H&#8321;: &#956; &#8800; &#956;&#8320;)
+   reject if  x&#772; &lt; &#956;&#8320; &minus; z&#945;/&#8322;&#183;&#963;/&#8730;n   OR   x&#772; &gt; &#956;&#8320; + z&#945;/&#8322;&#183;&#963;/&#8730;n
+
+z&#8320;.&#8320;&#8325; = 1.645   z&#8320;.&#8320;&#8322;&#8325; = 1.96   z&#8320;.&#8320;&#8321; = 2.326   z&#8320;.&#8320;&#8320;&#8325; = 2.576</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked example (Fertilizer): &#956;&#8320;=50, &#963;=21, n=36, &#945;=.05, left-tailed. &#963;/&#8730;n = 21/6 = 3.5. Reject if x&#772; &lt; 50 &minus; 1.645(3.5) = <strong>44.24</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="probability of type II error beta true mean value">
+    <p class="ask">"If the true mean is ___, what is P(Type II error)?"</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Step 2</span>Re-standardize the critical x&#772; using the <em>true</em> mean, not &#956;&#8320;.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">&#946; = P(fail to reject H&#8320;  |  &#956; = &#956;true)
+
+LEFT-tailed:   &#946; = P( x&#772; &gt; x&#772;crit )
+               z = (x&#772;crit &minus; &#956;true) / (&#963;/&#8730;n),  &#946; = 1 &minus; &#934;(z)
+
+RIGHT-tailed:  &#946; = P( x&#772; &lt; x&#772;crit )
+               z = (x&#772;crit &minus; &#956;true) / (&#963;/&#8730;n),  &#946; = &#934;(z)
+
+TWO-tailed:    &#946; = P( x&#772;low &lt; x&#772; &lt; x&#772;high )
+               &#946; = &#934;(zhigh) &minus; &#934;(zlow),  each z using &#956;true</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Fertilizer, &#956;true = 43): z = (44.24 &minus; 43)/3.5 = 0.354 &#8594; &#946; = 1 &minus; &#934;(0.354) = 1 &minus; .6387 = <strong>.3613</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="power of the test probability of rejecting null true mean detecting difference">
+    <p class="ask">"What is the power of the test?" / "What is the probability of <em>detecting</em> this difference?"</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Step 3</span>Same two words, same computation.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">Power = 1 &minus; &#946; = P(reject H&#8320;  |  &#956; = &#956;true)</div>
+      <span class="lbl l-note">Note</span><div class="val note">These phrases all mean <strong>power</strong>: "probability of rejecting H&#8320; when the true mean is&hellip;", "probability of detecting this difference", "probability of correctly concluding&hellip;". These mean <strong>&#946;</strong>: "probability of failing to reject", "probability of incorrectly failing to reject", "P(Type II error)". Fertilizer at &#956;true=43: power = 1 &minus; .3613 = <strong>.6387</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="power calculator jmp DOE sample size and power one sample mean">
+    <p class="ask">Get power from JMP directly</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">DOE <i>&#8250;</i> Design Diagnostics <i>&#8250;</i> <em>Sample Size and Power</em> <i>&#8250;</i> <em>One Sample Mean</em><br>fill in <em>Alpha</em>, <em>Std Dev</em> (&#963;), <em>Difference to Detect</em> (= |&#956;true &minus; &#956;&#8320;|), <em>Sample Size</em> (n) <i>&#8250;</i> leave <em>Power</em> blank <i>&#8250;</i> Continue</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">JMP fills in the blank box &mdash; <b>Power</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><span class="flag">Careful</span>This calculator is <strong>two-sided by default</strong>. For the one-tailed fertilizer/paint questions it will disagree with your hand computation unless you check the one-sided option. On a one-tailed problem, trust the hand computation. Leaving <em>Sample Size</em> blank and filling <em>Power</em> instead answers "how big a sample do I need?"</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="sketch graph illustrating significance level beta shaded normal curves">
+    <p class="ask">"Sketch graphs illustrating &#945; and the probabilities found above"</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Draw TWO normal curves, one above the other, same horizontal axis:
+
+Top curve    centered at &#956;&#8320;      &#8594; shade the tail(s) past
+                                   x&#772;crit  = &#945;
+Bottom curve centered at &#956;true    &#8594; shade the FAIL-to-reject
+                                   side of x&#772;crit = &#946;
+                                   the other side       = power
+
+Mark x&#772;crit with a vertical line through BOTH curves.</div>
+      <span class="lbl l-note">Note</span><div class="val note">The vertical line is at the same x&#772; value on both curves &mdash; that's the whole point of the picture.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="what affects power increase sample size alpha effect size relationship">
+    <p class="ask">What makes power go up?</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Power INCREASES when:
+   n increases            (smaller &#963;/&#8730;n)
+   &#945; increases            (bigger rejection region &mdash; but more Type I risk)
+   |&#956;true &minus; &#956;&#8320;| increases  (bigger effect is easier to detect)
+   &#963; decreases            (less noise)
+
+&#945; and &#946; trade off: lowering &#945; raises &#946; and lowers power,
+unless you also raise n.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="if an error was committed what type lobsters which error">
+    <p class="ask">"If an error was committed, what type might it be?"</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">You REJECTED H&#8320;      &#8594; the only possible error is TYPE I
+You FAILED TO REJECT &#8594; the only possible error is TYPE II</div>
+      <span class="lbl l-note">Note</span><div class="val note">Then describe it in context. Lobsters (rejected H&#8320;): "Type I &mdash; we concluded mean landings per trap dropped below 30.31 lbs when really they did not."</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ TWO PROPORTIONS ============ -->
+<section id="p3">
+  <div class="sec-head"><span class="sec-num">Part 3</span><h2>Two proportions</h2></div>
+  <p class="sec-note">First decide which kind you have &mdash; it changes everything. <b>Independent</b>: two separate groups of different people (statistical help vs. none; new drug vs. existing drug). <b>Dependent / paired</b>: the <em>same</em> people measured twice, or matched pairs (before/after the video; younger/older siblings). Independent &#8594; z test on p&#8321; &minus; p&#8322;. Dependent &#8594; drop the ties and run a binomial test on the discordant pairs.</p>
+
+  <h3 class="grp">Getting counts into JMP</h3>
+
+  <article class="q" data-k="enter contingency table counts summarized data freq frequency column two by two">
+    <p class="ask">Enter a summarized 2&#215;2 table (you have counts, not raw rows)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>1.</strong> File <i>&#8250;</i> New <i>&#8250;</i> Data Table. Make <em>three</em> columns: <em>Group</em> (Nominal), <em>Outcome</em> (Nominal), <em>Count</em> (Continuous).<br><strong>2.</strong> Type <em>four</em> rows &mdash; one per cell of the table.<br><strong>3.</strong> Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> Y, Response = <em>Outcome</em> <i>&#8250;</i> X, Factor = <em>Group</em> <i>&#8250;</i> <em>Freq</em> = <em>Count</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A <b>Contingency Analysis</b> report: mosaic plot, <b>Contingency Table</b>, and a <b>Tests</b> panel.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><span class="flag">Critical</span>Forgetting to drop Count into the <strong>Freq</strong> box is the #1 mistake &mdash; JMP would then think you have 4 observations instead of 705. Statistician rows: (Help, Accepted, 222) (Help, Rejected, 293) (No Help, Accepted, 55) (No Help, Rejected, 135).</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Independent proportions</h3>
+
+  <article class="q" data-k="explanatory response variable categorical proportions which is x">
+    <p class="ask">Identify the explanatory and response variables</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Explanatory = the GROUPING variable  (categorical)
+Response    = the OUTCOME measured   (categorical)</div>
+      <span class="lbl l-note">Note</span><div class="val note">Statistician: explanatory = whether statistical assistance was provided (categorical); response = accepted or rejected (categorical). In Fit Y by X the explanatory goes in <strong>X, Factor</strong> and the response in <strong>Y, Response</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="point estimate of p1 minus p2 difference sample proportions phat row percent">
+    <p class="ask">Point estimate of p&#8321; &minus; p&#8322;</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Read the <em>Contingency Table</em>. To see the proportions directly: <span class="rt">&#9660;</span> next to "Contingency Table" <i>&#8250;</i> <em>Row %</em></div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">p&#770;&#8321; = x&#8321;/n&#8321;      p&#770;&#8322; = x&#8322;/n&#8322;      estimate = p&#770;&#8321; &minus; p&#770;&#8322;</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Statistician): p&#770;&#8321; = 222/(222+293) = 222/515 = <strong>.4311</strong>; p&#770;&#8322; = 55/(55+135) = 55/190 = <strong>.2895</strong>; difference = <strong>.1416</strong>. Divide by that group&#39;s own row total, never by the grand total.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="null alternative hypotheses two proportions p1 p2 improves difference">
+    <p class="ask">Null and alternative hypotheses for two proportions</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: p&#8321; &minus; p&#8322; = 0        (equivalently p&#8321; = p&#8322;)
+
+"improves / enhances / higher"  &#8594; H&#8321;: p&#8321; &minus; p&#8322; &gt; 0
+"lower / reduces"               &#8594; H&#8321;: p&#8321; &minus; p&#8322; &lt; 0
+"different / any difference"    &#8594; H&#8321;: p&#8321; &minus; p&#8322; &#8800; 0</div>
+      <span class="lbl l-note">Note</span><div class="val note">"If acceptance is the same either way, what is true of p&#8321; &minus; p&#8322;?" &#8594; <strong>it equals 0</strong>. Statistician asks whether help <em>improves</em> publication &#8594; one-sided. Arthritis asks for <em>different</em> relief &#8594; two-sided.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="assumptions conditions two proportions independent random samples large sample normality np 5">
+    <p class="ask">Check the assumptions</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">1. INDEPENDENCE BETWEEN GROUPS
+   Independently chosen random samples, or units were
+   randomly ASSIGNED to the two treatments.
+   (Arthritis: each person got only ONE drug &#8212; OK.)
+
+2. INDEPENDENCE WITHIN GROUPS
+   One response per person; no one influenced anyone else.
+
+3. NORMALITY / LARGE SAMPLE &mdash; all FOUR must be &#8805; 5:
+   n&#8321;p&#770;&#8321;    n&#8321;(1&minus;p&#770;&#8321;)    n&#8322;p&#770;&#8322;    n&#8322;(1&minus;p&#770;&#8322;)
+
+   These are just the four CELL COUNTS of the table.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Shortcut: condition 3 holds exactly when all four cells of the 2&#215;2 table are at least 5. Statistician: 222, 293, 55, 135 &mdash; all well past 5. Still write out the four products if the question says "check".</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="test statistic p value two proportions z test two sample test for proportions chi square">
+    <p class="ask">Find the test statistic and p-value (independent)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">In the Contingency Analysis report: <span class="rt">&#9660;</span> next to "Contingency Analysis of&hellip;" <i>&#8250;</i> <em>Two Sample Test for Proportions</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A panel giving p&#770;&#8321; &minus; p&#770;&#8322;, its standard error, and three p-values: <b>Prob &gt; |z|</b>, <b>Prob &gt; z</b>, <b>Prob &lt; z</b>.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">pooled  p&#770; = (x&#8321; + x&#8322;) / (n&#8321; + n&#8322;)
+
+z = (p&#770;&#8321; &minus; p&#770;&#8322;) / &#8730;[ p&#770;(1&minus;p&#770;)(1/n&#8321; + 1/n&#8322;) ]</div>
+      <span class="lbl l-note">Note</span><div class="val note">Match the p-value to H&#8321; exactly as in Part 1. Check which group JMP is calling "p&#8321;" &mdash; it uses the first level alphabetically, which may be the reverse of your setup; if so the sign of z flips and you swap Prob&gt;z with Prob&lt;z. The <b>Pearson ChiSquare</b> in the Tests panel is the same two-sided test (&#967;&#178; = z&#178;), so its p-value matches Prob&gt;|z|.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="interpret test statistic and p value two proportions standard errors context">
+    <p class="ask">Interpret the test statistic and the p-value</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">TEST STATISTIC
+  "The observed difference in sample proportions is z
+   standard errors above/below 0, the value H&#8320; claims."
+
+P-VALUE
+  "If the acceptance rate really were the same in both
+   groups, there would be a ___% chance of seeing a
+   difference in sample proportions at least this large
+   just from random sampling."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="confidence interval for difference in two independent proportions">
+    <p class="ask">Confidence interval for p&#8321; &minus; p&#8322; (independent)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">The same <em>Two Sample Test for Proportions</em> panel reports the interval for the difference alongside the test.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">(p&#770;&#8321; &minus; p&#770;&#8322;) &#177; z&#945;/&#8322; &#183; &#8730;[ p&#770;&#8321;(1&minus;p&#770;&#8321;)/n&#8321; + p&#770;&#8322;(1&minus;p&#770;&#8322;)/n&#8322; ]</div>
+      <span class="lbl l-note">Note</span><div class="val note">The interval is <strong>not</strong> pooled even though the test statistic is &mdash; the test assumes p&#8321; = p&#8322;, the interval does not. An interval excluding 0 agrees with rejecting H&#8320; two-sided.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Dependent (paired) proportions</h3>
+
+  <div class="call">
+    <h4>Label the paired 2&#215;2 table before you do anything else</h4>
+    <ul>
+      <li><strong>a</strong> = same both times, first category &mdash; a <em>tie</em></li>
+      <li><strong>b</strong> = changed one way (non-smoker &#8594; smoker) &mdash; <em>discordant</em></li>
+      <li><strong>c</strong> = changed the other way (smoker &#8594; non-smoker) &mdash; <em>discordant</em></li>
+      <li><strong>d</strong> = same both times, second category &mdash; a <em>tie</em></li>
+    </ul>
+    <p class="note" style="margin:8px 0 0">Only <strong>b</strong> and <strong>c</strong> carry information. Smoking: a = 20, b = 5, c = 16, d = 9, n = 50.</p>
+  </div>
+
+  <article class="q" data-k="hypotheses dependent proportions paired video effective mcnemar">
+    <p class="ask">Hypotheses for paired proportions</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: p_b = p_c    (changes equally likely in both directions
+                   &#8212; the intervention did nothing)
+
+"was it effective?"      &#8594; H&#8321;: p_c &gt; p_b   (one-tailed)
+"is there a difference?" &#8594; H&#8321;: p_b &#8800; p_c   (two-tailed)</div>
+      <span class="lbl l-note">Note</span><div class="val note">Equivalently H&#8320;: p_b &minus; p_c = 0. Smoking asks whether the video <em>was effective</em> &#8594; one-tailed, expecting more smoker&#8594;non-smoker changes. Puzzle asks whether there <em>is a difference</em> &#8594; two-tailed.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="ties new sample size n prime test statistic T discordant pairs">
+    <p class="ask">Count the ties, find n&#8242; and the test statistic T</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">ties = a + d            (everyone who did not change)
+n&#8242;   = b + c = n &minus; ties   (the discordant pairs)
+T    = the count in the direction H&#8321; predicts</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Smoking): ties = 20 + 9 = <strong>29</strong>; n&#8242; = 50 &minus; 29 = <strong>21</strong>; H&#8321; predicts quitting, so T = smokers who became non-smokers = <strong>16</strong>. Puzzle: ties = 27 + 18 = 45, n&#8242; = <strong>22</strong>, T = 13.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="binomial p value paired proportions sign test 0.5 binomial distribution formula discrete probability">
+    <p class="ask">Find the p-value from the binomial distribution</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Cols <i>&#8250;</i> New Column <i>&#8250;</i> Column Properties <i>&#8250;</i> Formula <i>&#8250;</i> Functions <i>&#8250;</i> <em>Discrete Probability</em> <i>&#8250;</i> <em>Binomial Distribution</em>(p, n, k)</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">Under H&#8320;,  T ~ Binomial(n&#8242;, p = 0.5).
+
+right-tailed p = P(T &#8805; t) = 1 &minus; Binomial Distribution(0.5, n&#8242;, t&minus;1)
+left-tailed  p = P(T &#8804; t) =     Binomial Distribution(0.5, n&#8242;, t)
+two-tailed   p = 2 &#215; (the smaller one-tailed value)
+
+Binomial Distribution(p,n,k) = P(X &#8804; k)   cumulative
+Binomial Probability(p,n,k)  = P(X = k)    exactly k</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Smoking): p = P(T &#8805; 16), T ~ Bin(21, .5) = 1 &minus; Binomial Distribution(0.5, 21, 15) = <strong>.0133</strong> &lt; .05 &#8594; reject H&#8320;; sufficient evidence the video was effective. Puzzle (n&#8242; = 22, T = 13, two-tailed): p &#8776; <strong>.52</strong> &gt; .05 &#8594; fail to reject; no evidence the two-year age gap changes the chance of solving it within a minute.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="mcnemar test jmp agreement statistic bowker symmetry paired contingency">
+    <p class="ask">Get the paired test out of JMP instead of by hand</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Enter <em>Before</em> and <em>After</em> as two nominal columns plus a <em>Count</em> column <i>&#8250;</i> Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> Y = <em>After</em>, X = <em>Before</em>, <em>Freq</em> = <em>Count</em> <i>&#8250;</i> OK <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> <em>Agreement Statistic</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Kappa plus a <b>test of symmetry</b> &mdash; on a 2&#215;2 table that is McNemar&#39;s test, and its p-value is the two-sided one.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><span class="flag">Careful</span>That is the large-sample chi-square version and it is <em>two-sided only</em>. The review&#39;s method is the <strong>exact binomial</strong> above &mdash; use it for the one-tailed smoking question and whenever n&#8242; is small. Never run the ordinary two-proportion z test on paired data; it throws away the pairing.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="confidence interval difference dependent paired proportions large sample formula">
+    <p class="ask">Confidence interval for p_b &minus; p_c (paired)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">No JMP</span>Hand-computed from a, b, c, d.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">point estimate = (b &minus; c) / n
+
+CI:  (b &minus; c)/n  &#177;  z&#945;/&#8322; &#183; &#8730;[ ((a+d)(b+c) + 4bc) / n&#179; ]
+
+where n = a + b + c + d.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Worked (Smoking): (5&minus;16)/50 = &minus;.22; (29)(21) + 4(5)(16) = 929; 929/50&#179; = .007432; &#8730; = .0862; 1.96(.0862) = .169 &#8594; <strong>(&minus;.389, &minus;.051)</strong> &mdash; entirely below 0, matching the rejected test. Puzzle: (9&minus;13)/67 = &minus;.060; (45)(22) + 4(9)(13) = 1458; &#8730;(1458/67&#179;) = .0696 &#8594; <strong>(&minus;.196, .077)</strong> &mdash; contains 0, matching the failure to reject.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="interpret confidence interval difference proportions wording contains zero">
+    <p class="ask">Interpret a difference-of-proportions interval</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">"We are 95% confident that the difference in the
+ proportion of [outcome] between [group 1] and
+ [group 2] is between ___ and ___."
+
+Entirely above 0 &#8594; group 1&#39;s rate is genuinely higher.
+Entirely below 0 &#8594; group 1&#39;s rate is genuinely lower.
+Contains 0       &#8594; no significant difference.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Smoking: "We are 95% confident the proportion who went non-smoker&#8594;smoker is between .051 and .389 <em>lower</em> than the proportion who went smoker&#8594;non-smoker" &mdash; far more people quit than started.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ SIMPLE REGRESSION ============ -->
+<section id="p4">
+  <div class="sec-head"><span class="sec-num">Part 4</span><h2>Correlation &amp; simple linear regression</h2></div>
+  <p class="sec-note">Two doors into the same model. <b>Fit Y by X</b> is the fast one for plots and r. <b>Fit Model</b> is the one you need for confidence intervals, saved residuals and prediction intervals &mdash; when in doubt, use <span class="ic">Analyze &#8250; Fit Model</span>.</p>
+
+  <article class="q" data-k="explanatory response variable which is x which is y predictor">
+    <p class="ask">Which is the explanatory variable and which is the response?</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Explanatory (x, predictor)  = the one doing the predicting
+Response    (y)              = the one being predicted
+
+"Predict A using B"  &#8594;  y = A,  x = B
+"Effect of B on A"   &#8594;  y = A,  x = B</div>
+      <span class="lbl l-note">Note</span><div class="val note">Casinos: x = number of casino employees, y = crime rate. Graduation Rates: x = median SAT, y = 6-year graduation rate.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="scatterplot create plot relationship comment linear">
+    <p class="ask">Create a scatterplot and comment on the relationship</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> Y, Response = <em>response</em> <i>&#8250;</i> X, Factor = <em>explanatory</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The <b>Bivariate Fit</b> plot.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Always comment on four things: <strong>direction</strong> (positive/negative), <strong>form</strong> (linear / curved), <strong>strength</strong> (weak / moderate / strong), <strong>outliers or unusual points</strong>. If the cloud bends, say a quadratic should be considered &mdash; that is the setup for Part 4.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="add regression line to scatterplot fit line least squares">
+    <p class="ask">Add the regression line to the scatterplot</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">In the Bivariate Fit report: <span class="rt">&#9660;</span> next to "Bivariate Fit of&hellip;" <i>&#8250;</i> <em>Fit Line</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The line is drawn on the plot, and a <b>Linear Fit</b> block appears underneath with the equation, <b>Summary of Fit</b>, <b>Analysis of Variance</b> and <b>Parameter Estimates</b>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="correlation coefficient r strength multivariate density ellipse">
+    <p class="ask">Find the correlation coefficient r</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Multivariate Methods <i>&#8250;</i> Multivariate <i>&#8250;</i> put <em>both</em> variables in Y, Columns <i>&#8250;</i> OK<br><span class="note">or, inside Fit Y by X:</span> <span class="rt">&#9660;</span> <i>&#8250;</i> <em>Density Ellipse</em> <i>&#8250;</i> 0.95 <i>&#8250;</i> open the "Correlation" panel</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The <b>Correlations</b> table &mdash; read the <em>off-diagonal</em> value (the diagonal is always 1.0000).</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">r = Sxy / &#8730;(Sxx &#183; Syy)
+
+Or from a fitted line:  r = &#177;&#8730;RSquare
+   take the SIGN of the slope b&#8321;.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Strength: |r| &#8805; .8 strong &middot; .5&ndash;.8 moderate &middot; &lt; .5 weak. Sign gives direction. r has no units and never exceeds 1 in absolute value.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="least squares regression line equation intercept slope b0 b1 parameter estimates">
+    <p class="ask">What is the equation of the least squares regression line?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y = <em>response</em> <i>&#8250;</i> select <em>x</em> in the column list <i>&#8250;</i> <em>Add</em> <i>&#8250;</i> Personality = Standard Least Squares <i>&#8250;</i> <em>Run</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>Parameter Estimates</b> table, <b>Estimate</b> column: the <b>Intercept</b> row is b&#8320;, the row named after your x variable is b&#8321;.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">&#375; = b&#8320; + b&#8321;x
+
+b&#8321; = Sxy / Sxx        b&#8320; = &#375;&#772; &minus; b&#8321;x&#772;</div>
+      <span class="lbl l-note">Note</span><div class="val note">Write it with the real variable names, not y and x: "Predicted Crime Rate = 1.026 + 0.0771(Employees)". Fit Y by X also prints the equation as a line of text right above Summary of Fit.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="predict value plug in x estimate crime rate use the equation">
+    <p class="ask">Use the equation to predict y when x = ___</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Arithmetic</span>Substitute into &#375; = b&#8320; + b&#8321;x.<br><span class="note">Or let JMP do it:</span> add a new row with that x and <em>Y left blank</em>, then in Fit Model <span class="rt">&#9660;</span> <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Predicted Values</em></div>
+      <span class="lbl l-note">Note</span><div class="val note">Watch the <strong>units</strong>. If x is "employees in thousands", then 34,000 employees means <strong>x = 34</strong>, not 34000. Don't extrapolate far outside the range of x in the data.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="interpret slope context meaning one unit increase">
+    <p class="ask">Interpret the slope in context</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">"For each additional ONE [x-unit],
+ the PREDICTED / AVERAGE [y variable]
+ increases (or decreases) by |b&#8321;| [y-units]."</div>
+      <span class="lbl l-note">Note</span><div class="val note">Two traps the review pushes on: say <strong>predicted</strong> or <strong>average</strong> &mdash; an individual case will not change by exactly b&#8321;; and never claim x <em>causes</em> y from observational data.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="interpret intercept b0 y intercept meaning">
+    <p class="ask">Interpret the intercept</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">"When x = 0, the predicted [y] is b&#8320; [y-units]."</div>
+      <span class="lbl l-note">Note</span><div class="val note">Add the caveat whenever x = 0 is outside the data range or physically impossible (SAT score of 0, 0% with a diploma): the intercept is only a mathematical anchor for the line, not a meaningful prediction.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Checking the conditions</h3>
+
+  <article class="q" data-k="save residuals predicted values studentized residuals columns">
+    <p class="ask">Save the residuals and predicted values</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">In the Fit Model report: <span class="rt">&#9660;</span> next to "Response <em>y</em>" <i>&#8250;</i> <em>Save Columns</em> <i>&#8250;</i> <em>Residuals</em><br>repeat for <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Predicted Values</em><br>and <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Studentized Residuals</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">New columns appear at the right end of the data table.</div>
+      <span class="lbl l-note">Note</span><div class="val note">In Fit Y by X the equivalent is <span class="rt">&#9660;</span> next to "Linear Fit" <i>&#8250;</i> <em>Save Residuals</em> / <em>Save Predicteds</em>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="histogram normal quantile plot of residuals normality reasonable shapiro wilk">
+    <p class="ask">Histogram + normal quantile plot of the residuals &mdash; is normality reasonable?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> Y, Columns = <em>Residual</em> column <i>&#8250;</i> OK<br><span class="rt">&#9660;</span> next to the residual column name <i>&#8250;</i> <em>Normal Quantile Plot</em><br>then <span class="rt">&#9660;</span> <i>&#8250;</i> Continuous Fit <i>&#8250;</i> <em>Normal</em> <i>&#8250;</i> <span class="rt">&#9660;</span> "Fitted Normal" <i>&#8250;</i> <em>Goodness of Fit</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Histogram shape, the quantile plot, and <b>Shapiro-Wilk W</b> &#8594; <b>Prob &lt; W</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Answer with all three: "The histogram is roughly symmetric with no outliers, the normal quantile plot points fall along the line within the bands, and Shapiro-Wilk gives p = ___ &gt; .05 &mdash; normality is reasonable."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="residual plot pattern constant variance funnel curved plot residual by predicted">
+    <p class="ask">Residual plot &mdash; is there a pattern? Is the variance constant?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model report: <span class="rt">&#9660;</span> next to "Response <em>y</em>" <i>&#8250;</i> <em>Row Diagnostics</em> <i>&#8250;</i> <em>Plot Residual by Predicted</em><br><span class="note">for studentized residuals:</span> Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> Y = <em>Studentized Resid</em>, X = <em>Predicted</em> <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The scatter of residuals against predicted values, centered on the zero line.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><strong>Random band around 0</strong> &#8594; conditions met. <strong>Arch / U shape</strong> &#8594; a line is the wrong form, fit a quadratic. <strong>Funnel (fanning out)</strong> &#8594; variance is not constant. <strong>Points beyond &#177;3 on studentized residuals</strong> &#8594; outlier.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="independence assumption reasonable random sample time order">
+    <p class="ask">Is the independence assumption reasonable?</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">YES if the data came from a RANDOM SAMPLE of separate
+units (different counties, different schools, different trucks).
+
+Be cautious if the data are measured OVER TIME on the same
+unit (10 consecutive years of casino data) &mdash; consecutive
+years can be correlated.</div>
+      <span class="lbl l-note">Note</span><div class="val note">This one is argued from the problem's description, not from any JMP output.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Is the predictor useful?</h3>
+
+  <article class="q" data-k="useful predictor hypothesis test slope t ratio prob significance">
+    <p class="ask">Is x a useful predictor of y? (test the slope)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y, Add x, Run <i>&#8594;</i> read <em>Parameter Estimates</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">On the <em>x variable's</em> row: <b>t Ratio</b> is the test statistic, <b>Prob&gt;|t|</b> is the two-sided p-value. <b>Std Error</b> on that row is SE(b&#8321;).</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: &#946;&#8321; = 0      H&#8321;: &#946;&#8321; &#8800; 0
+t = b&#8321; / SE(b&#8321;)        df = n &minus; 2
+
+One-sided H&#8321;?  p = (Prob&gt;|t|)/2, but ONLY if the sign
+of b&#8321; agrees with H&#8321;. If it doesn't, p &gt; 0.5 &mdash; fail to reject.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Write all five pieces: H&#8320;, H&#8321;, t = ___, p = ___, and the conclusion in context. The <b>Analysis of Variance</b> F test gives the identical p-value in simple regression (F = t&#178;).</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="test slope equals specific value not zero muscle mass decrease by 2 contradict belief">
+    <p class="ask">"Do the data contradict the belief that the slope is &minus;2?" (testing &#946;&#8321; = a number other than 0)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Not in JMP</span>JMP only tests &#946;&#8321; = 0. Two valid routes:</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">ROUTE 1 &mdash; confidence interval (fastest)
+   Get the CI for the slope. If &minus;2 IS inside the interval,
+   the data do NOT contradict the belief.
+   If &minus;2 is OUTSIDE, the data DO contradict it.
+
+ROUTE 2 &mdash; hand-computed t
+   t = (b&#8321; &minus; (&minus;2)) / SE(b&#8321;) = (b&#8321; + 2) / SE(b&#8321;)
+   df = n &minus; 2, compare to t table or
+   JMP: 2*(1 &minus; t Distribution(|t|, n&minus;2))</div>
+      <span class="lbl l-note">Note</span><div class="val note">Route 1 is what the Muscle Mass question is really asking &mdash; it hands you the 99% CI in the part right before.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="rsquare r squared proportion of variation explained coefficient of determination">
+    <p class="ask">What proportion of the variation in y is explained?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model or Fit Line report <i>&#8250;</i> <em>Summary of Fit</em> panel</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>RSquare</b>. Multiply by 100 for a percent.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Say it like this: "___% of the variation in [y] is explained by the linear relationship with [x]." Note <b>RSquare Adj</b> right below it &mdash; that's the one that matters in Part 4, not here.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">The three intervals &mdash; don't mix them up</h3>
+
+  <div class="call">
+    <h4>Which interval does the question want?</h4>
+    <ul>
+      <li><strong>CI for the slope &#946;&#8321;</strong> &mdash; "confidence interval for the slope", "for how much y changes per unit of x". A range for the <em>rate of change</em>.</li>
+      <li><strong>CI for the mean E(y)</strong> &mdash; "the <em>average</em> y for ALL cases with x = ___", "for all trucks with&hellip;", "every month&hellip;". Narrower.</li>
+      <li><strong>Prediction interval for y</strong> &mdash; "predict the value for <em>ONE</em> new case", "a truck enters", "a school you're considering". Wider &mdash; it carries the randomness of a single observation on top of the uncertainty in the line.</li>
+    </ul>
+  </div>
+
+  <article class="q" data-k="confidence interval for slope 95 lower upper parameter estimates columns">
+    <p class="ask">95% confidence interval for the slope</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">In the Fit Model report, <em>right-click</em> anywhere inside the <em>Parameter Estimates</em> table <i>&#8250;</i> <em>Columns</em> <i>&#8250;</i> check <em>Lower 95%</em> and <em>Upper 95%</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Two new columns appear. Read them on the <em>x variable's</em> row, not the Intercept row.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Interpretation: "We are 95% confident that for each additional one [x-unit], the average [y] changes by between ___ and ___ [y-units]." If the interval excludes 0, x is a useful predictor &mdash; that matches the p-value.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="99 98 90 confidence interval slope other level set alpha level hand compute">
+    <p class="ask">A 99% or 98% confidence interval for the slope</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model report: <span class="rt">&#9660;</span> next to "Response <em>y</em>" <i>&#8250;</i> <em>Set Alpha Level</em> <i>&#8250;</i> 0.01 (for 99%) / 0.10 / <em>Other&hellip;</em> (type 0.02 for 98%)<br><span class="note">then re-read Lower/Upper in Parameter Estimates &mdash; the columns now show that level.</span></div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">If your build only offers 95%, hand-compute:
+
+   b&#8321; &#177; t(&#945;/2, n&minus;2) &#183; SE(b&#8321;)
+
+both b&#8321; and SE(b&#8321;) come straight off Parameter Estimates.
+
+Exact t critical value in JMP:
+   Cols &#8250; New Column &#8250; Formula &#8250; Probability
+        &#8250; t Quantile( 1 &minus; &#945;/2 , n &minus; 2 )
+   98% CI, n = 22  &#8594;  t Quantile(0.99, 20) = 2.528
+   99% CI, n = 60  &#8594;  t Quantile(0.995, 58) = 2.663</div>
+      <span class="lbl l-note">Note</span><div class="val note"><span class="flag">Student Edition</span>Some builds lock the Parameter Estimates columns to 95%. If Set Alpha Level doesn't change them, use the formula &mdash; it's two multiplications.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="confidence interval for the mean response E(y) average for all mean confidence interval">
+    <p class="ask">Confidence interval for the MEAN response when x = ___</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>1.</strong> In the data table, go to the first empty row at the bottom and type the x value, leaving <em>Y blank</em>.<br><strong>2.</strong> Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y, Add x <i>&#8250;</i> <em>Run</em><br><strong>3.</strong> <span class="rt">&#9660;</span> next to "Response <em>y</em>" <i>&#8250;</i> <em>Save Columns</em> <i>&#8250;</i> <em>Mean Confidence Interval</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Columns <b>Lower 95% Mean</b> and <b>Upper 95% Mean</b> &mdash; read them on <em>the row you added</em>.</div>
+      <span class="lbl l-note">Note</span><div class="val note">The blank Y is what makes it work: the row is excluded from fitting the line but still gets a prediction. For a 99% version, use Set Alpha Level <em>before</em> Save Columns. Graph-only alternative: Fit Y by X <i>&#8250;</i> <span class="rt">&#9660;</span> "Linear Fit" <i>&#8250;</i> <em>Confid Curves Fit</em>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="prediction interval individual new observation one school one truck indiv confidence interval">
+    <p class="ask">Prediction interval for ONE new observation at x = ___</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Identical setup &mdash; add the row with Y blank, Fit Model, Run &mdash; then<br><span class="rt">&#9660;</span> next to "Response <em>y</em>" <i>&#8250;</i> <em>Save Columns</em> <i>&#8250;</i> <em>Indiv Confidence Interval</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Columns <b>Lower 95% Indiv</b> and <b>Upper 95% Indiv</b>, on the row you added.</div>
+      <span class="lbl l-note">Note</span><div class="val note"><strong>"Indiv" = prediction interval.</strong> It is always wider than the Mean interval at the same x, and both are centered on the same &#375;. Graph version: <span class="rt">&#9660;</span> "Linear Fit" <i>&#8250;</i> <em>Confid Curves Indiv</em>.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Unusual points &amp; data prep</h3>
+
+  <article class="q" data-k="outlier influential point unusual county florida recount exclude row">
+    <p class="ask">Which point is unusual? What happens without it?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Click the point on the scatterplot &#8594; its row highlights in the data table.<br>To drop it: with the row selected, Rows <i>&#8250;</i> <em>Exclude/Unexclude</em> (or right-click the row number <i>&#8250;</i> Exclude), then re-Run the model.</div>
+      <span class="lbl l-note">Note</span><div class="val note">For the Florida recount question: fit the line <em>with</em> the county included, read the Predicted Value on that row, and the "extra votes" = <strong>actual y &minus; predicted y</strong>, which is exactly that row's <strong>residual</strong>.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="create new variable combined total column formula truck weights sum">
+    <p class="ask">Create a new variable (e.g. combined static weight)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Cols <i>&#8250;</i> <em>New Column</em> <i>&#8250;</i> name it <i>&#8250;</i> Column Properties <i>&#8250;</i> <em>Formula</em> <i>&#8250;</i> double-click each column to add it, using the <em>+</em> key between them <i>&#8250;</i> OK</div>
+      <span class="lbl l-note">Note</span><div class="val note">Truck Weights: Total SW = SW1 + SW23 + SW45, and Total WIM = WIM1 + WIM23 + WIM45. Then regress Total SW on Total WIM.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ MULTIPLE REGRESSION ============ -->
+<section id="p5">
+  <div class="sec-head"><span class="sec-num">Part 5</span><h2>Multiple &amp; polynomial regression</h2></div>
+  <p class="sec-note">Same report as Part 3, just with more rows in Parameter Estimates. The two new things: the <b>overall F test</b> (is the whole model any good?) versus the <b>individual t tests</b> (is this one predictor pulling its weight <em>given the others</em>?), and <b>model selection</b> using adjusted R&#178;.</p>
+
+  <article class="q" data-k="multivariate correlations scatterplot matrix all predictors linearly related multicollinearity">
+    <p class="ask">Are the predictors linearly related to y? Are any correlated with each other?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Multivariate Methods <i>&#8250;</i> <em>Multivariate</em> <i>&#8250;</i> put the response <em>and all predictors</em> in Y, Columns <i>&#8250;</i> OK</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The <b>Correlations</b> table for every pair, plus the <b>Scatterplot Matrix</b> below it for the shapes.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Read the response's row to find which predictor is <strong>most highly correlated</strong> with y (largest |r|). Read predictor-vs-predictor cells for <strong>multicollinearity</strong> &mdash; |r| above about .8 between two predictors is a concern. Check each mini-plot is a straight cloud, not a curve.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="fit multiple regression model all predictors equation parameter estimates">
+    <p class="ask">Fit the model &mdash; what is the regression equation?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y = <em>response</em> <i>&#8250;</i> highlight <em>all predictors</em> in the column list <i>&#8250;</i> <em>Add</em> <i>&#8250;</i> Personality = <em>Standard Least Squares</em> <i>&#8250;</i> Emphasis = <em>Minimal Report</em> <i>&#8250;</i> <em>Run</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>Parameter Estimates</b> &#8594; the <b>Estimate</b> column gives b&#8320; (Intercept row) then b&#8321;, b&#8322;, &hellip; one per predictor row.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">&#375; = b&#8320; + b&#8321;x&#8321; + b&#8322;x&#8322; + &#8230; + b&#8342;x&#8342;</div>
+      <span class="lbl l-note">Note</span><div class="val note">"Minimal Report" gives a clean stack of tables. "Effect Leverage" adds leverage plots &mdash; useful but noisy. <strong>Ctrl-click / shift-click</strong> to select several predictors at once before hitting Add.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="interpret coefficient multiple regression holding constant adjusting for other variables">
+    <p class="ask">Interpret one coefficient in a multiple regression</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">"For each additional one [x&#8320;-unit], the predicted [y]
+ changes by b&#8320; [y-units], HOLDING ALL OTHER
+ PREDICTORS CONSTANT."</div>
+      <span class="lbl l-note">Note</span><div class="val note">The bolded clause is the whole difference from simple regression and it's where the points are. "Holding all others constant" = "adjusting for the other variables" = "controlling for the other variables" &mdash; any of these phrasings earns it.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="is the model useful overall F test analysis of variance prob > F all betas zero">
+    <p class="ask">Is the model (as a whole) useful for predicting y?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model report <i>&#8250;</i> <em>Analysis of Variance</em> panel</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>F Ratio</b> is the test statistic, <b>Prob &gt; F</b> is the p-value.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: &#946;&#8321; = &#946;&#8322; = &#8230; = &#946;&#8342; = 0   (model is useless)
+H&#8321;: at least one &#946;&#8336; &#8800; 0     (model is useful)
+
+df = k numerator, n &minus; k &minus; 1 denominator</div>
+      <span class="lbl l-note">Note</span><div class="val note">This is the question when the wording is "is the model useful". If it asks about <em>one specific</em> predictor, that's the t test below instead. Reject &#8594; "at least one predictor is useful" &mdash; not "all of them are."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="individual predictor useful adjusting for all other variables t ratio prob>|t|">
+    <p class="ask">Adjusting for the others, is ___ a useful predictor?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model report <i>&#8250;</i> <em>Parameter Estimates</em> <i>&#8250;</i> find that predictor's row</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>t Ratio</b> and <b>Prob&gt;|t|</b> on that predictor's row.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: &#946;&#8336; = 0   H&#8321;: &#946;&#8336; &#8800; 0   (all other predictors in the model)
+t = b&#8336; / SE(b&#8336;)        df = n &minus; k &minus; 1</div>
+      <span class="lbl l-note">Note</span><div class="val note">The <b>Effect Tests</b> table gives the same p-value as an F (F = t&#178;) &mdash; either is acceptable. A predictor can be strongly correlated with y on its own and still be non-significant here, because another predictor already carries that information.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="confidence interval coefficient multiple regression lower upper 95">
+    <p class="ask">Confidence interval for one coefficient</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><em>Right-click</em> inside <em>Parameter Estimates</em> <i>&#8250;</i> <em>Columns</em> <i>&#8250;</i> check <em>Lower 95%</em> / <em>Upper 95%</em><br><span class="note">other levels first:</span> <span class="rt">&#9660;</span> "Response <em>y</em>" <i>&#8250;</i> <em>Set Alpha Level</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">Read on that predictor's row.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Interpretation must keep the adjustment clause: "We're 95% confident that, <strong>holding the other predictors constant</strong>, each additional 1% of low-birthweight babies raises mean infant mortality by between ___ and ___ deaths per 1000."</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="conditions multiple regression residuals normality constant variance independence check">
+    <p class="ask">Check the conditions for a multiple regression</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="rt">&#9660;</span> "Response <em>y</em>" <i>&#8250;</i> <em>Save Columns</em> <i>&#8250;</i> <em>Residuals</em> (repeat for <em>Studentized Residuals</em>)<br><span class="rt">&#9660;</span> "Response <em>y</em>" <i>&#8250;</i> <em>Row Diagnostics</em> <i>&#8250;</i> <em>Plot Residual by Predicted</em><br>Analyze <i>&#8250;</i> Distribution on the Residual column <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> <em>Normal Quantile Plot</em> + Continuous Fit <i>&#8250;</i> Normal <i>&#8250;</i> <em>Goodness of Fit</em></div>
+      <span class="lbl l-note">Note</span><div class="val note">Four conditions, four pieces of evidence: <strong>linearity</strong> (no curve in residual plot / Multivariate scatterplots straight), <strong>constant variance</strong> (no funnel), <strong>normality</strong> (histogram + NQ plot + Shapiro-Wilk), <strong>independence</strong> (argue from the study design).</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="VIF variance inflation factor multicollinearity check">
+    <p class="ask">Check for multicollinearity numerically</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><em>Right-click</em> inside <em>Parameter Estimates</em> <i>&#8250;</i> <em>Columns</em> <i>&#8250;</i> check <em>VIF</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A <b>VIF</b> column appears.</div>
+      <span class="lbl l-note">Note</span><div class="val note">VIF above 5 is a warning, above 10 is a real problem &mdash; that predictor is largely explained by the other predictors, which inflates its standard error and can hide a real effect.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Comparing and selecting models</h3>
+
+  <article class="q" data-k="adjusted r square compare models highest which model best summary of fit">
+    <p class="ask">Which model is best? (adjusted R&#178;)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Every Fit Model report <i>&#8250;</i> <em>Summary of Fit</em> panel</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>RSquare Adj</b> &mdash; pick the model with the <em>highest</em> value.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">R&#178;adj = 1 &minus; (1 &minus; R&#178;)(n &minus; 1)/(n &minus; k &minus; 1)
+
+R&#178;     ALWAYS rises when you add a predictor &#8594; useless for
+       comparing models with different numbers of predictors.
+R&#178;adj  penalizes extra predictors &#8594; can go DOWN &#8594; use this.</div>
+      <span class="lbl l-note">Note</span><div class="val note">The full model always has the highest plain R&#178;, and that's exactly why the review asks about adjusted R&#178; &mdash; the best model is usually a smaller one.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="all possible models subset stepwise compare aicc bic cp">
+    <p class="ask">List all possible models and compare them</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y, Add all predictors <i>&#8250;</i> Personality = <em>Stepwise</em> <i>&#8250;</i> Run <i>&#8250;</i> <span class="rt">&#9660;</span> next to "Stepwise Fit" <i>&#8250;</i> <em>All Possible Models</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A table of every subset with its <b>RSquare</b>, <b>RSquare Adj</b>, <b>Cp</b>, <b>AICc</b>, <b>BIC</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note">"Does any smaller model explain almost as much as the full model?" &#8594; scan for a 2- or 3-predictor model whose R&#178; is within a point or two of the full model's. Best by any of: highest R&#178;adj, lowest AICc, lowest BIC.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="backward model selection stepwise remove variable p value threshold prob to leave">
+    <p class="ask">Perform backward model selection</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>1.</strong> Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y = response <i>&#8250;</i> Add <em>all</em> predictors <i>&#8250;</i> Personality = <em>Stepwise</em> <i>&#8250;</i> <em>Run</em><br><strong>2.</strong> In the Stepwise Fit Control panel set Stopping Rule = <em>P-value Threshold</em>, Direction = <em>Backward</em>, Prob to Leave = <em>0.1</em><br><strong>3.</strong> Click <em>Go</em> (or <em>Step</em> once per removal to watch it happen)<br><strong>4.</strong> Click <em>Make Model</em> <i>&#8250;</i> <em>Run</em> to get the full report for the final model</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">The <b>Current Estimates</b> table &mdash; variables with a check in the <b>Entered</b> box are the ones that remain.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">Backward selection, by hand:
+ 1. Fit with ALL predictors.
+ 2. Find the predictor with the LARGEST p-value.
+ 3. If that p-value &gt; 0.1 (the threshold), REMOVE it.
+ 4. Refit without it. Repeat from step 2.
+ 5. Stop when every remaining p-value &#8804; 0.1.</div>
+      <span class="lbl l-note">Note</span><div class="val note">"Which variable should we remove first?" = the one with the <strong>largest p-value</strong> in the full model. Remove <em>one at a time</em> &mdash; p-values shift after each removal.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="predict using selected model specific values infant mortality plug in profiler">
+    <p class="ask">Predict y at given values of the predictors</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>Arithmetic:</strong> plug the values into the Parameter Estimates equation.<br><strong>Or in JMP:</strong> add a data row with those x values and <em>Y blank</em> <i>&#8250;</i> re-Run Fit Model <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Predicted Values</em><br><strong>Or interactively:</strong> <span class="rt">&#9660;</span> "Response <em>y</em>" <i>&#8250;</i> <em>Factor Profiling</em> <i>&#8250;</i> <em>Profiler</em> <i>&#8250;</i> type each x value under its axis</div>
+      <span class="lbl l-note">Note</span><div class="val note">Use the coefficients from <em>the model you were told to use</em> &mdash; if the question says "using the backward selection model," don't use the full model's numbers.</div>
+    </div>
+  </article>
+
+  <h3 class="grp">Polynomial / quadratic regression</h3>
+
+  <article class="q" data-k="fit quadratic regression model polynomial degree 2 curve coffee sales">
+    <p class="ask">Fit a quadratic regression model</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>Route A &mdash; quick plot + fit:</strong><br>Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> Y = <em>response</em>, X = <em>factor</em> <i>&#8250;</i> OK <i>&#8250;</i> <span class="rt">&#9660;</span> next to "Bivariate Fit of&hellip;" <i>&#8250;</i> <em>Fit Polynomial</em> <i>&#8250;</i> <em>2, quadratic</em><br><br><strong>Route B &mdash; full report (use this one for intervals):</strong><br>Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y = <em>response</em> <i>&#8250;</i> select <em>x</em> in the column list <i>&#8250;</i> <em>Macros</em> <i>&#8250;</i> <em>Polynomial to Degree</em> (Degree box = 2) <i>&#8250;</i> <em>Run</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans">A <b>Polynomial Fit Degree=2</b> block (Route A) or the usual <b>Parameter Estimates</b> with an extra <b>x*x</b> row (Route B).</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">&#375; = b&#8320; + b&#8321;x + b&#8322;x&#178;</div>
+      <span class="lbl l-note">Note</span><div class="val note"><span class="flag">Important</span>JMP <strong>centers</strong> polynomial terms by default, so the row reads <span class="ic">(x &minus; x&#772;)&#183;(x &minus; x&#772;)</span> and the coefficients are NOT the raw b&#8320;, b&#8321;, b&#8322;. To get the plain equation: <span class="rt">&#9660;</span> "Response <em>y</em>" <i>&#8250;</i> uncheck <em>Center Polynomials</em>, then Run again. Fit Y by X's Fit Polynomial prints the uncentered equation above the report.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="is the quadratic model useful quadratic term significant x*x squared term test">
+    <p class="ask">At the 0.05 level, is the quadratic model useful?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">Fit Model (Route B) report <i>&#8250;</i> <em>Parameter Estimates</em> <i>&#8250;</i> the <em>x*x</em> row<br><span class="note">equivalently:</span> the <em>Effect Tests</em> table, <em>x*x</em> row</div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>t Ratio</b> and <b>Prob&gt;|t|</b> on the squared-term row.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">H&#8320;: &#946;&#8322; = 0   (the curve adds nothing &mdash; a line is enough)
+H&#8321;: &#946;&#8322; &#8800; 0   (the quadratic term is useful)
+
+Reject &#8594; the quadratic model IS useful.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Test the <strong>squared term specifically</strong>, not the overall F. The overall F can be significant just because the linear part works. Centering doesn't change this p-value.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="how much does y change from x to x quadratic increase dispensers 0 to 1 2 to 3">
+    <p class="ask">"If x goes from 2 to 3, how much does y change?" (quadratic)</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><span class="flag">Arithmetic</span>In a quadratic the change is NOT constant &mdash; compute both predictions and subtract.</div>
+      <span class="lbl l-fx">Formula</span><div class="val fx">change = &#375;(x&#8322;) &minus; &#375;(x&#8321;)
+       = b&#8321;(x&#8322; &minus; x&#8321;) + b&#8322;(x&#8322;&#178; &minus; x&#8321;&#178;)
+
+ 0 &#8594; 1:  b&#8321;(1) + b&#8322;(1 &minus; 0)  = b&#8321; + b&#8322;
+ 2 &#8594; 3:  b&#8321;(1) + b&#8322;(9 &minus; 4)  = b&#8321; + 5b&#8322;</div>
+      <span class="lbl l-note">Note</span><div class="val note">This is the point of asking both: the two answers differ, which is exactly what "the relationship is not linear" means. Use the <strong>uncentered</strong> coefficients, or just plug each x into the printed equation and subtract.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="quadratic confidence interval mean prediction interval dispensers 4 coffee sales">
+    <p class="ask">CI for the mean / prediction interval from a quadratic model</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path"><strong>1.</strong> Add a data row with x = the value, <em>Y blank</em>.<br><strong>2.</strong> Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> Y <i>&#8250;</i> select x <i>&#8250;</i> Macros <i>&#8250;</i> <em>Polynomial to Degree</em> (2) <i>&#8250;</i> Run<br><strong>3a.</strong> average for all such cafeterias &#8594; <span class="rt">&#9660;</span> <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Mean Confidence Interval</em><br><strong>3b.</strong> one specific new cafeteria &#8594; <span class="rt">&#9660;</span> <i>&#8250;</i> Save Columns <i>&#8250;</i> <em>Indiv Confidence Interval</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>Lower/Upper 95% Mean</b> or <b>Lower/Upper 95% Indiv</b> on the row you added.</div>
+      <span class="lbl l-note">Note</span><div class="val note">Coffee Sales asks both: "a 95% CI for the <em>mean</em> coffee sales with 4 dispensers" &#8594; Mean. "<em>A cafeteria</em> decides to use 4 dispensers &mdash; what do you predict?" &#8594; Indiv.</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="rsquare quadratic proportion of variation explained coffee sales">
+    <p class="ask">What proportion of the variation has the quadratic model explained?</p>
+    <div class="rows">
+      <span class="lbl l-path">Path</span><div class="val path">The <em>Polynomial Fit Degree=2</em> block (or the Fit Model report) <i>&#8250;</i> <em>Summary of Fit</em></div>
+      <span class="lbl l-ans">Answer</span><div class="val ans"><b>RSquare</b>.</div>
+      <span class="lbl l-note">Note</span><div class="val note">"___% of the variation in coffee sales is explained by the quadratic relationship with the number of dispensers." Compare it against the linear fit's RSquare to show the curve bought you something.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ FORMULAS ============ -->
+<section id="pf">
+  <div class="sec-head"><span class="sec-num">Ref</span><h2>Formula sheet</h2></div>
+  <p class="sec-note">Everything JMP won't hand you directly.</p>
+
+  <article class="q" data-k="sums of squares sxx syy sxy slope intercept correlation formulas">
+    <p class="ask">Building blocks</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">Sxx = &#931;(x &minus; x&#772;)&#178;      Syy = &#931;(y &minus; &#375;&#772;)&#178;      Sxy = &#931;(x &minus; x&#772;)(y &minus; &#375;&#772;)
+
+b&#8321; = Sxy / Sxx                b&#8320; = &#375;&#772; &minus; b&#8321;x&#772;
+r  = Sxy / &#8730;(Sxx &#183; Syy)        R&#178; = r&#178;   (simple regression only)
+r  = &#177;&#8730;RSquare, sign of b&#8321;</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="test statistics t z formulas standard error degrees of freedom">
+    <p class="ask">Test statistics &amp; degrees of freedom</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">one mean, &#963; known    z = (x&#772; &minus; &#956;&#8320;)/(&#963;/&#8730;n)
+one mean, &#963; unknown  t = (x&#772; &minus; &#956;&#8320;)/(s/&#8730;n)      df = n &minus; 1
+slope                 t = (b&#8321; &minus; 0)/SE(b&#8321;)      df = n &minus; 2
+slope vs. a value c   t = (b&#8321; &minus; c)/SE(b&#8321;)      df = n &minus; 2
+coefficient (multiple) t = b&#8336;/SE(b&#8336;)           df = n &minus; k &minus; 1
+overall F (multiple)  df&#8321; = k,  df&#8322; = n &minus; k &minus; 1</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="confidence interval formulas margin of error t critical z critical">
+    <p class="ask">Confidence intervals</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">mean, &#963; known       x&#772; &#177; z&#945;/&#8322; &#183; &#963;/&#8730;n
+mean, &#963; unknown     x&#772; &#177; t(&#945;/2, n&minus;1) &#183; s/&#8730;n
+slope                b&#8321; &#177; t(&#945;/2, n&minus;2) &#183; SE(b&#8321;)
+coefficient          b&#8336; &#177; t(&#945;/2, n&minus;k&minus;1) &#183; SE(b&#8336;)
+
+Confidence level &#8594; &#945;:   90% &#8594; .10    95% &#8594; .05
+                        98% &#8594; .02    99% &#8594; .01</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="power beta formulas critical value rejection region type II">
+    <p class="ask">Power &amp; Type II error</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">STEP 1  critical value(s) in x&#772; units, using &#956;&#8320;
+        left:  x&#772;c = &#956;&#8320; &minus; z&#945;&#183;&#963;/&#8730;n
+        right: x&#772;c = &#956;&#8320; + z&#945;&#183;&#963;/&#8730;n
+        two:   x&#772;c = &#956;&#8320; &#177; z&#945;/&#8322;&#183;&#963;/&#8730;n
+
+STEP 2  re-standardize x&#772;c using &#956;true
+        z = (x&#772;c &minus; &#956;true)/(&#963;/&#8730;n)
+
+STEP 3  &#946; = P(x&#772; lands in the FAIL-to-reject region | &#956;true)
+
+STEP 4  Power = 1 &minus; &#946;</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="proportions formulas two sample z pooled standard error paired binomial">
+    <p class="ask">Proportions</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">INDEPENDENT
+ p&#770;&#8321; = x&#8321;/n&#8321;   p&#770;&#8322; = x&#8322;/n&#8322;   pooled p&#770; = (x&#8321;+x&#8322;)/(n&#8321;+n&#8322;)
+
+ test  z = (p&#770;&#8321; &minus; p&#770;&#8322;) / &#8730;[ p&#770;(1&minus;p&#770;)(1/n&#8321; + 1/n&#8322;) ]
+ CI      (p&#770;&#8321; &minus; p&#770;&#8322;) &#177; z&#945;/&#8322;&#8730;[ p&#770;&#8321;(1&minus;p&#770;&#8321;)/n&#8321; + p&#770;&#8322;(1&minus;p&#770;&#8322;)/n&#8322; ]
+ check   n&#8321;p&#770;&#8321;, n&#8321;(1&minus;p&#770;&#8321;), n&#8322;p&#770;&#8322;, n&#8322;(1&minus;p&#770;&#8322;)  all &#8805; 5
+
+PAIRED (table cells a, b, c, d;  n = a+b+c+d)
+ ties = a+d      n&#8242; = b+c      T = count in H&#8321;&#39;s direction
+ test    T ~ Binomial(n&#8242;, 0.5)
+ CI      (b&minus;c)/n &#177; z&#945;/&#8322;&#8730;[ ((a+d)(b+c) + 4bc) / n&#179; ]</div>
+    </div>
+  </article>
+
+  <article class="q" data-k="critical values z table common t quantile jmp function">
+    <p class="ask">Critical values &amp; JMP's quantile functions</p>
+    <div class="rows">
+      <span class="lbl l-fx">Formula</span><div class="val fx">one-tailed z:  &#945;=.10 &#8594; 1.282   .05 &#8594; 1.645
+               .025 &#8594; 1.960   .01 &#8594; 2.326   .005 &#8594; 2.576
+two-tailed z:  90% &#8594; 1.645   95% &#8594; 1.960
+               98% &#8594; 2.326   99% &#8594; 2.576
+
+In a JMP formula column (Functions &#8250; Probability):
+   t Quantile( 1 &minus; &#945;/2 , df )   &#8594; t critical value
+   Normal Quantile( 1 &minus; &#945; )     &#8594; z critical value
+   t Distribution( t , df )      &#8594; left-tail p-value
+   Normal Distribution( x, &#956;, &#963; ) &#8594; left-tail probability</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ WORDING ============ -->
+<section id="pw">
+  <div class="sec-head"><span class="sec-num">Ref</span><h2>Answer wording &amp; traps</h2></div>
+
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>If the question says&hellip;</th><th>It wants&hellip;</th><th>Found at</th></tr></thead>
+      <tbody>
+        <tr><td>"is ___ a useful predictor"</td><td>t test on that predictor's slope</td><td><code>Parameter Estimates &#8250; Prob&gt;|t|</code></td></tr>
+        <tr><td>"is the model useful"</td><td>overall F test</td><td><code>Analysis of Variance &#8250; Prob &gt; F</code></td></tr>
+        <tr><td>"proportion / percent of variation explained"</td><td>R&#178;</td><td><code>Summary of Fit &#8250; RSquare</code></td></tr>
+        <tr><td>"which model is best"</td><td>adjusted R&#178;</td><td><code>Summary of Fit &#8250; RSquare Adj</code></td></tr>
+        <tr><td>"for ALL [units] with x = ___, the average y"</td><td>CI for the mean response</td><td><code>Save Columns &#8250; Mean Confidence Interval</code></td></tr>
+        <tr><td>"a [single unit] with x = ___, predict its y"</td><td>prediction interval</td><td><code>Save Columns &#8250; Indiv Confidence Interval</code></td></tr>
+        <tr><td>"how much does y change per unit of x"</td><td>CI for the slope</td><td><code>Parameter Estimates &#8250; Lower/Upper 95%</code></td></tr>
+        <tr><td>two separate groups of different people</td><td>independent two-proportion z test</td><td><code>&#9660; &#8250; Two Sample Test for Proportions</code></td></tr>
+        <tr><td>same people measured twice / matched pairs</td><td>paired binomial test on the discordant pairs</td><td>hand-computed (or <code>&#9660; &#8250; Agreement Statistic</code>)</td></tr>
+        <tr><td>"is the variable categorical or quantitative"</td><td>categorical &#8594; proportion; quantitative &#8594; mean</td><td>read the problem</td></tr>
+        <tr><td>"define the parameter"</td><td>&#956; or p, in words, with units and population</td><td>read the problem</td></tr>
+        <tr><td>"probability of detecting this difference"</td><td>power = 1 &minus; &#946;</td><td>hand-computed</td></tr>
+        <tr><td>"probability of incorrectly failing to reject"</td><td>&#946;</td><td>hand-computed</td></tr>
+        <tr><td>"for what values of x&#772; will we reject"</td><td>rejection region in x&#772; units</td><td>hand-computed</td></tr>
+        <tr><td>"is normality reasonable"</td><td>Shapiro-Wilk + NQ plot + histogram</td><td><code>Continuous Fit &#8250; Normal &#8250; Goodness of Fit</code></td></tr>
+        <tr><td>"is a linear relationship appropriate"</td><td>scatterplot shape + residual plot</td><td><code>Row Diagnostics &#8250; Plot Residual by Predicted</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="call" style="margin-top:20px">
+    <h4>Traps that cost points</h4>
+    <ul>
+      <li><strong>Prob&gt;|t| is two-sided.</strong> For a one-tailed H&#8321;, halve it &mdash; but only if the estimate's sign agrees with H&#8321;. If the sign disagrees, the one-sided p-value is above 0.5 and you fail to reject.</li>
+      <li><strong>Mean vs. Indiv.</strong> "Indiv" is the prediction interval for one new case and is always the wider one. Re-read the question for a singular noun ("a truck", "a school", "a cafeteria").</li>
+      <li><strong>Units.</strong> If x is recorded in thousands, 34,000 employees is x = 34.</li>
+      <li><strong>Blank Y.</strong> A row added to get a prediction must have its Y cell empty, or it changes the fitted line.</li>
+      <li><strong>"Holding all others constant"</strong> must appear in every multiple-regression coefficient interpretation.</li>
+      <li><strong>Centered polynomials.</strong> JMP centers x&#178; by default; uncheck <em>Center Polynomials</em> before reading raw quadratic coefficients.</li>
+      <li><strong>Never "accept H&#8320;"</strong> &mdash; only "fail to reject". And never claim causation from observational data.</li>
+      <li><strong>&#956; not x&#772; in hypotheses</strong>, and define &#956; in the problem's own words.</li>
+      <li><strong>Paired data is not two samples.</strong> If the same people appear in both columns, drop the ties and use the binomial test &mdash; the two-proportion z test is wrong there.</li>
+      <li><strong>The Freq box.</strong> Analyzing a summarized table without putting the count column in <em>Freq</em> silently analyzes 4 observations.</li>
+      <li><strong>Row percentages.</strong> p&#770; for a group divides by that group&#39;s own row total, not the grand total.</li>
+      <li><strong>Degrees of freedom.</strong> n&minus;1 for one mean, n&minus;2 for a simple-regression slope, n&minus;k&minus;1 for a multiple-regression coefficient.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Built from the six review documents: One Sample Inference for One Mean, Power (week 1), Two Proportions, Correlation &amp; Regression (week 2), Simple Linear Regression, Multiple Linear Regression. Menu paths follow JMP 16&ndash;18; older builds may nest an item one level differently, but the report panel names are the same.</footer>
+</div>
+
+<script>
+(function(){
+  var find=document.getElementById('find'),
+      clearbtn=document.getElementById('clearbtn'),
+      empty=document.getElementById('empty'),
+      count=document.getElementById('count'),
+      cards=[].slice.call(document.querySelectorAll('.q')),
+      secs=[].slice.call(document.querySelectorAll('section')),
+      grps=[].slice.call(document.querySelectorAll('h3.grp'));
+
+  cards.forEach(function(c){
+    c._t=((c.getAttribute('data-k')||'')+' '+c.textContent).toLowerCase().replace(/\s+/g,' ');
+  });
+
+  function run(){
+    var q=find.value.trim().toLowerCase();
+    clearbtn.hidden = q.length===0;
+    var terms=q?q.split(/\s+/):[], shown=0;
+
+    cards.forEach(function(c){
+      var ok=terms.every(function(t){return c._t.indexOf(t)>-1;});
+      c.classList.toggle('hide',!ok);
+      if(ok) shown++;
+    });
+
+    // hide a group heading when every card until the next heading is hidden
+    grps.forEach(function(g){
+      var any=false,n=g.nextElementSibling;
+      while(n && n.tagName!=='H3'){
+        if(n.classList.contains('q') && !n.classList.contains('hide')) any=true;
+        n=n.nextElementSibling;
+      }
+      g.classList.toggle('hide', q.length>0 && !any);
+    });
+
+    secs.forEach(function(s){
+      var any=s.querySelector('.q:not(.hide)');
+      s.classList.toggle('hide', q.length>0 && !any);
+    });
+
+    empty.classList.toggle('on', q.length>0 && shown===0);
+    count.textContent = q ? shown+' of '+cards.length : cards.length+' entries';
+  }
+
+  find.addEventListener('input',run);
+  find.addEventListener('keydown',function(e){ if(e.key==='Escape'){ find.value=''; run(); } });
+  clearbtn.addEventListener('click',function(){ find.value=''; run(); find.focus(); });
+  run();
+})();
+</script>
+</body>
+</html>
