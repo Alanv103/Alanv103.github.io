@@ -65,6 +65,7 @@ p.t b{font-weight:700;font-size:10px;letter-spacing:.03em;text-transform:upperca
 p.t b::after{content:" \2014 "}
 p.t s{text-decoration:none;font-weight:600;color:var(--ink)}
 p.t u{text-decoration:none;display:block;font-size:10.5px;color:var(--ink-2);margin-top:1.5px}
+p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;white-space:pre-wrap;color:var(--ink);margin-top:1px}
 .bl{display:inline-block;width:30px;border-bottom:1px solid var(--ink-3);margin:0 3px 0 2px;vertical-align:baseline}
 .bl.w2{width:56px} .bl.w3{width:92px}
 
@@ -85,12 +86,13 @@ p.t u{text-decoration:none;display:block;font-size:10.5px;color:var(--ink-2);mar
   .cols{column-gap:15pt;column-rule:.4pt solid #ccc}
   h3{font-size:6.5pt;margin:0 0 1.8pt;padding-top:1.8pt;border-top:.9pt solid #000;letter-spacing:.09em}
   h3:not(:first-child){margin-top:4.4pt}
-  p.e{font-size:6.05pt;line-height:1.18;margin-bottom:1.15pt;color:#111;padding-left:6pt;text-indent:-6pt}
-  p.t{font-size:6.05pt;line-height:1.2;margin-bottom:1.3pt;color:#000;padding:1.6pt 4pt 1.6pt 5pt;
+  p.e{font-size:5.85pt;line-height:1.17;margin-bottom:1.15pt;color:#111;padding-left:6pt;text-indent:-6pt}
+  p.t{font-size:5.85pt;line-height:1.19;margin-bottom:1.3pt;color:#000;padding:1.6pt 4pt 1.6pt 5pt;
       border-left:1.6pt solid #000;background:#f2f4f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   p.t b{font-size:5.9pt;color:#000} p.t u{font-size:6pt;color:#333}
+  p.t code{font-size:5.8pt;line-height:1.34}
   .bl{border-bottom:.5pt solid #333}
-  .j,.f{font-size:5.85pt;color:#000} .j s{color:#555}
+  .j,.f{font-size:5.75pt;color:#000} .j s{color:#555}
   .rt{color:#000} .w{color:#000}
   p.e b,p.e i{color:#000}
 }
@@ -106,7 +108,7 @@ p.t u{text-decoration:none;display:block;font-size:10.5px;color:var(--ink-2);mar
 
   <h3>Symbol key &mdash; what each letter means</h3>
   <p class="t"><b>Greek = the true value you can't see</b><s>&#956;</s> "mew" &mdash; the true mean of the whole population &middot; <s>&#963;</s> "sigma" &mdash; the true standard deviation, only when a problem gives it &middot; <s>&#945;</s> "alpha" &mdash; the significance level, the cutoff you compare p to (.05, .01) &middot; <s>&#946;</s> "beta" &mdash; the chance of missing a real difference &middot; <s>&#946;&#8320;, &#946;&#8321;</s> "beta-zero, beta-one" &mdash; the true intercept and slope &middot; <s>&#931;</s> big sigma &mdash; "add up over every data point" &middot; <s>&#967;&#178;</s> "chi-square" &mdash; the test JMP prints for a 2&#215;2 table.</p>
-  <p class="t"><b>Latin = what your sample gives you</b><s>x&#772;</s> "x-bar" &mdash; your sample average &middot; <s>s</s> your sample standard deviation &middot; <s>n</s> how many observations &middot; <s>p&#770;</s> "p-hat" &mdash; a sample proportion &middot; <s>b&#8320;, b&#8321;</s> the intercept and slope JMP prints &middot; <s>&#375;</s> "y-hat" &mdash; a predicted y &middot; <s>e</s> a residual: actual &minus; predicted &middot; <s>SE</s> standard error = &#963;/&#8730;n or s/&#8730;n &middot; <s>r</s> correlation, &minus;1 to +1 &middot; <s>R&#178;</s> share of y explained &middot; <s>df</s> degrees of freedom &middot; <s>k</s> how many predictors &middot; <s>t, z, F</s> test statistics.<u>A hypothesis is always about the Greek letter, never x&#772;. Careful: <b>&#946;</b> alone is the Type II error chance, but <b>&#946;&#8320;</b> and <b>&#946;&#8321;</b> are regression slopes &mdash; same letter, two jobs.</u></p>
+  <p class="t"><b>Latin = what your sample gives you</b><s>x&#772;</s> "x-bar" &mdash; your sample average &middot; <s>s</s> your sample standard deviation &middot; <s>n</s> how many observations &middot; <s>p&#770;</s> "p-hat" &mdash; a sample proportion &middot; <s>b&#8320;, b&#8321;</s> the intercept and slope JMP prints &middot; <s>&#375;</s> "y-hat" &mdash; a predicted y &middot; <s>e</s> a residual: actual &minus; predicted &middot; <s>SE</s> standard error = &#963;/&#8730;n or s/&#8730;n &middot; <s>r</s> correlation, &minus;1 to +1 &middot; <s>R&#178;</s> share of y explained &middot; <s>df</s> degrees of freedom &middot; <s>k</s> how many predictors.<u>A hypothesis is always about the Greek letter, never x&#772;. Careful: <b>&#946;</b> alone is the Type II error chance, but <b>&#946;&#8320;, &#946;&#8321;</b> are regression slopes.</u></p>
   <h3>Student calculators &amp; teaching modules</h3>
   <p class="t"><b>Getting there, then which file</b><s>Help &#8250; Sample Index</s> &#8594; under &#9312; Content Type click <s>Tool</s> &#8594; under &#9313; Tool Type pick <s>Calculators</s> &#8594; double-click the file. (Some builds list these under the <s>Student</s> menu.) One mean, test statistic + p-value &#8594; <s>TestMean.jsl</s> &middot; one proportion &#8594; <s>TestProportion.jsl</s> &middot; two means &#8594; <s>TestTwoSampleMeans.jsl</s> &middot; two proportions &#8594; <s>TestTwoSampleProportions.jsl</s> &middot; CI for a mean &#8594; <s>ConfidenceIntervalsForTheMean.jsl</s> &middot; CI for a proportion &#8594; <s>ConfidenceIntervalsForProportion.jsl</s> &middot; CI comparing two groups &#8594; <s>CITwoMeans.jsl</s>, <s>CITwoProportions.jsl</s> &middot; any normal / t / binomial probability &#8594; <s>DistributionCalculator.jsl</s> &middot; how big a sample &#8594; <s>SampleSizeForConfidenceIntervals.jsl</s>.</p>
   <p class="t"><b>Teaching Modules &mdash; shape, mean, SD, and a guided test</b>Same path but Tool Type <s>Teaching Modules</s>. <s>Sampling Distribution of Sample Means</s>: set <i>Population Shape</i> and <i>Population Mean</i> &#8594; <i>Population Summary</i> gives the shape, Mean and Std Dev, and the sample-means panel gives the mean of x&#772; and its Std Dev (that's &#963;/&#8730;n). <s>Hypothesis Test on Mean</s>: pick <i>z-test</i> or <i>t-test</i>, pick the alternative (not equal / less / greater), then tick <i>Reveal Decision</i>.</p>
@@ -132,6 +134,12 @@ p.t u{text-decoration:none;display:block;font-size:10.5px;color:var(--ink-2);mar
   <p class="e"><b>Power from JMP.</b> <span class="j">DOE <s>&#8250;</s> Design Diagnostics <s>&#8250;</s> Sample Size and Power <s>&#8250;</s> One Sample Mean</span>, fill in Alpha, Std Dev, Difference to Detect and Sample Size, leave <i>Power</i> empty <span class="j"><s>&#8250;</s> Continue</span>. Leaving <i>Sample Size</i> empty instead tells you how big a sample you'd need. It assumes a two-sided test, so on one-sided questions use the formula above.</p>
   <p class="e"><b>Drawing it.</b> Two bell curves on one line, one vertical line at the cutoff through both: top curve at &#956;&#8320;, tail past the cutoff shaded = &#945;; bottom curve at the true mean, "don't reject" side shaded = &#946;, the rest power.</p>
 
+  <p class="t"><b>Worked example</b><code>POWER  Soap: &#956;&#8320; = 33, &#963; = 12.4, n = 35, &#945; = .05 "less than", true mean 29
+  SE    = &#963;/&#8730;n = 12.4/&#8730;35 = 12.4/5.9161 &#8776; 2.096
+  x&#772;c    = &#956;&#8320; + (z)(SE) = 33 + (&minus;1.645)(2.096) = 33 &minus; 3.448 &#8776; 29.55
+  z     = (x&#772;c &minus; &#956;true)/SE = (29.55 &minus; 29)/2.096 = 0.55/2.096 &#8776; 0.263
+  Power = P(Z &lt; 0.263) &#8776; .6039 &#8594; 60.39%     &#946; = 1 &minus; .6039 &#8776; .3961
+t TEST Life Expectancy: SE = 16.41/&#8730;200 &#8776; 1.1604, t = 0.98/1.1604 &#8776; 0.8446</code></p>
   <h3>Two proportions &mdash; separate groups</h3>
   <p class="e"><b>A table of counts.</b> <span class="j">File <s>&#8250;</s> New <s>&#8250;</s> Data Table</span> with Group (Nominal), Outcome (Nominal), Count (Continuous), one row per box, like (Help, Accepted, 222). Then <span class="j">Analyze <s>&#8250;</s> Fit Y by X <s>&#8250;</s> Y = Outcome <s>&#8250;</s> X = Group <s>&#8250;</s> Freq = Count <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> <i>Contingency Table</i> and <i>Tests</i>. Skip <i>Freq</i> and JMP thinks you have 4 people.</p>
   <p class="e"><b>Best guess for the difference.</b> <span class="j"><span class="rt">&#9660;</span>Contingency Table <s>&#8250;</s> Row %</span>. Each p&#770; is the count divided by <i>that group's own row total</i>, not the overall total. Example: 222/515 &minus; 55/190 = .4311 &minus; .2895 = <i>.1416</i>.</p>
