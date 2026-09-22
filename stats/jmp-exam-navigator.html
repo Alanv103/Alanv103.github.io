@@ -6,114 +6,132 @@
 <style>:root{color-scheme:light dark}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}</style>
 </head>
 <body>
-<title>JMP Exam Notes</title>
+<title>JMP Exam Sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
 :root{
   --paper:#eceff2; --sheet:#fff;
-  --ink:#10181f; --ink-2:#3c4a57; --ink-3:#6d7c89;
+  --ink:#10181f; --ink-2:#3a4855; --ink-3:#6d7c89;
   --rule:#b9c4cd; --hair:#dde4ea;
-  --rt:#b0301f; --arrow:#0b5f57; --tint:#f2f7f6;
+  --q1:#1f4e6b; --q2:#8a5512; --q3:#14614f; --q4:#7b2d3b;
+  --rt:#b0301f; --saybg:#f1f6f4; --jmpbg:#f3f5f7;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
-  --rule:#33414d; --hair:#26323d; --rt:#ff8574; --arrow:#4fcbbf; --tint:#17292b;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
 }}
 :root[data-theme="dark"]{
   --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
-  --rule:#33414d; --hair:#26323d; --rt:#ff8574; --arrow:#4fcbbf; --tint:#17292b;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.4}
 .tips{max-width:1080px;margin:0 auto;padding:14px 16px 0;color:var(--ink-2);font-size:12.5px}
 .tips b{color:var(--ink);font-weight:600}
-.page{max-width:1080px;margin:14px auto;background:var(--sheet);border:1px solid var(--rule);border-radius:5px;padding:16px 18px 18px}
+.page{max-width:1080px;margin:14px auto;background:var(--sheet);border:1px solid var(--rule);border-radius:5px;padding:14px 16px 16px}
 
-.hdr{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:6px}
-.hdr b{font-size:14px;font-weight:700;letter-spacing:-.01em}
-.hdr span{font-size:10px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.lgd{font-size:10.5px;color:var(--ink-2);margin:0 0 9px}
-.lgd code{font-family:var(--mono)}
+.hdr{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-bottom:6px}
+.hdr b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.hdr span{font-size:9.5px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 
-.cols{columns:2;column-gap:22px;column-rule:1px solid var(--hair)}
-.symwrap{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:4px 0 5px;margin:0 0 9px}
-.symwrap h4{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 3px;color:var(--ink)}
+.symwrap{border-bottom:1.5px solid var(--ink);padding:0 0 5px;margin:0 0 8px}
+.symwrap h4{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 3px;color:var(--ink)}
 .syms{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 16px}
-.syms div{font-size:10.5px;line-height:1.26;color:var(--ink-2)}
+.syms div{font-size:10.5px;line-height:1.24;color:var(--ink-2)}
 .syms div b{color:var(--ink);font-weight:700}
 .syms div i{font-style:normal;color:var(--ink-3)}
 
-h3{
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
-  margin:0 0 4px;padding-top:4px;border-top:1.5px solid var(--ink);
-  break-after:avoid;break-inside:avoid;
-}
-h3:not(:first-child){margin-top:9px}
-.cols > h3:first-child{padding-top:0;border-top:0}
+.cols{columns:2;column-gap:20px}
 
-p.e{margin:0 0 3.5px;font-size:11.5px;line-height:1.36;color:var(--ink-2);break-inside:avoid;
-   padding-left:9px;text-indent:-9px}
-p.e b{color:var(--ink);font-weight:600}
-p.e i{font-style:normal;color:var(--ink);font-weight:600}
-p.e s,p.t s{text-decoration:none}
-.j{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
-.j s{text-decoration:none;color:var(--ink-3)}
+.qh{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;
+    padding:3px 8px;margin:0 0 5px;border-radius:3px;break-after:avoid;break-inside:avoid}
+.qh.a{background:var(--q1)} .qh.b{background:var(--q2)} .qh.c{background:var(--q3)} .qh.d{background:var(--q4)}
+.qh:not(:first-child){margin-top:9px}
+.qh em{font-style:normal;font-weight:500;letter-spacing:.01em;text-transform:none;opacity:.85}
+
+h5{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   margin:7px 0 3px;break-after:avoid;break-inside:avoid}
+
+.st{margin:0 0 4px;break-inside:avoid}
+.st>b{display:block;font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.28;margin-bottom:1.5px}
+.st>b s{text-decoration:none;display:inline-block;min-width:11px;font-weight:700;color:#fff;background:var(--ink-3);
+        border-radius:2px;text-align:center;font-size:9px;padding:0 3px;margin-right:3px;vertical-align:1px}
+.st .jmp,.st .say{display:block;font-size:11px;line-height:1.3;padding:2px 6px;border-left:2px solid var(--hair)}
+.st .jmp{font-family:var(--mono);font-size:10.5px;background:var(--jmpbg);color:var(--ink);border-left-color:var(--ink-3)}
+.st .say{background:var(--saybg);color:var(--ink);border-left-color:var(--q3);margin-top:1.5px}
+.st .jmp em,.st .say em{font-style:normal;font-weight:700;font-family:var(--sans);font-size:9px;letter-spacing:.07em;
+   text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+.st .say em{color:var(--q3)}
+.st .jmp i{font-style:normal;color:var(--ink-3)}
+.st .say b{font-weight:600}
+.st .nb{display:block;font-size:10px;color:var(--ink-3);line-height:1.28;margin-top:1px}
 .rt{color:var(--rt);font-weight:700}
-.w{color:var(--arrow);font-weight:700}
 .f{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
-p.t{margin:0 0 4px;font-size:11.5px;line-height:1.4;color:var(--ink);break-inside:avoid;
-   padding:3px 6px 3px 7px;border-left:2.5px solid var(--arrow);background:var(--tint)}
-p.t b{font-weight:700;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--arrow)}
-p.t b::after{content:" \2014 "}
-p.t s{text-decoration:none;font-weight:600;color:var(--ink)}
-p.t u{text-decoration:none;display:block;font-size:10.5px;color:var(--ink-2);margin-top:1.5px}
-p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;white-space:pre-wrap;color:var(--ink);margin-top:1px}
 .bl{display:inline-block;width:30px;border-bottom:1px solid var(--ink-3);margin:0 3px 0 2px;vertical-align:baseline}
-.bl.w2{width:56px} .bl.w3{width:92px}
+.bl.w2{width:54px} .bl.w3{width:86px}
 
-@media screen and (max-width:720px){
-  .page{padding:12px 12px 14px;border-radius:0;border-left:0;border-right:0;margin:10px 0}
-  .cols{columns:1;column-rule:0}
+table{border-collapse:collapse;width:100%;font-size:10.5px;margin:0 0 5px;break-inside:avoid}
+th{text-align:left;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   border-bottom:1px solid var(--ink-3);padding:2px 4px;font-weight:700}
+td{padding:1.5px 4px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--ink-2);line-height:1.25}
+td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--ink)}
+
+@media screen and (max-width:760px){
+  .page{padding:12px 11px 14px;border-radius:0;border-left:0;border-right:0;margin:10px 0}
+  .cols{columns:1}
+  .syms{grid-template-columns:repeat(2,1fr)}
 }
 
-@page{size:letter portrait;margin:.34in}
+@page{size:letter portrait;margin:.32in}
 @media print{
   .tips{display:none}
   html,body{background:#fff;color:#000}
   .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
   .page:last-of-type{break-after:auto}
-  .hdr{padding-bottom:2px;margin-bottom:3px;border-bottom:1.1pt solid #000}
-  .hdr b{font-size:10.5pt} .hdr span{font-size:6.8pt;color:#444}
-  .lgd{font-size:6.6pt;margin-bottom:5px;color:#333}
-  .cols{column-gap:15pt;column-rule:.4pt solid #ccc}
-  .symwrap{border-top:1pt solid #000;border-bottom:1pt solid #000;padding:1.6pt 0 2pt;margin-bottom:4pt}
-  .symwrap h4{font-size:6.4pt;margin-bottom:1.6pt}
+  .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
+  .hdr b{font-size:10.5pt} .hdr span{font-size:6.2pt;color:#444}
+  .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4pt}
+  .symwrap h4{font-size:6.2pt;margin-bottom:1.4pt}
   .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
-  .syms div{font-size:6pt;line-height:1.18;color:#111}
+  .syms div{font-size:6pt;line-height:1.17;color:#111}
   .syms div b,.syms div i{color:#000}
-  h3{font-size:6.5pt;margin:0 0 1.8pt;padding-top:1.8pt;border-top:.9pt solid #000;letter-spacing:.09em}
-  h3:not(:first-child){margin-top:4.4pt}
-  p.e{font-size:5.8pt;line-height:1.165;margin-bottom:1.15pt;color:#111;padding-left:6pt;text-indent:-6pt}
-  p.t{font-size:5.8pt;line-height:1.185;margin-bottom:1.3pt;color:#000;padding:1.6pt 4pt 1.6pt 5pt;
-      border-left:1.6pt solid #000;background:#f2f4f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  p.t b{font-size:5.9pt;color:#000} p.t u{font-size:6pt;color:#333}
-  p.t code{font-size:5.75pt;line-height:1.32}
+  .cols{column-gap:13pt}
+  .qh{font-size:7pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qh:not(:first-child){margin-top:5pt}
+  .qh em{font-size:6.6pt}
+  h5{font-size:6.2pt;margin:4pt 0 1.6pt}
+  .st{margin-bottom:2.2pt}
+  .st>b{font-size:6.3pt;margin-bottom:.8pt}
+  .st>b s{font-size:5.4pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:6.1pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:5.95pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp em,.st .say em{font-size:5.4pt;color:#444}
+  .st .nb{font-size:5.9pt;color:#444}
+  .f{font-size:5.95pt}
+  table{font-size:6pt;margin-bottom:2.6pt}
+  th{font-size:5.4pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
+  td.m{font-size:5.9pt}
   .bl{border-bottom:.5pt solid #333}
-  .j,.f{font-size:5.75pt;color:#000} .j s{color:#555}
-  .rt{color:#000} .w{color:#000}
-  p.e b,p.e i{color:#000}
+  .rt{color:#000}
 }
 </style>
+
 <p class="tips"><b>Print:</b> Ctrl/&#8984;-P &rarr; Letter, Portrait, Scale <b>100%</b>, Margins <b>Default</b>, <b>two-sided / flip on long edge</b>. Two pages &mdash; front and back of one sheet.</p>
 
-<!-- ============ FRONT ============ -->
+<!-- ================= FRONT ================= -->
 <div class="page">
-  <div class="hdr"><b>JMP Exam Notes</b><span>One mean &middot; Power &middot; Two proportions</span></div>
-  <p class="lgd"><code>&#8250;</code> = then click &nbsp;&middot;&nbsp; <span class="rt">&#9660;</span> = the little red triangle next to that report's title &nbsp;&middot;&nbsp; <span class="w">&rarr;</span> = where the answer shows up</p>
+  <div class="hdr"><b>JMP EXAM &middot; FRONT</b><span>Q1 one mean &middot; Q2 power &amp; type I/II &nbsp;|&nbsp; <span class="rt">&#9660;</span> = red triangle &middot; <code>&#8250;</code> = then click</span></div>
 
   <div class="symwrap">
     <h4>Symbols</h4>
@@ -130,7 +148,6 @@ p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;
       <div><b>df</b> 1 mean n&minus;1 &middot; slope n&minus;2 &middot; MLR n&minus;k&minus;1</div>
       <div><b>H&#8320;</b> the null &mdash; always has an =</div>
       <div><b>H&#8321;</b> the alternative: &lt;, &gt; or &#8800;</div>
-      <div><b>p&#770;</b> <i>"p-hat"</i> a sample proportion</div>
       <div><b>&#375;</b> <i>"y-hat"</i> a predicted y</div>
       <div><b>e</b> residual = actual &minus; predicted</div>
       <div><b>b&#8320; b&#8321;</b> intercept / slope from your data</div>
@@ -139,153 +156,167 @@ p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;
       <div><b>R&#178;</b> % of variation in y explained</div>
       <div><b>RMSE</b> typical prediction error</div>
       <div><b>k</b> how many predictors</div>
-      <div><b>&#931;</b> add it up over every data point</div>
       <div><b>z</b> .05 &#8594; 1.645 &middot; .025 &#8594; 1.96</div>
       <div><b>z</b> .01 &#8594; 2.326 &middot; .005 &#8594; 2.576</div>
       <div><b>t*</b> critical t &mdash; like z but needs df</div>
+      <div><b>&#931;</b> add it up over every data point</div>
     </div>
   </div>
 
   <div class="cols">
 
-  <h3>Student calculators &amp; teaching modules</h3>
-  <p class="t"><b>Getting there, then which file</b><s>Help &#8250; Sample Index</s> &#8594; under &#9312; Content Type click <s>Tool</s> &#8594; under &#9313; Tool Type pick <s>Calculators</s> &#8594; double-click the file. (Some builds list these under the <s>Student</s> menu.) One mean, test statistic + p-value &#8594; <s>TestMean.jsl</s> &middot; one proportion &#8594; <s>TestProportion.jsl</s> &middot; two means &#8594; <s>TestTwoSampleMeans.jsl</s> &middot; two proportions &#8594; <s>TestTwoSampleProportions.jsl</s> &middot; CI for a mean &#8594; <s>ConfidenceIntervalsForTheMean.jsl</s> &middot; CI for a proportion &#8594; <s>ConfidenceIntervalsForProportion.jsl</s> &middot; CI comparing two groups &#8594; <s>CITwoMeans.jsl</s>, <s>CITwoProportions.jsl</s> &middot; any normal / t / binomial probability &#8594; <s>DistributionCalculator.jsl</s> &middot; how big a sample &#8594; <s>SampleSizeForConfidenceIntervals.jsl</s>.</p>
-  <p class="t"><b>Teaching Modules &mdash; shape, mean, SD, and a guided test</b>Same path but Tool Type <s>Teaching Modules</s>. <s>Sampling Distribution of Sample Means</s>: set <i>Population Shape</i> and <i>Population Mean</i> &#8594; <i>Population Summary</i> gives the shape, Mean and Std Dev, and the sample-means panel gives the mean of x&#772; and its Std Dev (that's &#963;/&#8730;n). <s>Hypothesis Test on Mean</s>: pick <i>z-test</i> or <i>t-test</i>, pick the alternative (not equal / less / greater), then tick <i>Reveal Decision</i>.</p>
-  <h3>Testing one mean</h3>
-  <p class="e"><b>Is it a number or a group?</b> If you could take an average of it, it's a number &#8594; use a <i>mean</i>. If it just sorts each person into a group (yes/no, accepted/rejected), it's a group &#8594; use a <i>proportion</i>.</p>
-  <p class="e"><b>Writing the hypotheses.</b> H&#8320; always says &#956; equals the claimed number. "less / went down" &#8594; H&#8321;: &#956; &lt; &middot; "more / went up" &#8594; &gt; &middot; "different / changed" &#8594; &#8800;.</p>
-  <p class="e"><b>Shape, average, spread, count.</b> <span class="j">Analyze <s>&#8250;</s> Distribution <s>&#8250;</s> Y, Columns = variable <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> the histogram shows the shape; <i>Summary Statistics</i> gives Mean, Std Dev, N and Std Err Mean.</p>
-  <p class="e"><b>t test &mdash; when they don't give you &#963;.</b> <span class="j">Analyze <s>&#8250;</s> Distribution <s>&#8250;</s> Y = variable <s>&#8250;</s> OK <s>&#8250;</s> <span class="rt">&#9660;</span>variable <s>&#8250;</s> Test Mean <s>&#8250;</s> type the claimed number <s>&#8250;</s> leave the standard deviation box empty <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> the <i>Test Mean</i> panel, <i>t Test</i> row.</p>
-  <p class="e"><b>z test &mdash; when they do give you &#963;.</b> Same path, but also fill in <span class="j">"Enter True Standard Deviation to do z-test rather than t test"</span> <span class="w">&rarr;</span> the panel now shows a <i>z Test</i> row instead.</p>
-  <p class="e"><b>Which p-value to read.</b> H&#8321; has &#8800; &#8594; <i>Prob&gt;|t|</i> &middot; H&#8321; has &gt; &#8594; <i>Prob&gt;t</i> &middot; H&#8321; has &lt; &#8594; <i>Prob&lt;t</i>. Ignore the Signed-Rank line.</p>
-  <p class="e"><b>Only summary numbers given.</b> Distribution needs raw data, so use <i>TestMean.jsl</i> above, or <span class="f">t = (x&#772; &minus; &#956;&#8320;) / (s/&#8730;n)</span>, df = n &minus; 1. If they give s&#178;, square-root it first.</p>
+  <p class="qh a">Q1 &middot; One-sample mean <em>&mdash; Analyze &#8250; Distribution</em></p>
 
-  <h3>What has to be true, and intervals</h3>
-  <p class="e"><b>Conditions for the t test.</b> <i>Independence:</i> it's a random sample, it's less than 10% of the whole group, and each person is measured once. <i>Bell shape:</i> the problem says bell-shaped, <b>or</b> n &#8805; 30 (big samples are fine either way), <b>or</b> the histogram looks even with no far-out points.</p>
-  <p class="e"><b>Checking the shape in JMP.</b> <span class="j"><span class="rt">&#9660;</span>variable <s>&#8250;</s> Continuous Fit <s>&#8250;</s> Normal <s>&#8250;</s> <span class="rt">&#9660;</span>Fitted Normal <s>&#8250;</s> Goodness of Fit</span> <span class="w">&rarr;</span> <i>Shapiro-Wilk Prob&lt;W</i>; if it's bigger than &#945;, the bell shape is fine. Also <span class="j"><span class="rt">&#9660;</span>variable <s>&#8250;</s> Normal Quantile Plot</span> &mdash; the dots should hug the straight line.</p>
-  <p class="e"><b>Confidence interval for the mean.</b> <i>Summary Statistics</i> already lists Upper / Lower 95% Mean; other levels <span class="j"><span class="rt">&#9660;</span>variable <s>&#8250;</s> Confidence Interval <s>&#8250;</s> 0.99</span>. Formula <span class="f">x&#772; &#177; t(&#945;/2, n&minus;1)&#183;s/&#8730;n</span>.</p>
+  <p class="st"><b>Before part a: is it t or z?</b><span class="jmp"><em>rule</em>only <b>s</b> given &#8594; <b>t</b>, df = n&minus;1 &nbsp;&middot;&nbsp; <b>&#963;</b> given, or power is asked &#8594; <b>z</b></span><span class="nb">Raw column of numbers &#8594; Distribution &#8250; Test Mean. Just n, x&#772;, s in a sentence or table &#8594; TestMean.jsl.</span></p>
 
-  <h3>If H&#8320; were true, and power</h3>
-  <p class="e"><b>Describe the spread of sample averages when H&#8320; is true.</b> Give all three. <i>Shape:</i> bell-shaped, because the population is bell-shaped or n &#8805; 30. <i>Center:</i> &#956;&#8320;. <i>Spread:</i> <span class="f">&#963;/&#8730;n</span>.</p>
-  <p class="e"><b>Which sample averages make you reject?</b> <span class="f">cutoff = &#956;&#8320; + (z)(SE)</span>, where SE = &#963;/&#8730;n and z carries the sign of the tail: &minus;1.645 for a "less than" test, +1.645 for a "greater than" test at &#945; = .05; for a two-sided test use &#956;&#8320; &#177; 1.96&#183;SE. Reject when x&#772; is past that cutoff.</p>
-  <p class="e"><b>&#946; &mdash; the chance of missing a real difference.</b> Take that same cutoff, but measure it from the <i>true</i> mean instead: <span class="f">z = (cutoff &minus; &#956;true)/(&#963;/&#8730;n)</span>. Then &#946; is the chance x&#772; lands in the "don't reject" zone.</p>
-  <p class="e"><b>Power = 1 &minus; &#946;.</b> These all mean power: "chance of detecting this difference", "chance of rejecting H&#8320; when the true mean is ___", "chance of correctly concluding". These mean &#946;: "chance of failing to reject", "chance of a Type II error".</p>
-  <p class="e"><b>Power from JMP.</b> <span class="j">DOE <s>&#8250;</s> Design Diagnostics <s>&#8250;</s> Sample Size and Power <s>&#8250;</s> One Sample Mean</span>, fill in Alpha, Std Dev, Difference to Detect and Sample Size, leave <i>Power</i> empty <span class="j"><s>&#8250;</s> Continue</span>. Leaving <i>Sample Size</i> empty instead tells you how big a sample you'd need. It assumes a two-sided test, so on one-sided questions use the formula above.</p>
-  <p class="e"><b>Drawing it.</b> Two bell curves on one line, one vertical line at the cutoff through both: top curve at &#956;&#8320;, tail past the cutoff shaded = &#945;; bottom curve at the true mean, "don't reject" side shaded = &#946;, the rest power.</p>
+  <p class="st"><b><s>a</s>Is the variable categorical or quantitative?</b><span class="jmp"><em>jmp</em>none &mdash; read the problem</span><span class="say"><em>say</em>"The <span class="bl w2"></span> of each <span class="bl w2"></span>. <b>Quantitative</b> &mdash; a measured number that makes sense to average."</span></p>
 
-  <p class="t"><b>Worked example</b><code>POWER  Soap: &#956;&#8320; = 33, &#963; = 12.4, n = 35, &#945; = .05 "less than", true mean 29
-  SE    = &#963;/&#8730;n = 12.4/&#8730;35 = 12.4/5.9161 &#8776; 2.096
-  x&#772;c    = &#956;&#8320; + (z)(SE) = 33 + (&minus;1.645)(2.096) = 33 &minus; 3.448 &#8776; 29.55
-  z     = (x&#772;c &minus; &#956;true)/SE = (29.55 &minus; 29)/2.096 = 0.55/2.096 &#8776; 0.263
-  Power = P(Z &lt; 0.263) &#8776; .6039 &#8594; 60.39%     &#946; = 1 &minus; .6039 &#8776; .3961
-t TEST Life Expectancy: SE = 16.41/&#8730;200 &#8776; 1.1604, t = 0.98/1.1604 &#8776; 0.8446</code></p>
-  <h3>Two proportions &mdash; separate groups</h3>
-  <p class="e"><b>A table of counts.</b> <span class="j">File <s>&#8250;</s> New <s>&#8250;</s> Data Table</span> with Group (Nominal), Outcome (Nominal), Count (Continuous), one row per box, like (Help, Accepted, 222). Then <span class="j">Analyze <s>&#8250;</s> Fit Y by X <s>&#8250;</s> Y = Outcome <s>&#8250;</s> X = Group <s>&#8250;</s> Freq = Count <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> <i>Contingency Table</i> and <i>Tests</i>. Skip <i>Freq</i> and JMP thinks you have 4 people.</p>
-  <p class="e"><b>Best guess for the difference.</b> <span class="j"><span class="rt">&#9660;</span>Contingency Table <s>&#8250;</s> Row %</span>. Each p&#770; is the count divided by <i>that group's own row total</i>, not the overall total. Example: 222/515 &minus; 55/190 = .4311 &minus; .2895 = <i>.1416</i>.</p>
-  <p class="e"><b>Hypotheses.</b> H&#8320;: p&#8321; &minus; p&#8322; = 0 &mdash; if both groups have the same rate, the difference is zero. "improves" &#8594; &gt; 0 &middot; "reduces" &#8594; &lt; 0 &middot; "different" &#8594; &#8800; 0.</p>
-  <p class="e"><b>What has to be true.</b> Two separate random groups, or people randomly assigned to them; one answer per person; and all four counts in the table at least 5.</p>
-  <p class="e"><b>Test and interval.</b> <span class="j"><span class="rt">&#9660;</span>Contingency Analysis <s>&#8250;</s> Two Sample Test for Proportions</span> <span class="w">&rarr;</span> the difference, its standard error, <i>Prob&gt;|z|</i> / <i>Prob&gt;z</i> / <i>Prob&lt;z</i>, and the confidence interval. <i>Pearson ChiSquare</i> in the Tests panel is the same two-sided test.</p>
-  <p class="e"><b>Formulas.</b> combined <span class="f">p&#770; = (x&#8321;+x&#8322;)/(n&#8321;+n&#8322;)</span>, then <span class="f">z = (p&#770;&#8321;&minus;p&#770;&#8322;) / &#8730;[p&#770;(1&minus;p&#770;)(1/n&#8321;+1/n&#8322;)]</span>. The interval does <i>not</i> combine them: <span class="f">(p&#770;&#8321;&minus;p&#770;&#8322;) &#177; z&#945;/&#8322;&#8730;[p&#770;&#8321;q&#770;&#8321;/n&#8321; + p&#770;&#8322;q&#770;&#8322;/n&#8322;]</span>.</p>
+  <p class="st"><b><s>b</s>Define the parameter in context</b><span class="jmp"><em>jmp</em>none</span><span class="say"><em>say</em>"&#956; = the true mean <span class="bl w2"></span>, in <span class="bl"></span>, for all <span class="bl w2"></span>."</span><span class="nb">Lose the point by: writing x&#772;, describing the sample, or dropping the units / population.</span></p>
 
-  <h3>Two proportions &mdash; same people twice</h3>
-  <p class="e"><b>Spotting it and reading the table.</b> Same people measured twice, or matched pairs. <i>a</i> and <i>d</i> are the people who didn't change; <i>b</i> and <i>c</i> are the ones who switched, one each way. Smoking: a = 20, b = 5, c = 16, d = 9, n = 50. Don't use the test above &mdash; it ignores the pairing.</p>
-  <p class="e"><b>Only the switchers count.</b> n&#8242; = b + c. Everyone who stayed the same (a + d) gets dropped. T = how many switched in the direction H&#8321; expects. Smoking: 29 dropped, n&#8242; = 21, T = 16. H&#8320; says switching is equally likely both ways.</p>
-  <p class="e"><b>The p-value.</b> If H&#8320; is true, T acts like flipping a coin n&#8242; times: <span class="f">T ~ Binomial(n&#8242;, 0.5)</span>. <span class="j">Cols <s>&#8250;</s> New Column <s>&#8250;</s> Formula <s>&#8250;</s> Discrete Probability <s>&#8250;</s> Binomial Distribution(.5, n&#8242;, k)</span> gives the chance of k or fewer. Smoking: 1 &minus; BinDist(.5, 21, 15) = <i>.0133</i>, under .05, so the video worked.</p>
-  <p class="e"><b>Or let JMP do it.</b> <span class="j">Analyze <s>&#8250;</s> Fit Y by X <s>&#8250;</s> Y = After, X = Before, Freq = Count <s>&#8250;</s> OK <s>&#8250;</s> <span class="rt">&#9660;</span> <s>&#8250;</s> Agreement Statistic</span> <span class="w">&rarr;</span> the <i>test of symmetry</i> is McNemar's test, but it only gives the two-sided answer.</p>
-  <p class="e"><b>Interval.</b> <span class="f">(b&minus;c)/n &#177; z&#945;/&#8322;&#8730;[((a+d)(b+c) + 4bc) / n&#179;]</span>. Smoking: (&minus;.389, &minus;.051), all below zero. Puzzle: (&minus;.196, .077), which includes zero &mdash; no real difference.</p>
+  <p class="st"><b><s>c</s>State the null and alternative</b><span class="jmp"><em>jmp</em>none &mdash; use the wording table below</span><span class="say"><em>say</em>H&#8320;: &#956; = <span class="bl"></span> &nbsp; vs &nbsp; H&#8321;: &#956; <b>[&lt; &gt; &#8800;]</b> <span class="bl"></span></span><span class="nb">The same claimed number goes in both lines. H&#8320; always gets the "=".</span></p>
 
-  <h3>Fill-in-the-blank answers</h3>
-  <p class="t"><b>Define the parameter</b>&#956; = the true mean <span class="bl w3"></span> (with units) for all <span class="bl w3"></span>.</p>
-  <p class="t"><b>Interpret the test statistic</b>The sample average is <span class="bl"></span> standard errors <s>[above / below]</s> <span class="bl"></span>, the number H&#8320; claims.</p>
-  <p class="t"><b>Interpret the p-value</b>If the true mean really were <span class="bl"></span>, there is a <span class="bl"></span>% chance of getting a sample average at least this far from <span class="bl"></span> just by chance.</p>
-  <p class="t"><b>Conclusion &mdash; works for every test</b>Since p = <span class="bl"></span> <s>[&lt; / &gt;]</s> &#945; = <span class="bl"></span>, we <s>[reject / fail to reject]</s> H&#8320;. There <s>[is / is not]</s> enough evidence to say that <span class="bl w3"></span>.<u>Last blank &#8594; <b>one mean:</b> the mean [variable] is [less than / greater than / different from] ___ &middot; <b>two proportions:</b> the proportion of ___ is [higher / lower / different] for ___ than for ___ &middot; <b>slope:</b> [x] helps predict [y] &middot; <b>overall F:</b> the model helps predict [y] &middot; <b>curved model:</b> the squared term makes the model better. Never write "accept H&#8320;." If your instructor words it "sufficient evidence to conclude," that is the same sentence.</u></p>
-  <p class="t"><b>Interpret any confidence interval</b>We are <span class="bl"></span>% confident that <span class="bl w3"></span> is between <span class="bl"></span> and <span class="bl"></span>.<u>Middle blank &#8594; <b>&#956;:</b> the true mean [variable] for all [group] &middot; <b>p&#8321;&minus;p&#8322;:</b> the difference in the proportion of ___ between ___ and ___ &middot; <b>slope:</b> the average change in [y] for each extra one [x-unit] &middot; <b>mean at x:</b> the average [y] for all [units] with x = ___ &middot; <b>prediction:</b> a single [unit] with x = ___ will have [y]. If the interval includes 0 &#8594; no real difference / doesn't help predict.</u></p>
-  <p class="t"><b>Type I error in context</b>We decide that <span class="bl w3"></span> when really <span class="bl w3"></span>. The chance of this is &#945; = <span class="bl"></span>.</p>
-  <p class="t"><b>Type II error in context</b>We decide there isn't enough evidence that <span class="bl w3"></span> when really <span class="bl w2"></span> is true. The chance of this is &#946; = <span class="bl"></span>.</p>
-  <p class="t"><b>Describe the spread of sample averages</b><s>Shape:</s> bell-shaped, because <span class="bl w2"></span>. &nbsp;<s>Center:</s> &#956; = <span class="bl"></span>. &nbsp;<s>Spread:</s> &#963;/&#8730;n = <span class="bl"></span> / &#8730;<span class="bl"></span> = <span class="bl"></span>.<u>Reason blank: "the problem says the population is bell-shaped" or "n &#8805; 30, so it's fine either way".</u></p>
-  <p class="t"><b>Check the t-test conditions</b><s>Independence:</s> the <span class="bl w2"></span> are a random sample and fewer than 10% of all <span class="bl w2"></span>. &nbsp;<s>Bell shape:</s> <span class="bl w3"></span>.</p>
-  <p class="t"><b>Power and &#946;</b>If the true mean is really <span class="bl"></span>, there is a <span class="bl"></span>% chance we <s>[correctly reject / fail to reject]</s> H&#8320;.<u>"Correctly reject" = power = 1 &minus; &#946;. "Fail to reject" = &#946; = the chance of a Type II error.</u></p>
-  <p class="t"><b>Which error was possible</b>We <s>[rejected / failed to reject]</s> H&#8320;, so if we made a mistake it has to be a Type <s>[I / II]</s> error: <span class="bl w3"></span>.</p>
-  <p class="t"><b>Large enough sample, two proportions</b>The counts <span class="bl"></span>, <span class="bl"></span>, <span class="bl"></span> and <span class="bl"></span> are all at least 5, so both groups are big enough.</p>
+  <table>
+    <thead><tr><th>Words in the problem</th><th>H&#8321;</th><th>Read this line</th><th>Crit .05/.01</th></tr></thead>
+    <tbody>
+      <tr><td>more than, greater, exceeds, increased, above</td><td class="m">&#956; &gt; &#956;&#8320;</td><td class="m">Prob &gt; t</td><td class="m">1.645 / 2.326</td></tr>
+      <tr><td>less, reduced, decreased, improved (faster), below</td><td class="m">&#956; &lt; &#956;&#8320;</td><td class="m">Prob &lt; t</td><td class="m">&minus;1.645 / &minus;2.326</td></tr>
+      <tr><td>different from, changed, not equal, "off", "is the claim right?"</td><td class="m">&#956; &#8800; &#956;&#8320;</td><td class="m">Prob &gt; |t|</td><td class="m">&#177;1.96 / &#177;2.576</td></tr>
+    </tbody>
+  </table>
+  <p class="st"><span class="nb">Direction comes from the <b>claim being tested</b>, not from background motivation in the story.</span></p>
+
+  <p class="st"><b><s>d</s>Check the conditions</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> <span class="rt">&#9660;</span>variable <i>&#8250;</i> Normal Quantile Plot &nbsp;&middot;&nbsp; then Continuous Fit <i>&#8250;</i> Normal <i>&#8250;</i> <span class="rt">&#9660;</span>Fitted Normal <i>&#8250;</i> Goodness of Fit</span><span class="say"><em>say</em><b>Independence:</b> the <span class="bl w2"></span> are a random sample and fewer than 10% of all <span class="bl w2"></span>. <b>Normality:</b> the problem states bell-shaped, <b>or</b> n = <span class="bl"></span> &#8805; 30 so the CLT applies, <b>or</b> the dots follow the straight line and Shapiro-Wilk Prob&lt;W = <span class="bl"></span> &gt; &#945;.</span></p>
+
+  <p class="st"><b><s>e</s>Find the test statistic and p-value</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Distribution <i>&#8250;</i> Y = variable <i>&#8250;</i> OK <i>&#8250;</i> <span class="rt">&#9660;</span>variable <i>&#8250;</i> Test Mean <i>&#8250;</i> type &#956;&#8320; <i>&#8250;</i> leave the SD box empty for t, or fill &#963; for z <i>&#8250;</i> OK</span><span class="jmp"><em>or</em>Help <i>&#8250;</i> Sample Index <i>&#8250;</i> Tool <i>&#8250;</i> Calculators <i>&#8250;</i> TestMean.jsl &nbsp;&mdash; takes n, x&#772;, s with no raw data</span><span class="say"><em>say</em>SE = s/&#8730;n = <span class="bl"></span>/&#8730;<span class="bl"></span> = <span class="bl"></span>; t = (x&#772; &minus; &#956;&#8320;)/SE = <span class="bl"></span>, df = <span class="bl"></span>, p = <span class="bl"></span></span><span class="nb">The <i>Test Mean</i> panel prints all three tails. Match the one to H&#8321; &mdash; the biggest lost point on the whole exam. A one-tailed p is exactly half the two-tailed one; if yours isn't, one of the two is wrong.</span></p>
+
+  <p class="st"><b><s>f</s>Interpret the test statistic</b><span class="say"><em>say</em>"The sample mean sits <span class="bl"></span> standard errors <b>[above / below]</b> the claimed <span class="bl"></span>."</span><span class="nb">t is a <i>distance</i> measured in standard errors. |t| &lt; 1 ordinary &middot; &#8776; 2 borderline &middot; &gt; 3 rare.</span></p>
+
+  <p class="st"><b><s>g</s>Interpret the p-value</b><span class="say"><em>say</em>"If &#956; really were <span class="bl"></span>, there is a <span class="bl"></span>% chance of getting a sample mean at least this <b>[high / low / far]</b> from <span class="bl"></span> by random chance alone."</span><span class="nb">Never mention &#945; and never say "reject" here &mdash; that belongs in the conclusion.</span></p>
+
+  <p class="st"><b><s>h</s>State the conclusion</b><span class="say"><em>say</em>"Since p = <span class="bl"></span> <b>[&lt; / &gt;]</b> &#945; = <span class="bl"></span>, we <b>[reject / fail to reject]</b> H&#8320;. There <b>[is / is not]</b> enough evidence to say that <span class="bl w3"></span>."</span><span class="nb">Never "accept H&#8320;" and never "prove". If your instructor words it "sufficient evidence to conclude", that's the same sentence.</span></p>
+
+  <p class="st"><b><s>i</s>Confidence interval for the mean</b><span class="jmp"><em>jmp</em><i>Summary Statistics</i> already lists Upper / Lower 95% Mean &nbsp;&middot;&nbsp; other levels: <span class="rt">&#9660;</span>variable <i>&#8250;</i> Confidence Interval <i>&#8250;</i> 0.90 / 0.99</span><span class="say"><em>say</em>x&#772; &#177; t*&#183;SE = <span class="bl"></span> &#177; <span class="bl"></span> &#8594; "We are <span class="bl"></span>% confident the true mean <span class="bl w2"></span> for <span class="bl w2"></span> is between <span class="bl"></span> and <span class="bl"></span>."</span><span class="nb">Cross-check: if the interval <b>contains</b> &#956;&#8320; you will fail to reject; if it <b>excludes</b> &#956;&#8320; you will reject.</span></p>
+
+  <p class="st"><b>When the problem gives only summary numbers</b><span class="say"><em>say</em>If they hand you s&#178; (a <b>variance</b>), square-root it first. Home Prices: s = &#8730;7,317,400,000 &#8776; 85,542; SE = 85,542/&#8730;69 &#8776; 10,298; t = (141,400 &minus; 155,000)/10,298 &#8776; &minus;1.32</span></p>
+  <p class="st"><b>"The sample statistic is 1.03 standard errors below the hypothesised value"</b><span class="say"><em>say</em>That sentence <b>is</b> the answer: t = &minus;1.03. Below &#8594; negative, above &#8594; positive. df = n &minus; 1.</span></p>
+  <h5>Reading a JMP Distribution report</h5>
+  <table>
+    <thead><tr><th>Panel row</th><th>Is really</th></tr></thead>
+    <tbody>
+      <tr><td class="m">Mean</td><td class="m">x&#772;</td></tr>
+      <tr><td class="m">Std Dev</td><td>s &mdash; the sample SD</td></tr>
+      <tr><td class="m">Std Err Mean</td><td>SE &mdash; already computed, don't redo s/&#8730;n</td></tr>
+      <tr><td class="m">Upper / Lower 95% Mean</td><td>a ready-made 95% CI for &#956;</td></tr>
+      <tr><td class="m">N</td><td>n</td></tr>
+      <tr><td class="m">Quantiles</td><td>min, Q1, median, Q3, max &mdash; use to judge skew</td></tr>
+    </tbody>
+  </table>
+
+  <p class="qh b">Q2 &middot; Power &amp; Type I / II error <em>&mdash; mostly by formula, not by menu</em></p>
+
+  <p class="st"><b>The whole idea in 3 steps &mdash; works for any power question</b><span class="jmp"><em>1</em>SE = &#963;/&#8730;n</span><span class="jmp"><em>2</em>cut-off on the x&#772; scale, centred at <b>&#956;&#8320;</b>: right &#956;&#8320;+z&#945;SE &middot; left &#956;&#8320;&minus;z&#945;SE &middot; two-sided &#956;&#8320;&#177;z&#945;/&#8322;SE (two cut-offs)</span><span class="jmp"><em>3</em>re-centre on the <b>true</b> &#956;: z = (cut-off &minus; &#956;true)/SE, then read the reject-side area = <b>Power</b>, and &#946; = 1 &minus; Power</span><span class="nb">The cut-off never moves &mdash; only the centre of the curve moves.</span></p>
+
+  <p class="st"><b><s>a</s>Describe the sampling distribution of x&#772; under H&#8320;</b><span class="jmp"><em>jmp</em>none &mdash; it is just &#956;&#8320; and &#963;/&#8730;n</span><span class="say"><em>say</em><b>Shape:</b> approximately normal, because <span class="bl w2"></span>. &nbsp;<b>Mean:</b> &#956;&#8320; = <span class="bl"></span>. &nbsp;<b>Standard deviation:</b> &#963;/&#8730;n = <span class="bl"></span>/&#8730;<span class="bl"></span> = <span class="bl"></span>.</span><span class="nb">Reason blank: "&#963; is known and the population is stated normal" or "n &#8805; 30, so the CLT applies".</span></p>
+
+  <p class="st"><b><s>b</s>For what values of x&#772; is H&#8320; rejected?</b><span class="say"><em>say</em>cut-off = &#956;&#8320; + (z)(SE) = <span class="bl"></span> + (<span class="bl"></span>)(<span class="bl"></span>) = <span class="bl"></span> &#8594; "reject H&#8320; for any sample mean <b>[above / below]</b> <span class="bl"></span>."</span><span class="nb">z carries the sign of the tail: &minus;1.645 for a "less than" test, +1.645 for "greater than", &#177;1.96 two-sided at &#945; = .05.</span></p>
+
+  <p class="st"><b><s>c</s>Power, and the Type II rate &#946;</b><span class="say"><em>say</em>z = (cut-off &minus; &#956;true)/SE = (<span class="bl"></span> &minus; <span class="bl"></span>)/<span class="bl"></span> = <span class="bl"></span>; Power = <span class="bl"></span> and &#946; = 1 &minus; Power = <span class="bl"></span></span><span class="nb">Two-sided: work out <b>both</b> tails and add them (one is usually tiny, but show it).</span></p>
+
+  <p class="st"><b>Worked example &mdash; Soap</b><span class="jmp">&#956;&#8320; = 33, &#963; = 12.4, n = 35, &#945; = .05 "less than", true mean 29
+SE     = &#963;/&#8730;n = 12.4/&#8730;35 = 12.4/5.9161 &#8776; 2.096
+cut-off = 33 + (&minus;1.645)(2.096) = 33 &minus; 3.448 &#8776; 29.55
+z      = (29.55 &minus; 29)/2.096 = 0.55/2.096 &#8776; 0.263
+Power  = P(Z &lt; 0.263) &#8776; .6039 &#8594; 60.39%   &#946; = 1 &minus; .6039 &#8776; .3961</span></p>
+
+  <p class="st"><b>Two-tailed power &mdash; do both tails</b><span class="jmp">Score: &#956;&#8320; = 75, &#963; = 8, n = 16, &#945; = .05, true mean 76
+SE   = 8/&#8730;16 = 8/4 = 2
+cuts = 75 &#177; 1.96(2) = 75 &#177; 3.92 &#8594; 71.08 and 78.92
+zlow = (71.08 &minus; 76)/2 = &minus;2.46   zhigh = (78.92 &minus; 76)/2 = 1.46
+&#946;    = .9279 &minus; .0069 &#8776; .9209    Power = 1 &minus; .9209 &#8776; .0791</span><span class="nb">Power is tiny because 76 is only half a standard error from 75 &mdash; a small gap is hard to detect.</span></p>
+  <table>
+    <thead><tr><th></th><th>H&#8320; is true</th><th>H&#8320; is false</th></tr></thead>
+    <tbody>
+      <tr><td><b>you reject</b></td><td>Type I = &#945;</td><td>correct = <b>Power</b></td></tr>
+      <tr><td><b>you fail to reject</b></td><td>correct</td><td>Type II = &#946;</td></tr>
+    </tbody>
+  </table>
+
+  <p class="st"><b><s>d</s>Type I and Type II in context</b><span class="say"><em>say</em><b>Type I:</b> "concluding <span class="bl w2"></span> when in reality <span class="bl w2"></span>." &nbsp;<b>Type II:</b> "concluding there is not enough evidence that <span class="bl w2"></span> when in reality it is true."</span></p>
+
+  <p class="st"><b><s>e</s>If an error was committed, which type?</b><span class="say"><em>say</em>"We <b>[rejected / failed to reject]</b> H&#8320;, so only a Type <b>[I / II]</b> error is possible: <span class="bl w3"></span>."</span><span class="nb">Set by your decision, not by the data.</span></p>
+
+  <p class="st"><b>Power from JMP</b><span class="jmp"><em>jmp</em>DOE <i>&#8250;</i> Design Diagnostics <i>&#8250;</i> Sample Size and Power <i>&#8250;</i> One Sample Mean &#8594; fill Alpha, Std Dev, Difference to Detect, Sample Size, leave <b>Power</b> empty <i>&#8250;</i> Continue</span><span class="nb">Two-sided by default, so on a one-tailed question trust the 3 steps above. Leaving <i>Sample Size</i> empty instead answers "how big a sample do I need".</span></p>
+
+  <p class="st"><b>What moves power</b><span class="nb">Power rises with n&#8593;, &#945;&#8593;, a bigger gap |&#956;true &minus; &#956;&#8320;|, and &#963;&#8595;. Raising n is the only one with no downside. Reduce Type I &#8594; lower &#945;; reduce Type II &#8594; raise power.</span></p>
+
+  <p class="st"><b>Sketch it</b><span class="nb">Two bell curves on one axis with a single vertical line at the cut-off through both. Top curve centred at &#956;&#8320;, tail past the cut-off shaded = <b>&#945;</b>. Bottom curve centred at the true &#956;, the "don't reject" side shaded = <b>&#946;</b>, the rest = <b>power</b>.</span></p>
   </div>
 </div>
 
-<!-- ============ BACK ============ -->
+<!-- ================= BACK ================= -->
 <div class="page">
-  <div class="hdr"><b>JMP Exam Notes</b><span>Correlation &middot; One predictor &middot; Several predictors &middot; Curved</span></div>
+  <div class="hdr"><b>JMP EXAM &middot; BACK</b><span>Q3 simple regression &middot; Q4 multiple regression &nbsp;|&nbsp; conditions &middot; polynomial</span></div>
+
+  <h5>Conditions &mdash; identical for Q3 and Q4. Save the residuals first.</h5>
+  <p class="st"><span class="jmp"><em>first</em><span class="rt">&#9660;</span>Response y <i>&#8250;</i> Save Columns <i>&#8250;</i> Residuals, then again for Studentized Residuals and Predicted Values</span><span class="jmp"><em>then</em><b>Linearity + constant variance:</b> <span class="rt">&#9660;</span>Response y <i>&#8250;</i> Row Diagnostics <i>&#8250;</i> Plot Residual by Predicted &nbsp;&middot;&nbsp; <b>Normality:</b> Analyze <i>&#8250;</i> Distribution on the Residual column <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> Normal Quantile Plot + Goodness of Fit</span><span class="say"><em>say</em><b>Linearity / constant variance:</b> shapeless band of even width around zero &#8594; met. <b>U or arch</b> &#8594; add a squared term. <b>Funnel</b> &#8594; spread not constant. <b>Normality:</b> dots follow the line, Shapiro-Wilk p = <span class="bl"></span> &gt; &#945;. <b>Independence:</b> nothing to plot &mdash; argue from how the data were collected. <b>Outliers:</b> studentized residuals within &#177;3.</span></p>
 
   <div class="cols">
 
-  <h3>Correlation and the best-fit line</h3>
-  <p class="e"><b>Which variable goes where.</b> "Predict A using B" &#8594; A is the response and goes in <i>Y, Response</i>; B does the predicting and goes in <i>X, Factor</i>.</p>
-  <p class="e"><b>Scatterplot.</b> <span class="j">Analyze <s>&#8250;</s> Fit Y by X <s>&#8250;</s> Y, Response = response <s>&#8250;</s> X, Factor = factor <s>&#8250;</s> OK</span>.</p>
-  <p class="e"><b>Add the line.</b> <span class="j"><span class="rt">&#9660;</span>Bivariate Fit <s>&#8250;</s> Fit Line</span> <span class="w">&rarr;</span> equation printed right above <i>Summary of Fit</i>. For the curved bands around it: <span class="j"><span class="rt">&#9660;</span>Linear Fit <s>&#8250;</s> Confid Curves Fit</span> or <span class="j">Confid Curves Indiv</span> (picture only).</p>
-  <p class="e"><b>Correlation r.</b> <span class="j">Analyze <s>&#8250;</s> Multivariate Methods <s>&#8250;</s> Multivariate <s>&#8250;</s> both variables in Y, Columns <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> <i>Correlations</i>, the number where the two variables cross (the 1.0000s are each variable with itself). Or r = &#177;&#8730;RSquare, using the sign of the slope. r always lands between &minus;1 and +1: the sign is the direction, the size is the strength &mdash; |r| &#8805; .8 strong, .5&ndash;.8 medium, under .5 weak.</p>
-  <p class="e"><b>Equation of the best-fit line.</b> <span class="j">Analyze <s>&#8250;</s> Fit Model <s>&#8250;</s> Y = response <s>&#8250;</s> select x <s>&#8250;</s> Add <s>&#8250;</s> Run</span> <span class="w">&rarr;</span> <i>Parameter Estimates</i>, <i>Estimate</i> column: the Intercept row is b&#8320;, the x row is b&#8321;.</p>
-  <p class="e"><b>Predict.</b> Put the x value into <span class="f">&#375; = b&#8320; + b&#8321;x</span>. Watch the units &mdash; if x is in thousands, 34,000 means x = 34. Don't predict past the range of the data you have.</p>
+  <p class="qh c">Q3 &middot; Simple regression &amp; correlation <em>&mdash; one predictor</em></p>
 
-  <h3>Checking it's OK to use the line</h3>
-  <p class="e"><b>Save the leftovers.</b> <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Save Columns <s>&#8250;</s> Residuals</span>, then again for <i>Predicted Values</i> and <i>Studentized Residuals</i> <span class="w">&rarr;</span> new columns at the right of the data table. A residual is just actual &minus; predicted.</p>
-  <p class="e"><b>Are the leftovers bell-shaped?</b> <span class="j">Analyze <s>&#8250;</s> Distribution <s>&#8250;</s> Y = Residual <s>&#8250;</s> OK <s>&#8250;</s> <span class="rt">&#9660;</span>Residual <s>&#8250;</s> Normal Quantile Plot</span>, then <span class="j">Continuous Fit <s>&#8250;</s> Normal <s>&#8250;</s> <span class="rt">&#9660;</span>Fitted Normal <s>&#8250;</s> Goodness of Fit</span> <span class="w">&rarr;</span> <i>Shapiro-Wilk</i>.</p>
-  <p class="e"><b>Leftovers plot.</b> <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Row Diagnostics <s>&#8250;</s> Plot Residual by Predicted</span>. A shapeless band around zero is what you want &middot; an arch or U means a line is the wrong shape &middot; a funnel means the spread isn't even &middot; a studentized value past &#177;3 is a far-out point.</p>
+  <p class="st"><b><s>a</s>Plot y against x. Comment. Is a line appropriate?</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Fit Y by X <i>&#8250;</i> y into <b>Y, Response</b>, x into <b>X, Factor</b> <i>&#8250;</i> OK <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> Fit Line</span><span class="say"><em>say</em>"The relationship is <b>[positive / negative]</b>, <b>[linear / curved]</b> and <b>[weak / moderate / strong]</b>, with <b>[no / one]</b> obvious outlier. No curvature, so a straight line is appropriate &mdash; a quadratic or exponential model is not needed."</span></p>
 
-  <h3>Does x actually help predict y?</h3>
-  <p class="e"><b>Test the slope.</b> <span class="j">Fit Model <s>&#8250;</s> Run <s>&#8250;</s> Parameter Estimates</span>, on the x row <span class="w">&rarr;</span> <i>t Ratio</i> is the test number, <i>Prob&gt;|t|</i> is the two-sided p-value, <i>Std Error</i> is the slope's wobble. H&#8320;: the slope is 0, df = n &minus; 2.</p>
-  <p class="e"><b>One-sided?</b> Cut <i>Prob&gt;|t|</i> in half, but only if the slope's sign matches what H&#8321; says. If it doesn't, the p-value is over .5 and you fail to reject.</p>
-  <p class="e"><b>Testing the slope against a number other than 0.</b> JMP only tests 0. Either check whether the confidence interval contains that number, or use <span class="f">t = (b&#8321; &minus; c)/Std Error</span>, df = n &minus; 2.</p>
-  <p class="e"><b>How much of y is explained.</b> <i>Summary of Fit</i> <span class="w">&rarr;</span> <i>RSquare</i>, times 100 for a percent.</p>
+  <p class="st"><b><s>b</s>Find the correlation r. Describe the strength.</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Multivariate Methods <i>&#8250;</i> Multivariate <i>&#8250;</i> both columns into <b>Y, Columns</b> <i>&#8250;</i> OK <i>&#8250;</i> <i>Correlations</i> table, the off-diagonal cell</span><span class="say"><em>say</em>"r = <span class="bl"></span> &mdash; a <b>[weak / moderate / strong]</b> <b>[positive / negative]</b> linear relationship: <span class="bl w2"></span> with higher x tend to have higher y."</span><span class="nb">|r| &#8805; .8 strong &middot; .5&ndash;.8 moderate &middot; &lt; .3 weak. Or r = &#177;&#8730;RSquare with the sign of the slope.</span></p>
 
-  <h3>The three intervals</h3>
-  <p class="e"><b>Interval for the slope.</b> Right-click inside <i>Parameter Estimates</i> <span class="j"><s>&#8250;</s> Columns <s>&#8250;</s> Lower 95% + Upper 95%</span> <span class="w">&rarr;</span> read them on the <i>x</i> row, not the Intercept row. If it doesn't include 0, x helps predict y.</p>
-  <p class="e"><b>99% or 98% instead.</b> <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Set Alpha Level <s>&#8250;</s> 0.01</span> (or <i>Other</i> &#8594; 0.02), then read those columns again. If yours is stuck at 95%: <span class="f">b&#8321; &#177; t(&#945;/2, n&minus;2)&#183;Std Error</span>, with t from <span class="f">t Quantile(1&minus;&#945;/2, n&minus;2)</span>.</p>
-  <p class="e"><b>Interval for the average y</b> &mdash; "for ALL cases with x = ___". Add a row with that x and <i>leave Y empty</i> (that keeps it out of the line), then <span class="j">Fit Model <s>&#8250;</s> Run <s>&#8250;</s> <span class="rt">&#9660;</span>Response y <s>&#8250;</s> Save Columns <s>&#8250;</s> Mean Confidence Interval</span> <span class="w">&rarr;</span> <i>Lower / Upper 95% Mean</i> on that row.</p>
-  <p class="e"><b>Interval for ONE new case.</b> Same setup, then <span class="j">Save Columns <s>&#8250;</s> Indiv Confidence Interval</span> <span class="w">&rarr;</span> <i>Lower / Upper 95% Indiv</i>, always wider. A singular word &mdash; "a truck", "a school" &mdash; means use Indiv.</p>
-  <p class="e"><b>Far-out points.</b> Click the point to light up its row, then <span class="j">Rows <s>&#8250;</s> Exclude/Unexclude</span> and Run again. "How many more votes than predicted" = actual &minus; predicted, which is that row's residual.</p>
+  <p class="st"><b><s>c</s>Fit the regression. What is the least squares line?</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> <b>Fit Model</b> <i>&#8250;</i> y into Y, select x <i>&#8250;</i> Add <i>&#8250;</i> Personality Standard Least Squares <i>&#8250;</i> Run <i>&#8250;</i> <i>Parameter Estimates</i>, <i>Estimate</i> column</span><span class="say"><em>say</em>Predicted <span class="bl w2"></span> = <span class="bl"></span> + <span class="bl"></span>(<span class="bl w2"></span>)</span><span class="nb">Use Fit Model, not Fit Y by X &mdash; only Fit Model gives the CI columns and the saved intervals for parts h and i.</span></p>
 
-  <h3>Several predictors at once</h3>
-  <p class="e"><b>Look at them first.</b> <span class="j">Analyze <s>&#8250;</s> Multivariate Methods <s>&#8250;</s> Multivariate <s>&#8250;</s> response + all predictors in Y, Columns <s>&#8250;</s> OK</span> <span class="w">&rarr;</span> <i>Correlations</i> and a grid of mini scatterplots. Two predictors with |r| above about .8 measure nearly the same thing, which causes trouble.</p>
-  <p class="e"><b>Fit it.</b> <span class="j">Analyze <s>&#8250;</s> Fit Model <s>&#8250;</s> Y = response <s>&#8250;</s> highlight all the predictors <s>&#8250;</s> Add <s>&#8250;</s> Run</span> <span class="w">&rarr;</span> <i>Parameter Estimates</i> gives <span class="f">&#375; = b&#8320; + b&#8321;x&#8321; + &#8943; + b&#8342;x&#8342;</span>.</p>
-  <p class="e"><b>Does the whole model help?</b> <i>Analysis of Variance</i> <span class="w">&rarr;</span> <i>F Ratio</i> and <i>Prob &gt; F</i>. H&#8320; says every slope is 0. Rejecting means at least one predictor helps &mdash; not that they all do.</p>
-  <p class="e"><b>Does one predictor help, with the others in?</b> <i>Parameter Estimates</i>, that predictor's row <span class="w">&rarr;</span> <i>t Ratio</i>, <i>Prob&gt;|t|</i>, df = n &minus; k &minus; 1. A predictor can look strong alone and still be useless here, because another one already covers it.</p>
-  <p class="e"><b>Interval for one coefficient.</b> Right-click <i>Parameter Estimates</i> <span class="j"><s>&#8250;</s> Columns <s>&#8250;</s> Lower 95% + Upper 95%</span>; change the level first with <i>Set Alpha Level</i>.</p>
-  <p class="e"><b>Checking conditions.</b> Save <i>Residuals</i>, use <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Row Diagnostics <s>&#8250;</s> Plot Residual by Predicted</span>, and run Distribution on the residuals for the plot and Shapiro-Wilk. For overlap between predictors: right-click <i>Parameter Estimates</i> <span class="j"><s>&#8250;</s> Columns <s>&#8250;</s> VIF</span> &mdash; over 5 a warning, over 10 a problem.</p>
+  <p class="st"><b><s>d</s>Interpret the slope</b><span class="jmp"><em>jmp</em>none &mdash; the Estimate on the x row</span><span class="say"><em>say</em>"For each additional 1 <span class="bl w2"></span>, the <b>predicted (average)</b> <span class="bl w2"></span> <b>[increases / decreases]</b> by <span class="bl"></span>."</span><span class="nb">Say predicted or average, and never claim x causes y. The intercept is the predicted y at x = 0 &mdash; add "but x = 0 is outside the data, so it has no practical meaning" when that is true.</span></p>
 
-  <h3>Picking the best model</h3>
-  <p class="e"><b>Use adjusted R&#178;.</b> <i>Summary of Fit</i> <span class="w">&rarr;</span> <i>RSquare Adj</i>, highest one wins. Plain R&#178; always goes up when you add a predictor, so it can't compare models with different numbers of predictors; <span class="f">R&#178;adj = 1 &minus; (1&minus;R&#178;)(n&minus;1)/(n&minus;k&minus;1)</span> takes a penalty for extras.</p>
-  <p class="e"><b>Every model at once.</b> <span class="j">Fit Model <s>&#8250;</s> add all <s>&#8250;</s> Personality = Stepwise <s>&#8250;</s> Run <s>&#8250;</s> <span class="rt">&#9660;</span> <s>&#8250;</s> All Possible Models</span> <span class="w">&rarr;</span> every combination with RSquare, RSquare Adj, Cp, AICc, BIC.</p>
-  <p class="e"><b>Dropping predictors one at a time.</b> <span class="j">Fit Model <s>&#8250;</s> add all <s>&#8250;</s> Stepwise <s>&#8250;</s> Run</span>, set Direction = <i>Backward</i>, Stopping Rule = <i>P-value Threshold</i>, Prob to Leave = <i>0.1</i>, click <i>Go</i> <span class="w">&rarr;</span> <i>Current Estimates</i>, a check under <i>Entered</i> means it stayed. Then <i>Make Model</i> &#8594; <i>Run</i>. The idea: throw out the biggest p-value above 0.1, refit, repeat.</p>
-  <p class="e"><b>Predicting from the model you picked.</b> Put the values into that model's equation, or add a row with those x's and an empty Y and save <i>Predicted Values</i>, or use <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Factor Profiling <s>&#8250;</s> Profiler</span>.</p>
+  <p class="st"><b><s>e</s>At the &#945; level, is x a useful predictor?</b><span class="jmp"><em>jmp</em>Fit Model report <i>&#8250;</i> <i>Parameter Estimates</i> <i>&#8250;</i> the x row <i>&#8250;</i> read <b>t Ratio</b> and <b>Prob&gt;|t|</b>; the ANOVA <b>Prob &gt; F</b> is the identical number in simple regression</span><span class="say"><em>say</em>H&#8320;: &#946;&#8321; = 0 vs H&#8321;: &#946;&#8321; &#8800; 0; t = b&#8321;/SE(b&#8321;) = <span class="bl"></span>, df = n&minus;2 = <span class="bl"></span>, p = <span class="bl"></span> &#8594; "Since p <b>[&lt; / &gt;]</b> &#945;, there <b>[is / is not]</b> enough evidence to say that <span class="bl w2"></span> helps predict <span class="bl w2"></span>."</span><span class="nb">One-tailed? Halve Prob&gt;|t| only if the sign of b&#8321; matches H&#8321;. To test a slope against a number other than 0, use t = (b&#8321; &minus; c)/SE, or see whether the CI contains c.</span></p>
 
-  <h3>Curved (quadratic) models</h3>
-  <p class="e"><b>Quick way.</b> <span class="j">Analyze <s>&#8250;</s> Fit Y by X <s>&#8250;</s> Y, X <s>&#8250;</s> OK <s>&#8250;</s> <span class="rt">&#9660;</span>Bivariate Fit <s>&#8250;</s> Fit Polynomial <s>&#8250;</s> 2, quadratic</span> <span class="w">&rarr;</span> a <i>Polynomial Fit Degree=2</i> block with the plain equation printed above it.</p>
-  <p class="e"><b>Full way (use this one for intervals).</b> <span class="j">Analyze <s>&#8250;</s> Fit Model <s>&#8250;</s> Y <s>&#8250;</s> select x <s>&#8250;</s> Macros <s>&#8250;</s> Polynomial to Degree</span> with Degree = 2 <span class="j"><s>&#8250;</s> Run</span> <span class="w">&rarr;</span> <i>Parameter Estimates</i> gains an <i>x*x</i> row.</p>
-  <p class="e"><b>JMP shifts x first.</b> By default it prints <span class="f">(x&minus;x&#772;)&#183;(x&minus;x&#772;)</span> instead of x&#178;, so the numbers aren't the plain b&#8320;, b&#8321;, b&#8322;. Uncheck <span class="j"><span class="rt">&#9660;</span>Response y <s>&#8250;</s> Center Polynomials</span> and Run again to get the plain equation.</p>
-  <p class="e"><b>Does the curve help?</b> Test the squared term only: <i>Parameter Estimates</i>, the <i>x*x</i> row (or <i>Effect Tests</i>) <span class="w">&rarr;</span> <i>Prob&gt;|t|</i>. H&#8320; says the squared term is 0, meaning a straight line is enough. Don't use the overall F here &mdash; it can look good just from the straight-line part.</p>
-  <p class="e"><b>The change in y isn't the same every time.</b> <span class="f">change = b&#8321;(x&#8322; &minus; x&#8321;) + b&#8322;(x&#8322;&#178; &minus; x&#8321;&#178;)</span>. Going 0 to 1 gives b&#8321; + b&#8322;; going 2 to 3 gives b&#8321; + 5b&#8322;. They're different on purpose &mdash; that's the whole point of asking both.</p>
-  <p class="e"><b>Intervals from a curved model.</b> Add the row with x and an empty Y, fit with <i>Polynomial to Degree 2</i>, then <i>Save Columns</i> <span class="w">&rarr;</span> <i>Mean Confidence Interval</i> for the average of all such cases, <i>Indiv Confidence Interval</i> for one specific new case.</p>
+  <p class="st"><b><s>f</s>Find R&#178;. What is the degrees of freedom?</b><span class="jmp"><em>jmp</em><i>Summary of Fit</i> for RSquare and RMSE; the <b>DF</b> column of the ANOVA table</span><span class="say"><em>say</em>"R&#178; = <span class="bl"></span> &mdash; <span class="bl"></span>% of the variation in <span class="bl w2"></span> is explained by the linear relationship with <span class="bl w2"></span>. Error df = n&minus;2 = <span class="bl"></span>, and RMSE = <span class="bl"></span>, so predictions are typically off by about that much."</span></p>
 
-  <h3>Numbers you may need to look up</h3>
+  <p class="st"><b><s>g</s>Confidence interval for the slope</b><span class="jmp"><em>jmp</em>right-click inside <i>Parameter Estimates</i> <i>&#8250;</i> Columns <i>&#8250;</i> tick <b>Lower 95%</b> / <b>Upper 95%</b> &nbsp;&middot;&nbsp; other levels first: <span class="rt">&#9660;</span>Response y <i>&#8250;</i> <b>Set Alpha Level</b> <i>&#8250;</i> 0.01 (99%) or Other &#8594; 0.02 (98%)</span><span class="say"><em>say</em>b&#8321; &#177; t*&#183;SE(b&#8321;) = <span class="bl"></span> &#177; <span class="bl"></span> &#8594; "We are <span class="bl"></span>% confident that each additional 1 <span class="bl w2"></span> is associated with a change in the mean <span class="bl w2"></span> of between <span class="bl"></span> and <span class="bl"></span>."</span><span class="nb">Read it on the <b>x</b> row, not Intercept. Will it contain 0? Match the levels: 99% &#8596; .01, 98% &#8596; .02, 95% &#8596; .05 &mdash; if p &lt; &#945; the interval must <b>exclude</b> 0.</span></p>
 
-  <h3>The formulas behind the line</h3>
-  <p class="e"><b>Three building blocks.</b> JMP never shows these three &mdash; they're only for working a small data set out yourself. <span class="f">Sxx = &#931;(x&minus;x&#772;)&#178;</span> spread of the x's, feeds the slope and its standard error &middot; <span class="f">Syy = &#931;(y&minus;y&#772;)&#178;</span> spread of the y's, feeds r and R&#178; &middot; <span class="f">Sxy = &#931;(x&minus;x&#772;)(y&minus;y&#772;)</span> how much x and y move together, feeds the slope and r.</p>
-  <p class="e"><b>Everything else comes from those three.</b> slope <span class="f">b&#8321; = Sxy/Sxx</span> &middot; intercept <span class="f">b&#8320; = y&#772; &minus; b&#8321;x&#772;</span> (needs b&#8321; first) &middot; the line <span class="f">&#375; = b&#8320; + b&#8321;x</span> &middot; <span class="f">r = Sxy/&#8730;(Sxx&#183;Syy)</span> &middot; <span class="f">R&#178; = r&#178;</span> &middot; one point's leftover <span class="f">e = y &minus; &#375;</span>. To check your work, your b&#8320; and b&#8321; should match <i>Parameter Estimates</i>.</p>
-  <h3>Fill-in-the-blank answers &mdash; regression</h3>
-  <p class="t"><b>Comment on the scatterplot</b>There is a <s>[positive / negative]</s>, <s>[weak / medium / strong]</s>, <s>[straight / curved]</s> relationship between <span class="bl w2"></span> and <span class="bl w2"></span>.<u>Add if needed: "There is an odd point at ___." If it curves, say a squared term should be tried.</u></p>
-  <p class="t"><b>Interpret r</b>r = <span class="bl"></span> means a <s>[weak / medium / strong]</s> <s>[positive / negative]</s> straight-line relationship between <span class="bl w2"></span> and <span class="bl w2"></span>.</p>
-  <p class="t"><b>Write the equation</b>Predicted <span class="bl w2"></span> = <span class="bl"></span> + <span class="bl"></span> (<span class="bl w2"></span>).</p>
-  <p class="t"><b>Interpret the slope</b>For every extra one <span class="bl w2"></span>, the predicted (average) <span class="bl w2"></span> <s>[goes up / goes down]</s> by <span class="bl"></span>.</p>
-  <p class="t"><b>Interpret the intercept</b>When <span class="bl w2"></span> is 0, the predicted <span class="bl w2"></span> is <span class="bl"></span>.<u>If x = 0 is outside the data: add "but x = 0 isn't in the range of the data, so this doesn't really mean anything."</u></p>
-  <p class="t"><b>Interpret R&#178;</b><span class="bl"></span>% of the changes in <span class="bl w2"></span> are explained by the <s>[straight / curved]</s> relationship with <span class="bl w2"></span>.</p>
-  <p class="t"><b>Does x help predict y?</b>Since p = <span class="bl"></span> <s>[&lt; / &gt;]</s> &#945; = <span class="bl"></span>, we <s>[reject / fail to reject]</s> H&#8320;: the slope is 0. There <s>[is / is not]</s> enough evidence to say that <span class="bl w2"></span> helps predict <span class="bl w2"></span>.</p>
-  <p class="t"><b>Interval for the slope</b>We are <span class="bl"></span>% confident that for every extra one <span class="bl w2"></span>, the average <span class="bl w2"></span> changes by between <span class="bl"></span> and <span class="bl"></span>.</p>
-  <p class="t"><b>Interval for the average y</b>We are <span class="bl"></span>% confident that the average <span class="bl w2"></span> for all <span class="bl w2"></span> with <span class="bl w2"></span> = <span class="bl"></span> is between <span class="bl"></span> and <span class="bl"></span>.</p>
-  <p class="t"><b>Interval for one new case</b>We are <span class="bl"></span>% confident that a single <span class="bl w2"></span> with <span class="bl w2"></span> = <span class="bl"></span> will have a <span class="bl w2"></span> between <span class="bl"></span> and <span class="bl"></span>.</p>
-  <p class="t"><b>What the leftovers plot shows</b>The plot shows <span class="bl w3"></span>, so the <s>[straight-line / even spread]</s> condition <s>[is / is not]</s> met. Shapiro-Wilk gives p = <span class="bl"></span> <s>[&gt; / &lt;]</s> &#945;, so the bell shape <s>[is / is not]</s> reasonable.<u>First blank: "a shapeless band around zero" &middot; "an arched pattern" &middot; "a funnel shape".</u></p>
-  <p class="t"><b>Interpret a coefficient (several predictors)</b>For every extra one <span class="bl w2"></span>, the predicted <span class="bl w2"></span> <s>[goes up / goes down]</s> by <span class="bl"></span>, <s>while the other predictors stay the same</s>.</p>
-  <p class="t"><b>Does the whole model help?</b>Since p = <span class="bl"></span> <s>[&lt; / &gt;]</s> &#945; = <span class="bl"></span>, we <s>[reject / fail to reject]</s> H&#8320;: every slope is 0. There <s>[is / is not]</s> enough evidence to say that the model helps predict <span class="bl w2"></span>.</p>
-  <p class="t"><b>One predictor, others already in</b>With the other predictors already in the model, there <s>[is / is not]</s> enough evidence to say that <span class="bl w2"></span> helps predict <span class="bl w2"></span> (t = <span class="bl"></span>, p = <span class="bl"></span>).</p>
-  <p class="t"><b>Picking a model</b>The model with <span class="bl w3"></span> has the highest adjusted R&#178; (<span class="bl"></span>), so it's the one to use.</p>
-  <p class="t"><b>Does the curve help?</b>The squared term has p = <span class="bl"></span> <s>[&lt; / &gt;]</s> &#945; = <span class="bl"></span>, so there <s>[is / is not]</s> enough evidence to say that the curved model fits better than a straight line.</p>
+  <p class="st"><b><s>h</s>CI for the mean y, and a prediction interval for one case</b><span class="jmp"><em>jmp</em>In the data table <b>add a new row</b>, type the x value, <b>leave y blank</b> &#8594; the row fills with the fit and both intervals. Then <span class="rt">&#9660;</span>Response y <i>&#8250;</i> Save Columns <i>&#8250;</i> <b>Mean Confidence Interval</b> (the average) and <b>Indiv Confidence Interval</b> (one new case)</span><span class="say"><em>say</em><b>Mean:</b> "We are <span class="bl"></span>% confident the <b>average</b> <span class="bl w2"></span> for <b>all</b> <span class="bl w2"></span> with x = <span class="bl"></span> is between <span class="bl"></span> and <span class="bl"></span>." &nbsp;<b>Indiv:</b> "&hellip;that <b>one particular</b> <span class="bl w2"></span> with x = <span class="bl"></span> has y between <span class="bl"></span> and <span class="bl"></span>."</span><span class="nb">"average / mean / for ALL units with x = &hellip;" &#8594; <b>Mean</b>. "predict / a SINGLE / this one / a new &hellip;" &#8594; <b>Indiv</b>, always wider. The blank y is what keeps the new row out of the fit.</span></p>
+
+  <h5>The formulas behind the line</h5>
+  <p class="st"><span class="jmp">x&#772;, y&#772; = the two averages &middot; these three are never shown in JMP
+Sxx = &#931;(x&minus;x&#772;)&#178;   spread of the x's &#8594; slope, SE(b&#8321;)
+Syy = &#931;(y&minus;y&#772;)&#178;   spread of the y's &#8594; r, R&#178;
+Sxy = &#931;(x&minus;x&#772;)(y&minus;y&#772;)  move together &#8594; slope, r
+b&#8321; = Sxy/Sxx   b&#8320; = y&#772; &minus; b&#8321;x&#772;   (b&#8321; first)
+r  = Sxy/&#8730;(Sxx&#183;Syy)   R&#178; = r&#178;   e = y &minus; &#375;</span><span class="nb">Check your work: your b&#8320; and b&#8321; must match <i>Parameter Estimates</i>.</span></p>
+
+  <p class="qh d">Q4 &middot; Multiple regression <em>&mdash; same report, more rows</em></p>
+
+  <p class="st"><b><s>a</s>Is y linearly related to the remaining predictors?</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Multivariate Methods <i>&#8250;</i> Multivariate <i>&#8250;</i> put <b>y AND every x</b> into Y, Columns <i>&#8250;</i> OK &#8594; <i>Correlations</i> + <i>Scatterplot Matrix</i>; read the <b>y row</b></span><span class="say"><em>say</em>"Every plot in the y row is <b>[positive / negative]</b> and roughly linear with no curvature, so linear terms suit all of them. Strength differs: strong <span class="bl w2"></span>, weak <span class="bl w2"></span>."</span></p>
+
+  <p class="st"><b><s>b</s>Which predictor is most highly correlated with y?</b><span class="jmp"><em>jmp</em>same <i>Correlations</i> table &mdash; the largest |r| in the <b>y row</b>, ignoring y's own 1.0000</span><span class="say"><em>say</em>"<span class="bl w2"></span>, r = <span class="bl"></span> &mdash; the strongest linear association with y."</span></p>
+
+  <p class="st"><b><s>c</s>Are any predictors highly correlated with each other?</b><span class="jmp"><em>jmp</em>the <b>x &#215; x</b> block of that same table &nbsp;&middot;&nbsp; numerically: right-click inside <i>Parameter Estimates</i> <i>&#8250;</i> Columns <i>&#8250;</i> <b>VIF</b></span><span class="say"><em>say</em>"The strongest predictor&ndash;predictor pair is <span class="bl w2"></span> (r = <span class="bl"></span>). All |r| &lt; 0.8 and every VIF is under 5, so multicollinearity <b>[is / is not]</b> a problem and the coefficients stay interpretable."</span><span class="nb">VIF over 5 is a concern, over 10 serious. Name the pairs and give the numbers &mdash; don't just write "multicollinearity is present".</span></p>
+
+  <p class="st"><b><s>d</s>Fit the model. Report it.</b><span class="jmp"><em>jmp</em>Analyze <i>&#8250;</i> Fit Model <i>&#8250;</i> y into Y; click the first x then <b>shift-click</b> the last <i>&#8250;</i> Add <i>&#8250;</i> Personality Standard Least Squares, Emphasis <b>Minimal Report</b> <i>&#8250;</i> Run</span><span class="say"><em>say</em>&#374; = <span class="bl"></span> + <span class="bl"></span>x&#8321; + <span class="bl"></span>x&#8322; + <span class="bl"></span>x&#8323; &hellip;</span></p>
+
+  <p class="st"><b><s>e</s>Interpret one coefficient</b><span class="jmp"><em>jmp</em>the <i>Estimate</i> on that predictor's row</span><span class="say"><em>say</em>"<b>Holding all the other predictors constant</b>, each additional 1 <span class="bl w2"></span> is associated with a <b>[rise / fall]</b> of <span class="bl"></span> in the mean <span class="bl w2"></span>."</span><span class="nb">That first clause is the entire difference from simple regression. Leave it out and you lose the mark.</span></p>
+
+  <p class="st"><b><s>f</s>Find R&#178;, adjusted R&#178;, and the degrees of freedom</b><span class="jmp"><em>jmp</em><i>Summary of Fit</i> for RSquare, RSquare Adj and RMSE; the <b>DF</b> column of the ANOVA table</span><span class="say"><em>say</em>"R&#178; = <span class="bl"></span> &mdash; <span class="bl"></span>% of the variation in y is explained by the <span class="bl"></span> predictors together. Error df = n&minus;k&minus;1 = <span class="bl"></span>."</span><span class="nb">R&#178;adj = 1 &minus; (1&minus;R&#178;)(n&minus;1)/(n&minus;k&minus;1). Plain R&#178; always rises when a predictor is added, so only <b>adjusted</b> R&#178; can compare models of different sizes.</span></p>
+
+  <p class="st"><b><s>g</s>Two different tests &mdash; don't mix them up</b><span class="say"><em>say</em><b>Whole model:</b> ANOVA <b>F Ratio</b> + <b>Prob &gt; F</b>, df = k and n&minus;k&minus;1. H&#8320;: every slope is 0 &#8594; "the model <b>[is / is not]</b> useful for predicting y." Rejecting means <b>at least one</b> predictor helps. &nbsp;<b>One predictor, adjusting for the rest:</b> that row's <b>t Ratio</b> + <b>Prob&gt;|t|</b>, df = n&minus;k&minus;1.</span><span class="nb">A predictor can look strong alone and still be useless here, because another one already covers it. CI for a coefficient: right-click <i>Parameter Estimates</i> <i>&#8250;</i> Columns <i>&#8250;</i> Lower/Upper 95%.</span></p>
+
+  <p class="st"><b><s>h</s>How many models could you build? Which subset is best?</b><span class="jmp"><em>jmp</em>Fit Model <i>&#8250;</i> add all <i>&#8250;</i> Personality <b>Stepwise</b> <i>&#8250;</i> Run <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> <b>All Possible Models</b> &#8594; RSquare, RSquare Adj, Cp, AICc, BIC for every subset</span><span class="say"><em>say</em>"2<sup>k</sup> &minus; 1 = <span class="bl"></span> models &mdash; each predictor is either in or out, minus the empty model."</span></p>
+
+  <p class="st"><b><s>i</s>Use backward selection to find the subset</b><span class="jmp"><em>jmp</em>same Y and effects, Personality <b>Stepwise</b> <i>&#8250;</i> Run <i>&#8250;</i> set Stopping Rule = <b>P-value Threshold</b>, Direction = <b>Backward</b>, Prob to Leave = <b>0.1</b> <i>&#8250;</i> <b>Go</b> <i>&#8250;</i> finish with <b>Make Model</b> <i>&#8250;</i> Run</span><span class="say"><em>say</em>"Drop the largest p above .10, one at a time: <span class="bl w2"></span>, then <span class="bl w2"></span>, then stop. The variables remaining are <span class="bl w2"></span>."</span><span class="nb"><i>Current Estimates</i>: a tick under <b>Entered</b> means it stayed. Remove one at a time &mdash; the p-values shift after every removal.</span></p>
+
+  <p class="st"><b><s>j</s>Compare that model to the full one</b><span class="jmp"><em>jmp</em><i>Summary of Fit</i> for each: compare <b>RSquare Adj</b> and <b>RMSE</b></span><span class="say"><em>say</em>"Dropping <span class="bl"></span> predictors costs only <span class="bl"></span> points of R&#178;; adjusted R&#178; (<span class="bl"></span> vs <span class="bl"></span>) and RMSE (<span class="bl"></span> vs <span class="bl"></span>) are practically identical, so the smaller model <b>is preferred</b>."</span><span class="nb">"Best" = highest adjusted R&#178; and lowest RMSE, never plain R&#178;.</span></p>
+
+  <p class="st"><b><s>k</s>Predict from the model you chose</b><span class="jmp"><em>jmp</em>add a row with those x values and a <b>blank y</b> <i>&#8250;</i> Run <i>&#8250;</i> Save Columns <i>&#8250;</i> Predicted Values, or Mean / Indiv Confidence Interval &nbsp;&middot;&nbsp; or <span class="rt">&#9660;</span>Response y <i>&#8250;</i> Factor Profiling <i>&#8250;</i> Profiler</span><span class="nb">Use the coefficients of the model the question names, not the full model's.</span></p>
+
+  <p class="st"><b><s>+</s>Polynomial &mdash; when the scatterplot curves</b><span class="jmp"><em>jmp</em>quick: Fit Y by X <i>&#8250;</i> <span class="rt">&#9660;</span> <i>&#8250;</i> <b>Fit Polynomial</b> <i>&#8250;</i> 2, quadratic &nbsp;&middot;&nbsp; full (needed for intervals): Fit Model <i>&#8250;</i> select x <i>&#8250;</i> <b>Macros</b> <i>&#8250;</i> <b>Polynomial to Degree</b>, Degree 2 <i>&#8250;</i> Run &#8594; adds an <b>x*x</b> row</span><span class="say"><em>say</em>"The squared term has p = <span class="bl"></span> <b>[&lt; / &gt;]</b> &#945;, so there <b>[is / is not]</b> enough evidence to say the curved model fits better than a straight line."</span><span class="nb">Test the <b>squared term only</b> &mdash; the overall F can look fine on the straight-line part alone. JMP <b>centres</b> the squared term by default and prints (x&minus;x&#772;)&#183;(x&minus;x&#772;); untick <b>Center Polynomials</b> on the <span class="rt">&#9660;</span> to get the plain b&#8320;, b&#8321;, b&#8322;.</span></p>
+
+  <p class="st"><b>The step in y is no longer constant</b><span class="jmp">change = b&#8321;(x&#8322; &minus; x&#8321;) + b&#8322;(x&#8322;&#178; &minus; x&#8321;&#178;)
+0 &#8594; 1 is always  b&#8321; + b&#8322;
+2 &#8594; 3 is always  b&#8321; + 5b&#8322;      (because 3&#178; &minus; 2&#178; = 5)</span><span class="nb">Put both x values in and subtract &mdash; never quote b&#8321; alone.</span></p>
   </div>
 </div>
 </body>
