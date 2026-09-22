@@ -40,6 +40,12 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);f
 .lgd code{font-family:var(--mono)}
 
 .cols{columns:2;column-gap:22px;column-rule:1px solid var(--hair)}
+.symwrap{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:4px 0 5px;margin:0 0 9px}
+.symwrap h4{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 3px;color:var(--ink)}
+.syms{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 16px}
+.syms div{font-size:10.5px;line-height:1.26;color:var(--ink-2)}
+.syms div b{color:var(--ink);font-weight:700}
+.syms div i{font-style:normal;color:var(--ink-3)}
 
 h3{
   font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
@@ -84,13 +90,18 @@ p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;
   .hdr b{font-size:10.5pt} .hdr span{font-size:6.8pt;color:#444}
   .lgd{font-size:6.6pt;margin-bottom:5px;color:#333}
   .cols{column-gap:15pt;column-rule:.4pt solid #ccc}
+  .symwrap{border-top:1pt solid #000;border-bottom:1pt solid #000;padding:1.6pt 0 2pt;margin-bottom:4pt}
+  .symwrap h4{font-size:6.4pt;margin-bottom:1.6pt}
+  .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
+  .syms div{font-size:6pt;line-height:1.18;color:#111}
+  .syms div b,.syms div i{color:#000}
   h3{font-size:6.5pt;margin:0 0 1.8pt;padding-top:1.8pt;border-top:.9pt solid #000;letter-spacing:.09em}
   h3:not(:first-child){margin-top:4.4pt}
-  p.e{font-size:5.85pt;line-height:1.17;margin-bottom:1.15pt;color:#111;padding-left:6pt;text-indent:-6pt}
-  p.t{font-size:5.85pt;line-height:1.19;margin-bottom:1.3pt;color:#000;padding:1.6pt 4pt 1.6pt 5pt;
+  p.e{font-size:5.8pt;line-height:1.165;margin-bottom:1.15pt;color:#111;padding-left:6pt;text-indent:-6pt}
+  p.t{font-size:5.8pt;line-height:1.185;margin-bottom:1.3pt;color:#000;padding:1.6pt 4pt 1.6pt 5pt;
       border-left:1.6pt solid #000;background:#f2f4f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   p.t b{font-size:5.9pt;color:#000} p.t u{font-size:6pt;color:#333}
-  p.t code{font-size:5.8pt;line-height:1.34}
+  p.t code{font-size:5.75pt;line-height:1.32}
   .bl{border-bottom:.5pt solid #333}
   .j,.f{font-size:5.75pt;color:#000} .j s{color:#555}
   .rt{color:#000} .w{color:#000}
@@ -104,11 +115,39 @@ p.t code{display:block;font-family:var(--mono);font-size:10.5px;line-height:1.5;
   <div class="hdr"><b>JMP Exam Notes</b><span>One mean &middot; Power &middot; Two proportions</span></div>
   <p class="lgd"><code>&#8250;</code> = then click &nbsp;&middot;&nbsp; <span class="rt">&#9660;</span> = the little red triangle next to that report's title &nbsp;&middot;&nbsp; <span class="w">&rarr;</span> = where the answer shows up</p>
 
+  <div class="symwrap">
+    <h4>Symbols</h4>
+    <div class="syms">
+      <div><b>x&#772;</b> <i>"x-bar"</i> your sample's average</div>
+      <div><b>&#956;</b> <i>"mew"</i> true population mean, unknown</div>
+      <div><b>&#956;&#8320;</b> the claimed number &mdash; the one in H&#8320;</div>
+      <div><b>&#963;</b> <i>"sigma"</i> population SD, only if given</div>
+      <div><b>s</b> sample SD, from your data</div>
+      <div><b>n</b> sample size &nbsp;<i>&#8730;n: &#8730;25 = 5</i></div>
+      <div><b>SE</b> standard error = &#963;/&#8730;n or s/&#8730;n</div>
+      <div><b>&#945;</b> <i>"alpha"</i> the bar you compare p to</div>
+      <div><b>&#946;</b> <i>"beta"</i> Type II rate; Power = 1&minus;&#946;</div>
+      <div><b>df</b> 1 mean n&minus;1 &middot; slope n&minus;2 &middot; MLR n&minus;k&minus;1</div>
+      <div><b>H&#8320;</b> the null &mdash; always has an =</div>
+      <div><b>H&#8321;</b> the alternative: &lt;, &gt; or &#8800;</div>
+      <div><b>p&#770;</b> <i>"p-hat"</i> a sample proportion</div>
+      <div><b>&#375;</b> <i>"y-hat"</i> a predicted y</div>
+      <div><b>e</b> residual = actual &minus; predicted</div>
+      <div><b>b&#8320; b&#8321;</b> intercept / slope from your data</div>
+      <div><b>&#946;&#8320; &#946;&#8321;</b> the true ones; H&#8320;: &#946;&#8321; = 0</div>
+      <div><b>r</b> correlation, &minus;1 to +1</div>
+      <div><b>R&#178;</b> % of variation in y explained</div>
+      <div><b>RMSE</b> typical prediction error</div>
+      <div><b>k</b> how many predictors</div>
+      <div><b>&#931;</b> add it up over every data point</div>
+      <div><b>z</b> .05 &#8594; 1.645 &middot; .025 &#8594; 1.96</div>
+      <div><b>z</b> .01 &#8594; 2.326 &middot; .005 &#8594; 2.576</div>
+      <div><b>t*</b> critical t &mdash; like z but needs df</div>
+    </div>
+  </div>
+
   <div class="cols">
 
-  <h3>Symbol key &mdash; what each letter means</h3>
-  <p class="t"><b>Greek = the true value you can't see</b><s>&#956;</s> "mew" &mdash; the true mean of the whole population &middot; <s>&#963;</s> "sigma" &mdash; the true standard deviation, only when a problem gives it &middot; <s>&#945;</s> "alpha" &mdash; the significance level, the cutoff you compare p to (.05, .01) &middot; <s>&#946;</s> "beta" &mdash; the chance of missing a real difference &middot; <s>&#946;&#8320;, &#946;&#8321;</s> "beta-zero, beta-one" &mdash; the true intercept and slope &middot; <s>&#931;</s> big sigma &mdash; "add up over every data point" &middot; <s>&#967;&#178;</s> "chi-square" &mdash; the test JMP prints for a 2&#215;2 table.</p>
-  <p class="t"><b>Latin = what your sample gives you</b><s>x&#772;</s> "x-bar" &mdash; your sample average &middot; <s>s</s> your sample standard deviation &middot; <s>n</s> how many observations &middot; <s>p&#770;</s> "p-hat" &mdash; a sample proportion &middot; <s>b&#8320;, b&#8321;</s> the intercept and slope JMP prints &middot; <s>&#375;</s> "y-hat" &mdash; a predicted y &middot; <s>e</s> a residual: actual &minus; predicted &middot; <s>SE</s> standard error = &#963;/&#8730;n or s/&#8730;n &middot; <s>r</s> correlation, &minus;1 to +1 &middot; <s>R&#178;</s> share of y explained &middot; <s>df</s> degrees of freedom &middot; <s>k</s> how many predictors.<u>A hypothesis is always about the Greek letter, never x&#772;. Careful: <b>&#946;</b> alone is the Type II error chance, but <b>&#946;&#8320;, &#946;&#8321;</b> are regression slopes.</u></p>
   <h3>Student calculators &amp; teaching modules</h3>
   <p class="t"><b>Getting there, then which file</b><s>Help &#8250; Sample Index</s> &#8594; under &#9312; Content Type click <s>Tool</s> &#8594; under &#9313; Tool Type pick <s>Calculators</s> &#8594; double-click the file. (Some builds list these under the <s>Student</s> menu.) One mean, test statistic + p-value &#8594; <s>TestMean.jsl</s> &middot; one proportion &#8594; <s>TestProportion.jsl</s> &middot; two means &#8594; <s>TestTwoSampleMeans.jsl</s> &middot; two proportions &#8594; <s>TestTwoSampleProportions.jsl</s> &middot; CI for a mean &#8594; <s>ConfidenceIntervalsForTheMean.jsl</s> &middot; CI for a proportion &#8594; <s>ConfidenceIntervalsForProportion.jsl</s> &middot; CI comparing two groups &#8594; <s>CITwoMeans.jsl</s>, <s>CITwoProportions.jsl</s> &middot; any normal / t / binomial probability &#8594; <s>DistributionCalculator.jsl</s> &middot; how big a sample &#8594; <s>SampleSizeForConfidenceIntervals.jsl</s>.</p>
   <p class="t"><b>Teaching Modules &mdash; shape, mean, SD, and a guided test</b>Same path but Tool Type <s>Teaching Modules</s>. <s>Sampling Distribution of Sample Means</s>: set <i>Population Shape</i> and <i>Population Mean</i> &#8594; <i>Population Summary</i> gives the shape, Mean and Std Dev, and the sample-means panel gives the mean of x&#772; and its Std Dev (that's &#963;/&#8730;n). <s>Hypothesis Test on Mean</s>: pick <i>z-test</i> or <i>t-test</i>, pick the alternative (not equal / less / greater), then tick <i>Reveal Decision</i>.</p>
@@ -226,8 +265,6 @@ t TEST Life Expectancy: SE = 16.41/&#8730;200 &#8776; 1.1604, t = 0.98/1.1604 &#
   <p class="e"><b>Intervals from a curved model.</b> Add the row with x and an empty Y, fit with <i>Polynomial to Degree 2</i>, then <i>Save Columns</i> <span class="w">&rarr;</span> <i>Mean Confidence Interval</i> for the average of all such cases, <i>Indiv Confidence Interval</i> for one specific new case.</p>
 
   <h3>Numbers you may need to look up</h3>
-  <p class="e"><b>df:</b> n &minus; 1 for one mean &middot; n &minus; 2 for a slope &middot; n &minus; k &minus; 1 for one predictor out of k &middot; k and n &minus; k &minus; 1 for the overall F.</p>
-  <p class="e"><b>z cutoffs:</b> one-sided &#945; = .10 &#8594; 1.282, .05 &#8594; 1.645, .025 &#8594; 1.960, .01 &#8594; 2.326 &middot; two-sided 90% &#8594; 1.645, 95% &#8594; 1.960, 98% &#8594; 2.326, 99% &#8594; 2.576.</p>
 
   <h3>The formulas behind the line</h3>
   <p class="e"><b>Three building blocks.</b> JMP never shows these three &mdash; they're only for working a small data set out yourself. <span class="f">Sxx = &#931;(x&minus;x&#772;)&#178;</span> spread of the x's, feeds the slope and its standard error &middot; <span class="f">Syy = &#931;(y&minus;y&#772;)&#178;</span> spread of the y's, feeds r and R&#178; &middot; <span class="f">Sxy = &#931;(x&minus;x&#772;)(y&minus;y&#772;)</span> how much x and y move together, feeds the slope and r.</p>
