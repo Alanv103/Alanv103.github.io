@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JMP Test 2 Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --paper:#eceff2; --sheet:#fff;
+  --ink:#10181f; --ink-2:#3a4855; --ink-3:#6d7c89;
+  --rule:#b9c4cd; --hair:#dde4ea;
+  --q1:#1f4e6b; --q2:#8a5512; --q3:#14614f; --q4:#7b2d3b;
+  --rt:#b0301f; --saybg:#f1f6f4; --jmpbg:#f3f5f7;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
+}}
+:root[data-theme="dark"]{
+  --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.4}
+.tips{max-width:1080px;margin:0 auto;padding:14px 16px 0;color:var(--ink-2);font-size:12.5px}
+.tips b{color:var(--ink);font-weight:600}
+.page{max-width:1080px;margin:14px auto;background:var(--sheet);border:1px solid var(--rule);border-radius:5px;padding:14px 16px 16px}
+
+.hdr{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-bottom:6px}
+.hdr b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.hdr span{font-size:9.5px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.symwrap{border-bottom:1.5px solid var(--ink);padding:0 0 5px;margin:0 0 8px}
+.symwrap h4{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 3px;color:var(--ink)}
+.syms{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 16px}
+.syms div{font-size:10.5px;line-height:1.24;color:var(--ink-2)}
+.syms div b{color:var(--ink);font-weight:700}
+.syms div i{font-style:normal;color:var(--ink-3)}
+
+.cols{columns:2;column-gap:20px}
+
+.qh{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;
+    padding:3px 8px;margin:0 0 5px;border-radius:3px;break-after:avoid;break-inside:avoid}
+.qh.a{background:var(--q1)} .qh.b{background:var(--q2)} .qh.c{background:var(--q3)} .qh.d{background:var(--q4)}
+.qh:not(:first-child){margin-top:9px}
+.qh em{font-style:normal;font-weight:500;letter-spacing:.01em;text-transform:none;opacity:.85}
+
+h5{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   margin:7px 0 3px;break-after:avoid;break-inside:avoid}
+
+.st{margin:0 0 4px;break-inside:avoid}
+.st>b{display:block;font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.28;margin-bottom:1.5px}
+.st>b s{text-decoration:none;display:inline-block;min-width:11px;font-weight:700;color:#fff;background:var(--ink-3);
+        border-radius:2px;text-align:center;font-size:9px;padding:0 3px;margin-right:3px;vertical-align:1px}
+.st .jmp,.st .say{display:block;font-size:11px;line-height:1.3;padding:2px 6px;border-left:2px solid var(--hair)}
+.st .jmp{font-family:var(--mono);font-size:10.5px;background:var(--jmpbg);color:var(--ink);border-left-color:var(--ink-3)}
+.st .say{background:var(--saybg);color:var(--ink);border-left-color:var(--q3);margin-top:1.5px}
+.st .jmp em,.st .say em{font-style:normal;font-weight:700;font-family:var(--sans);font-size:9px;letter-spacing:.07em;
+   text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+.st .say em{color:var(--q3)}
+.st .jmp i{font-style:normal;color:var(--ink-3)}
+.st .say b{font-weight:600}
+.st .nb{display:block;font-size:10px;color:var(--ink-3);line-height:1.28;margin-top:1px}
+.rt{color:var(--rt);font-weight:700}
+.f{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+.bl{display:inline-block;width:30px;border-bottom:1px solid var(--ink-3);margin:0 3px 0 2px;vertical-align:baseline}
+.bl.w2{width:54px} .bl.w3{width:86px}
+
+table{border-collapse:collapse;width:100%;font-size:10.5px;margin:0 0 5px;break-inside:avoid}
+th{text-align:left;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   border-bottom:1px solid var(--ink-3);padding:2px 4px;font-weight:700}
+td{padding:1.5px 4px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--ink-2);line-height:1.25}
+td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--ink)}
+
+@media screen and (max-width:760px){
+  .page{padding:12px 11px 14px;border-radius:0;border-left:0;border-right:0;margin:10px 0}
+  .cols{columns:1}
+  .syms{grid-template-columns:repeat(2,1fr)}
+}
+
+@page{size:letter portrait;margin:.32in}
+@media print{
+  .tips{display:none}
+  html,body{background:#fff;color:#000}
+  .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
+  .page:last-of-type{break-after:auto}
+  .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
+  .hdr b{font-size:11.44pt} .hdr span{font-size:6.76pt;color:#444}
+  .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4.4pt}
+  .symwrap h4{font-size:6.76pt;margin-bottom:1.54pt}
+  .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
+  .syms div{font-size:6.54pt;line-height:1.17;color:#111}
+  .syms div b,.syms div i{color:#000}
+  .cols{column-gap:13pt}
+  .qh{font-size:7.63pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qh:not(:first-child){margin-top:5.5pt}
+  .qh em{font-size:7.2pt}
+  h5{font-size:6.76pt;margin:4.4pt 0 1.6pt}
+  .st{margin-bottom:2.42pt}
+  .st>b{font-size:6.87pt;margin-bottom:0.88pt}
+  .st>b s{font-size:5.89pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:6.65pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:6.48pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp em,.st .say em{font-size:5.89pt;color:#444}
+  .st .nb{font-size:6.44pt;color:#444}
+  .f{font-size:6.48pt}
+  table{font-size:6.54pt;margin-bottom:2.86pt}
+  th{font-size:5.89pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
+  td.m{font-size:6.44pt}
+  .bl{border-bottom:.5pt solid #333}
+  .rt{color:#000}
+}
+</style>
+</head>
+<body>
+
+<p class="tips"><b>Print:</b> Ctrl/&#8984;-P &rarr; Letter, Portrait, Scale <b>100%</b>, Margins <b>Default</b>, <b>two-sided / flip on long edge</b>. Two pages &mdash; front and back of one sheet.</p>
+
+<!-- ================= FRONT ================= -->
+<div class="page">
+  <div class="hdr"><b>JMP TEST 2 &middot; FRONT</b><span>two-sample t &middot; matched pairs &nbsp;|&nbsp; <span class="rt">&#9660;</span> = red triangle &middot; <code>&#8250;</code> = then click</span></div>
+
+  <div class="symwrap">
+    <h4>Symbols</h4>
+    <div class="syms">
+      <div><b>x&#772;&#8321; x&#772;&#8322;</b> the two sample averages</div>
+      <div><b>&#956;&#8321; &#956;&#8322;</b> <i>"mew"</i> true means, unknown</div>
+      <div><b>d&#772;</b> <i>"d-bar"</i> average of the differences</div>
+      <div><b>&#956;<sub>d</sub></b> true mean difference; H&#8320;: &#956;<sub>d</sub> = 0</div>
+      <div><b>s&#8321; s&#8322;</b> the two sample SDs</div>
+      <div><b>s<sub>p</sub></b> pooled SD &mdash; one SD for both groups</div>
+      <div><b>SE</b> standard error = spread of the estimate</div>
+      <div><b>df</b> 2-sample n&#8321;+n&#8322;&minus;2 &middot; paired n&minus;1</div>
+      <div><b>n&#8321; n&#8322;</b> the two sample sizes</div>
+      <div><b>&#945;</b> <i>"alpha"</i> the bar you compare p to</div>
+      <div><b>H&#8320;</b> the null &mdash; always has an =</div>
+      <div><b>H&#8321;</b> the alternative: &lt;, &gt; or &#8800;</div>
+      <div><b>F</b> ANOVA test statistic; big F = real effect</div>
+      <div><b>MSE</b> Mean Square Error = s<sub>p</sub>&#178;</div>
+      <div><b>RMSE</b> &#8730;MSE, the typical error</div>
+      <div><b>k</b> how many groups</div>
+      <div><b>q</b> studentized range &mdash; Tukey uses it</div>
+      <div><b>HSD</b> Tukey cutoff; |diff| &gt; HSD = different</div>
+      <div><b>LSMean</b> least squares mean = a cell average</div>
+      <div><b>Prob &gt; |t|</b> the <b>two-sided</b> p-value</div>
+      <div><b>Prob &gt; t</b> one-sided p, upper tail</div>
+      <div><b>Prob &gt; F</b> the ANOVA p-value</div>
+      <div><b>A*B</b> the interaction term</div>
+      <div><b>t*</b> critical t &mdash; needs df</div>
+    </div>
+  </div>
+
+  <div class="cols">
+
+  <p class="qh a">Which test? <em>&mdash; decide this first, every time</em></p>
+
+  <p class="st"><b>Count the variables, then ask who the subjects are</b>
+  <span class="jmp"><em>2 groups</em><b>different</b> subjects &#8594; two-sample t &#8250; Fit Y by X</span>
+  <span class="jmp"><em>2 groups</em><b>same</b> subject twice &#8594; Matched Pairs</span>
+  <span class="jmp"><em>1 factor</em>3+ groups &#8594; one-way ANOVA &#8250; Fit Y by X</span>
+  <span class="jmp"><em>2 factors</em>&#8594; two-way ANOVA &#8250; Fit Model &#8250; Cross</span>
+  <span class="nb">Tie-breaker: could you shuffle one column without losing info? Yes &#8594; two-sample. No &#8594; matched pairs.</span></p>
+
+  <p class="st"><b>Data layout is OPPOSITE for those two</b>
+  <span class="jmp"><em>Fit Y by X</em><b>stacked</b> &mdash; 1 response column + 1 group column</span>
+  <span class="jmp"><em>Matched Pairs</em><b>side by side</b> &mdash; 2 response columns</span>
+  <span class="nb">Column won't go in the X box? Right-click header &#8250; Column Info &#8250; Modeling Type &#8594; <b>Nominal</b>. Text won't type in? Data Type &#8594; <b>Character</b>.</span></p>
+
+  <p class="qh b">T1 &middot; Two independent means <em>&mdash; two-sample t</em></p>
+
+  <p class="st"><b><s>a</s> Raw data, or just summary numbers?</b>
+  <span class="jmp"><em>raw rows</em>Analyze &#8250; Fit Y by X &#8250; Y = response, X = group &#8250; OK</span>
+  <span class="jmp"><em>only n, x&#772;, s</em>Help &#8250; Sample Index &#8250; Tool &#8250; Calculators &#8250; <b>TestTwoSampleMeans</b> &#8250; t-test &#8250; Assume Equal Variances &#8250; pick H&#8321;</span>
+  <span class="nb">Fit Y by X cannot run on summary statistics. It needs actual rows.</span></p>
+
+  <p class="st"><b><s>b</s> Turn on everything you need, once</b>
+  <span class="jmp"><em>&#9660;</em>Means/Anova/Pooled t &nbsp;&middot;&nbsp; t Test &nbsp;&middot;&nbsp; Unequal Variances &nbsp;&middot;&nbsp; Normal Quantile Plot</span>
+  <span class="nb">That one click-set answers conditions, test statistic, p-value and CI.</span></p>
+
+  <p class="st"><b><s>c</s> Variables and parameters</b>
+  <span class="say"><em>say</em>The explanatory variable is <span class="bl w3"></span>, which is <b>categorical</b> with 2 levels. The response is <span class="bl w3"></span>, which is <b>quantitative</b>.</span>
+  <span class="say"><em>say</em>&#956;&#8321; = the true mean <span class="bl w3"></span> for <b>all</b> <span class="bl w2"></span>, and &#956;&#8322; = the true mean for <b>all</b> <span class="bl w2"></span>.</span>
+  <span class="nb">Parameters are about the whole population, never the numbers you were handed.</span></p>
+
+  <p class="st"><b><s>d</s> Hypotheses &mdash; watch the wording</b>
+  <span class="jmp"><em>two-sided</em>"a difference", "differ", "changed" &#8594; H&#8321;: &#956;&#8321; &#8800; &#956;&#8322;</span>
+  <span class="jmp"><em>one-sided</em>"higher", "greater", "more than", "improved" &#8594; H&#8321;: &#956;&#8321; &gt; &#956;&#8322;</span>
+  <span class="say"><em>say</em>H&#8320;: &#956;&#8321; = &#956;&#8322; &nbsp;&nbsp; H&#8321;: &#956;&#8321; <span class="bl"></span> &#956;&#8322;</span></p>
+
+  <p class="st"><b><s>e</s> Conditions &mdash; all three, in this order</b>
+  <span class="say"><em>say</em><b>Independence:</b> subjects were <b>randomly assigned</b> (or randomly sampled) and each appears in only one group, so the two samples are independent.</span>
+  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bl"></span> per group. <i>If n &#8805; 30:</i> the Central Limit Theorem applies, so no plot is needed. <i>If n &lt; 30:</i> the Normal Quantile Plot shows the points following their lines with no curve or outliers.</span>
+  <span class="say"><em>say</em><b>Equal variances:</b> the SDs are <span class="bl"></span> and <span class="bl"></span>, a ratio of <span class="bl"></span> which is under 2, and Brown-Forsythe gives p = <span class="bl w2"></span> &gt; 0.05, so pooling is appropriate.</span>
+  <span class="nb">SD ratio under <b>2</b> = variance ratio under <b>4</b>. Fails? Don't stop &mdash; quote the <b>t Test</b> (Welch) box instead of Pooled t. Conditions 1 and 2 are required either way.</span></p>
+
+  <p class="st"><b><s>f</s> Test statistic and p-value</b>
+  <span class="jmp"><em>equal var</em><b>Pooled t Test</b> box &#8594; t Ratio, DF = n&#8321;+n&#8322;&minus;2, Prob &gt; |t|</span>
+  <span class="jmp"><em>unequal</em><b>t Test</b> box ("Assuming unequal variances") &#8594; decimal DF</span>
+  <span class="nb"><b>One-sided?</b> Use <b>Prob &gt; t</b> or <b>Prob &lt; t</b>, never Prob &gt; |t|. Read the header (e.g. <i>B&minus;A</i>) to see the subtraction order. Safety check: the right one-sided p is <b>below 0.5</b> when the data lean the way H&#8321; says. Got 0.9997? Take the other row.</span></p>
+
+  <p class="st"><b><s>g</s> Conclusion</b>
+  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> is <b>less than</b> &#945; = <span class="bl"></span>, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> to say that <span class="bl w3"></span>.</span>
+  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> is <b>greater than</b> &#945; = <span class="bl"></span>, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> to say that <span class="bl w3"></span>.</span>
+  <span class="nb">Never "accept H&#8320;". Never "prove".</span></p>
+
+  <p class="st"><b><s>h</s> Confidence interval</b>
+  <span class="jmp"><em>read</em><b>Upper CL Dif</b> and <b>Lower CL Dif</b> in the same t-test box</span>
+  <span class="say"><em>say</em>We are 95% confident the true difference in mean <span class="bl w2"></span> is between <span class="bl"></span> and <span class="bl"></span>.</span>
+  <span class="nb">CI excludes 0 &#8596; you rejected H&#8320;. They always agree. If asked "will it contain 0?" before computing &#8594; answer from the p-value.</span></p>
+
+  <p class="qh c">T2 &middot; Matched pairs <em>&mdash; same subject measured twice</em></p>
+
+  <p class="st"><b><s>a</s> Run it</b>
+  <span class="jmp"><em>path</em>Analyze &#8250; <b>Specialized Modeling</b> &#8250; <b>Matched Pairs</b></span>
+  <span class="jmp"><em>then</em>put <b>BOTH</b> columns into <b>Y, Paired Response</b> &#8250; OK</span>
+  <span class="nb">One box, two columns. Do <b>not</b> stack this data.</span></p>
+
+  <p class="st"><b><s>b</s> Equivalent route, if asked the long way</b>
+  <span class="jmp"><em>make col</em>Cols &#8250; New Column &#8250; Column Properties &#8250; Formula &#8594; <i>after &minus; before</i></span>
+  <span class="jmp"><em>then</em>Analyze &#8250; Distribution &#8250; <span class="rt">&#9660;</span> &#8250; Test Mean &#8250; 0</span>
+  <span class="nb">Identical t and p. The difference column is also how you check normality.</span></p>
+
+  <p class="st"><b><s>c</s> Hypotheses</b>
+  <span class="say"><em>say</em>Let &#956;<sub>d</sub> be the true mean difference (<span class="bl w2"></span> minus <span class="bl w2"></span>) for all <span class="bl w2"></span>.</span>
+  <span class="say"><em>say</em>H&#8320;: &#956;<sub>d</sub> = 0 &nbsp;&nbsp; H&#8321;: &#956;<sub>d</sub> <span class="bl"></span> 0</span></p>
+
+  <p class="st"><b><s>d</s> Conditions &mdash; only two, and one is different</b>
+  <span class="say"><em>say</em><b>Independence:</b> the <b>pairs</b> were randomly sampled and one pair does not affect another. The two values <i>within</i> a pair are dependent by design, which is the point.</span>
+  <span class="say"><em>say</em><b>Normality:</b> the <b>differences</b> are approximately normal &mdash; the quantile plot of the difference column shows no curve or outliers.</span>
+  <span class="nb">Normality applies to the <b>differences</b>, not to either original column. There is <b>no</b> equal-variance condition here.</span></p>
+
+  <p class="st"><b><s>e</s> Read it and conclude</b>
+  <span class="jmp"><em>read</em>Mean Difference &middot; t-Ratio &middot; <b>DF = n&minus;1</b> &middot; Prob &gt; |t| &middot; Upper95% / Lower95%</span>
+  <span class="nb">5 pairs &#8594; <b>df = 4</b>, not 8. JMP prints the subtraction order in the label (e.g. <i>2022-2020</i>); the second column minus the first flips only the <b>sign</b>, never the p-value.</span>
+  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> &lt; &#945; = <span class="bl"></span>, we reject H&#8320;. There is sufficient evidence of a difference in mean <span class="bl w2"></span> between <span class="bl w2"></span> and <span class="bl w2"></span>.</span></p>
+
+  <p class="st"><b><s>f</s> Why pairing is worth it</b>
+  <span class="nb">Pairing strips out subject-to-subject variation, so t gets bigger. Run wrongly as two independent samples the same data gives a much weaker result. That's the answer if asked why you paired.</span></p>
+
+  <p class="qh d">Review Session 2 &middot; check your work</p>
+
+  <p class="st"><b>Snap Beans <i>&mdash; two-sample t, summary stats, one-sided, &#945;=0.01</i></b>
+  <span class="jmp"><em>path</em>Calculators &#8250; TestTwoSampleMeans &#8250; Assume Equal Variances</span>
+  <span class="jmp"><em>answer</em>s<sub>p</sub>=27.61 &middot; SE=6.903 &middot; <b>t=5.65</b> &middot; df=<b>62</b> &middot; p&lt;0.0001 &#8594; reject</span>
+  <span class="nb">SD ratio 30/25 = 1.2 &#10003; &nbsp;&middot;&nbsp; n=32 per group so CLT covers normality &#10003;</span></p>
+
+  <p class="st"><b>Sports Attendance <i>&mdash; matched pairs, &#945;=0.05</i></b>
+  <span class="jmp"><em>answer</em>d&#772;=176,192.8 &middot; s<sub>d</sub>=34,838.6 &middot; <b>t=11.31</b> &middot; df=<b>4</b> &middot; p=0.0003 &#8594; reject</span>
+  <span class="jmp"><em>95% CI</em>(132,935 , 219,451) &mdash; excludes 0 &#10003;</span>
+  <span class="nb">Run wrongly as independent samples it drops to t=5.53. Pairing doubled it.</span></p>
+
+  <p class="st"><b>Fruit Flies <i>&mdash; one-way ANOVA, 5 groups of 25</i></b>
+  <span class="jmp"><em>DF check</em>Treatment <b>4</b> &middot; Error <b>120</b> &middot; C. Total <b>124</b></span>
+  <span class="nb">Handout says "four treatments" but the factor has <b>5</b> levels. F is large, p tiny &#8594; proceed to Tukey.</span></p>
+
+  <p class="st"><b>Battery Life <i>&mdash; two-way, 3&times;3, n=4 per cell</i></b>
+  <span class="jmp"><em>DF check</em>Model <b>8</b> &middot; Error <b>27</b> &middot; C. Total <b>35</b></span>
+  <span class="jmp"><em>Effect Tests</em>Material F=7.91 p=0.0020 &middot; Temp F=28.97 p&lt;.0001 &middot; <b>Material*Temp F=3.56 p=0.0186</b></span>
+  <span class="nb">Interaction <b>IS</b> significant &#8594; do <b>not</b> read main effects separately &#8594; compare all 9 cells. MSE=675.21, RMSE=25.98, R&#178;=0.765, HSD=61.82.</span>
+  <span class="jmp"><em>circle A</em>B15 155.75 &middot; C70 145.75 &middot; C15 144.00 &middot; A15 134.75 &middot; B70 119.75</span>
+  <span class="jmp"><em>circle B</em>C70 &middot; C15 &middot; A15 &middot; B70 &middot; C125 85.50</span>
+  <span class="jmp"><em>circle C</em>C125 85.50 &middot; A125 57.50 &middot; A70 57.25 &middot; B125 49.50</span>
+  <span class="nb">C125 is in two circles: matches B70 above and A125 below, yet those two differ from each other. <b>Material C holds up best as temp rises &#8594; recommend C.</b></span></p>
+
+  </div>
+</div>
+
+<!-- ================= BACK ================= -->
+<div class="page">
+  <div class="hdr"><b>JMP TEST 2 &middot; BACK</b><span>one-way ANOVA &middot; two-way ANOVA &middot; Tukey &nbsp;|&nbsp; <span class="rt">&#9660;</span> = red triangle</span></div>
+
+  <div class="cols">
+
+  <p class="qh d">T3 &middot; One-way ANOVA <em>&mdash; one factor, 3+ groups</em></p>
+
+  <p class="st"><b><s>a</s> Run it</b>
+  <span class="jmp"><em>path</em>Analyze &#8250; Fit Y by X &#8250; Y = response, X = factor &#8250; OK</span>
+  <span class="jmp"><em>&#9660;</em>Means/Anova &nbsp;&middot;&nbsp; Unequal Variances &nbsp;&middot;&nbsp; Normal Quantile Plot</span>
+  <span class="nb">X must be <b>Nominal</b> (red bars). If it's Continuous you get a regression, not an ANOVA.</span></p>
+
+  <p class="st"><b><s>b</s> Hypotheses</b>
+  <span class="say"><em>say</em>H&#8320;: &#956;&#8321; = &#956;&#8322; = &#956;&#8323; = &#8230; (all group means are equal)</span>
+  <span class="say"><em>say</em>H&#8321;: <b>at least one</b> mean differs from the others</span>
+  <span class="nb">Never write "all means are different". That is wrong and gets marked.</span></p>
+
+  <p class="st"><b><s>c</s> DF check before you read anything</b>
+  <span class="jmp"><em>check</em>Factor DF = k&minus;1 &nbsp;&middot;&nbsp; Error DF = N&minus;k &nbsp;&middot;&nbsp; C. Total = N&minus;1</span>
+  <span class="nb">5 groups of 25: 4, 120, 124. Wrong DF &#8594; wrong column selected or wrong modeling type.</span></p>
+
+  <p class="st"><b><s>d</s> Conditions</b>
+  <span class="say"><em>say</em><b>Independence:</b> subjects were randomly assigned to the groups.</span>
+  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bl"></span> per group and the quantile plots show points near their lines.</span>
+  <span class="say"><em>say</em><b>Equal variances:</b> largest SD / smallest SD = <span class="bl"></span>, under 2, and Brown-Forsythe p = <span class="bl w2"></span> &gt; 0.05.</span>
+  <span class="nb">With 3+ groups the rule is <b>largest over smallest</b>, not pairwise.</span></p>
+
+  <p class="st"><b><s>e</s> The F test and your conclusion</b>
+  <span class="jmp"><em>read</em>Analysis of Variance table &#8594; <b>F Ratio</b> and <b>Prob &gt; F</b></span>
+  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> &lt; &#945; = <span class="bl"></span>, we reject H&#8320;. There is sufficient evidence that at least one mean <span class="bl w3"></span> differs.</span></p>
+
+  <p class="st"><b><s>f</s> Multiple comparisons &mdash; only if F was significant</b>
+  <span class="jmp"><em>&#9660;</em>Compare Means &#8250; <b>All Pairs, Tukey HSD</b></span>
+  <span class="nb">"If appropriate" in the question means exactly this: F not significant &#8594; you stop and say so. Why Tukey and not 10 t-tests? 10 tests at 5% each gives a ~40% chance of a false positive; Tukey holds the <b>overall</b> rate at 5%.</span></p>
+
+  <p class="st"><b><s>g</s> Reading connecting letters</b>
+  <span class="jmp"><em>rule</em>share a letter &#8594; <b>NOT</b> different &nbsp;&middot;&nbsp; no letter in common &#8594; <b>different</b></span>
+  <span class="say"><em>say</em>Tukey HSD comparisons at an overall 0.05 level showed that <span class="bl w3"></span> did not differ significantly, while <span class="bl w3"></span> was significantly <span class="bl"></span> than <span class="bl w2"></span>.</span></p>
+
+  <p class="qh a">T4 &middot; Two-way ANOVA <em>&mdash; two factors, Fit Model</em></p>
+
+  <p class="st"><b><s>a</s> Run it &mdash; the Cross step is everything</b>
+  <span class="jmp"><em>1</em>Analyze &#8250; <b>Fit Model</b> &#8250; Y, Response = the response</span>
+  <span class="jmp"><em>2</em>Add <b>both</b> factors</span>
+  <span class="jmp"><em>3</em>select <b>BOTH</b> inside Construct Model Effects &#8250; click <b>Cross</b></span>
+  <span class="jmp"><em>4</em>Run</span>
+  <span class="nb">Three lines must show before Run: <i>A</i>, <i>B</i>, <i>A*B</i>. Only two &#8594; you skipped Cross and the interaction is missing. (<i>Macros &#8250; Full Factorial</i> does all of it in one click.)</span></p>
+
+  <p class="st"><b><s>b</s> DF check &mdash; your safety net</b>
+  <span class="jmp"><em>formula</em>Model DF = (a&minus;1) + (b&minus;1) + (a&minus;1)(b&minus;1)</span>
+  <span class="jmp"><em>3&times;3, n=4</em>Model <b>8</b> &middot; Error <b>27</b> &middot; C. Total <b>35</b></span>
+  <span class="jmp"><em>3&times;2, n=5</em>Model <b>5</b> &middot; Error <b>24</b> &middot; C. Total <b>29</b></span>
+  <span class="nb">Model DF too small &#8594; no interaction in the model. Go back and Cross. This check catches the wrong-file mistake too.</span></p>
+
+  <p class="st"><b><s>c</s> Three sets of hypotheses &mdash; write all three</b>
+  <span class="say"><em>say</em><b>Interaction</b> &mdash; H&#8320;: there is no interaction between <span class="bl w2"></span> and <span class="bl w2"></span>. H&#8321;: there is an interaction.</span>
+  <span class="say"><em>say</em><b>Factor A</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322; = &#956;&#8323;. H&#8321;: at least one differs.</span>
+  <span class="say"><em>say</em><b>Factor B</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322;. H&#8321;: they differ.</span></p>
+
+  <div class="st"><b><s>d</s> Read the INTERACTION row first. Always.</b>
+  <span class="jmp"><em>read</em><b>Effect Tests</b> table &#8594; the <b>A*B</b> row &#8594; Prob &gt; F</span>
+  <table>
+    <tr><th>A*B p-value</th><th>What you must do</th></tr>
+    <tr><td class="m">&lt; 0.05</td><td><b>Significant.</b> Main effects <b>cannot</b> be read separately. Compare all <b>cells</b>. Draw the circle diagram.</td></tr>
+    <tr><td class="m">&gt; 0.05</td><td><b>Not significant.</b> Say so, then read the two main effect rows separately.</td></tr>
+  </table>
+  <span class="nb">This single decision controls the whole rest of the problem.</span></div>
+
+  <p class="st"><b><s>e</s> If the interaction IS significant</b>
+  <span class="jmp"><em>&#9660; on A*B</em><b>LSMeans Differences Tukey HSD</b> &#8594; all cell combinations</span>
+  <span class="jmp"><em>&#9660;</em>Factor Profiling &#8250; <b>Interaction Plots</b> &#8594; non-parallel lines confirm it</span>
+  <span class="say"><em>say</em>Because the interaction is significant, the main effects cannot be interpreted separately. The effect of <span class="bl w2"></span> on <span class="bl w2"></span> <b>depends on</b> <span class="bl w2"></span>.</span></p>
+
+  <p class="st"><b><s>f</s> If the interaction is NOT significant</b>
+  <span class="jmp"><em>&#9660; on a factor</em><b>LSMeans Differences Tukey HSD</b> &#8594; that factor's levels</span>
+  <span class="nb">Only run Tukey on a <b>significant</b> main effect with <b>3+ levels</b>. A 2-level factor needs no Tukey &mdash; the F test already answered it; just report which level had the higher LSMean.</span></p>
+
+  <p class="st"><b><s>g</s> The circle diagram, step by step</b>
+  <span class="jmp"><em>1</em>list every cell mean, <b>sorted high to low</b></span>
+  <span class="jmp"><em>2</em>get the cutoff: HSD = q &#8730;(MSE/n) &nbsp;&mdash;&nbsp; JMP prints it</span>
+  <span class="jmp"><em>3</em>circle each run of means that stays <b>within</b> the cutoff</span>
+  <span class="jmp"><em>4</em>circles <b>overlap</b> &mdash; a mean can sit in two</span>
+  <span class="nb">Same thing as connecting letters: share a circle &#8594; not significantly different. The overlap is the point &mdash; X can match both the one above and the one below, while those two still differ from each other.</span></p>
+
+  <p class="st"><b><s>h</s> Summary template</b>
+  <span class="say"><em>say</em>A two-way ANOVA examined the effects of <span class="bl w2"></span> and <span class="bl w2"></span> on <span class="bl w2"></span>. The interaction was <b>[significant / not significant]</b> (F = <span class="bl"></span>, p = <span class="bl w2"></span>).</span>
+  <span class="say"><em>say</em><i>If significant:</i> the main effects cannot be interpreted separately; the effect of one factor depends on the other. Tukey comparisons of all cells showed <span class="bl w3"></span>.</span>
+  <span class="say"><em>say</em><i>If not:</i> the main effects were interpreted separately. <span class="bl w2"></span> was significant (F = <span class="bl"></span>, p = <span class="bl w2"></span>) and Tukey showed <span class="bl w3"></span>.</span></p>
+
+  <p class="st"><b><s>i</s> Conditions for ANOVA models</b>
+  <span class="jmp"><em>&#9660;</em>Row Diagnostics &#8250; Plot Residual by Predicted &#8594; shapeless cloud, no funnel</span>
+  <span class="jmp"><em>&#9660;</em>Save Columns &#8250; Residuals &#8594; Distribution &#8250; Normal Quantile Plot</span>
+  <span class="nb">Two-way checks <b>residuals</b>, not raw data. Cell SD ratio over 2 with only 4&ndash;5 per cell? Say the estimates are imprecise at that n and lean on the residual plot &mdash; don't claim a ratio you don't have.</span></p>
+
+  <p class="qh b">Where every number lives</p>
+
+  <table>
+    <tr><th>You need</th><th>Where</th></tr>
+    <tr><td>group means, n</td><td>Means for Oneway Anova</td></tr>
+    <tr><td>group SDs</td><td>Tests that the Variances are Equal</td></tr>
+    <tr><td>equal-var p</td><td>Brown-Forsythe row</td></tr>
+    <tr><td>t, df, p pooled</td><td><b>Pooled t Test</b> box</td></tr>
+    <tr><td>t, df, p Welch</td><td><b>t Test</b> box</td></tr>
+    <tr><td>CI for difference</td><td>Upper / Lower CL Dif</td></tr>
+    <tr><td>paired mean diff</td><td>Mean Difference row</td></tr>
+    <tr><td>paired t, df, p</td><td>t-Ratio, DF, Prob &gt; |t|</td></tr>
+    <tr><td>paired CI</td><td>Upper95% / Lower95%</td></tr>
+    <tr><td>one-way F, p</td><td>Analysis of Variance table</td></tr>
+    <tr><td>one-way pairwise</td><td>Compare Means &#8250; All Pairs, Tukey HSD</td></tr>
+    <tr><td><b>interaction test</b></td><td><b>Effect Tests</b>, the A*B row</td></tr>
+    <tr><td>main effect tests</td><td>Effect Tests, single-factor rows</td></tr>
+    <tr><td>two-way pairwise</td><td><span class="rt">&#9660;</span> on the effect &#8250; LSMeans Differences Tukey HSD</td></tr>
+    <tr><td>residual check</td><td>Row Diagnostics &#8250; Plot Residual by Predicted</td></tr>
+  </table>
+
+  <p class="qh c">Five traps</p>
+
+  <p class="st"><b>1 &middot; One-sided vs two-sided</b><span class="nb">"higher / greater / more" = one-sided &#8594; Prob &gt; t or Prob &lt; t. "a difference / differ" = two-sided &#8594; Prob &gt; |t|. The right one-sided p is under 0.5.</span></p>
+  <p class="st"><b>2 &middot; Forgetting Cross</b><span class="nb">Three effects in the box, and Model DF matches the formula. Otherwise your interaction never got tested.</span></p>
+  <p class="st"><b>3 &middot; Reading main effects over a significant interaction</b><span class="nb">Interaction row first, every time.</span></p>
+  <p class="st"><b>4 &middot; Wrong layout or modeling type</b><span class="nb">Fit Y by X = stacked. Matched Pairs = side by side. X must be Nominal.</span></p>
+  <p class="st"><b>5 &middot; "All means are different"</b><span class="nb">H&#8321; for ANOVA is <b>at least one</b> mean differs.</span></p>
+
+  </div>
+</div>
+
+</body>
+</html>
