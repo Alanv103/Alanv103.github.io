@@ -74,6 +74,9 @@ h5{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
 .f{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
 .bl{display:inline-block;width:30px;border-bottom:1px solid var(--ink-3);margin:0 3px 0 2px;vertical-align:baseline}
 .bl.w2{width:54px} .bl.w3{width:86px}
+.bh{display:inline-block;border-bottom:1px solid var(--ink-3);min-width:26px;text-align:center;
+    font-style:italic;font-size:.82em;color:var(--ink-3);padding:0 3px;margin:0 2px;line-height:1.05;
+    white-space:nowrap}
 
 table{border-collapse:collapse;width:100%;font-size:10.5px;margin:0 0 5px;break-inside:avoid}
 th{text-align:left;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
@@ -94,32 +97,33 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
   .page:last-of-type{break-after:auto}
   .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
-  .hdr b{font-size:10.17pt} .hdr span{font-size:6.01pt;color:#444}
+  .hdr b{font-size:9.99pt} .hdr span{font-size:5.9pt;color:#444}
   .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4.4pt}
-  .symwrap h4{font-size:6.01pt;margin-bottom:1.54pt}
+  .symwrap h4{font-size:5.9pt;margin-bottom:1.54pt}
   .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
-  .syms div{font-size:5.81pt;line-height:1.17;color:#111}
+  .syms div{font-size:5.71pt;line-height:1.17;color:#111}
   .syms div b,.syms div i{color:#000}
   .cols{column-gap:13pt}
-  .qh{font-size:6.79pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+  .qh{font-size:6.67pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
       -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .qh:not(:first-child){margin-top:5.5pt}
-  .qh em{font-size:6.41pt}
-  h5{font-size:6.01pt;margin:4.4pt 0 1.6pt}
+  .qh em{font-size:6.29pt}
+  h5{font-size:5.9pt;margin:4.4pt 0 1.6pt}
   .st{margin-bottom:2.42pt}
-  .st>b{font-size:6.11pt;margin-bottom:0.88pt}
-  .st>b s{font-size:5.24pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp,.st .say{font-size:5.92pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
-  .st .jmp{font-size:5.76pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st>b{font-size:6pt;margin-bottom:0.88pt}
+  .st>b s{font-size:5.15pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:5.81pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:5.66pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp em,.st .say em{font-size:5.24pt;color:#444}
-  .st .nb{font-size:5.72pt;color:#444}
-  .f{font-size:5.76pt}
-  table{font-size:5.81pt;margin-bottom:2.86pt}
-  th{font-size:5.24pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  .st .jmp em,.st .say em{font-size:5.15pt;color:#444}
+  .st .nb{font-size:5.62pt;color:#444}
+  .f{font-size:5.66pt}
+  table{font-size:5.71pt;margin-bottom:2.86pt}
+  th{font-size:5.15pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
   td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
-  td.m{font-size:5.72pt}
+  td.m{font-size:5.62pt}
   .bl{border-bottom:.5pt solid #333}
+  .bh{border-bottom:.5pt solid #333;color:#555;font-size:.82em;min-width:18pt;padding:0 2pt;margin:0 1.5pt}
   .rt{color:#000}
 }
 </style>
@@ -130,13 +134,16 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
 <!-- ================= FRONT ================= -->
 <div class="page">
-  <div class="hdr"><b>JMP TEST 2 &middot; FRONT</b><span>two-sample t &middot; matched pairs &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <code>&#8250;</code> then click &middot; <b>GREEN = write it, fill the blanks</b></span></div>
+  <div class="hdr"><b>JMP TEST 2 &middot; FRONT</b><span>two-sample t &middot; matched pairs &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <code>&#8250;</code> then click &middot; <b>GREEN = write it &middot; faint word in a blank = what goes there</b></span></div>
 
   <div class="symwrap">
     <h4>Symbols</h4>
     <div class="syms">
-      <div><b>x&#772;&#8321; x&#772;&#8322;</b> the two sample averages</div>
-      <div><b>&#956;&#8321; &#956;&#8322;</b> <i>"mew"</i> true means, unknown</div>
+      <div><b>&#956;</b> <i>"mew", a <b>Greek</b> letter</i> the <b>TRUE</b> mean of <b>everyone</b> &mdash; you never know it</div>
+      <div><b>x&#772;</b> <i>"x-bar"</i> the mean of <b>your sample</b> &mdash; you measured it, you know it</div>
+      <div><b>&#956; is NOT the letter u</b> write it like a <i>u</i> with a tail hanging down</div>
+      <div><b>&#956;&#8321; &#956;&#8322;</b> group 1 and group 2 true means &mdash; always say <b>which is which</b></div>
+      <div><b>RULE</b> H&#8320; and H&#8321; are <b>always</b> about &#956;, <b>never</b> about x&#772;</div>
       <div><b>d&#772;</b> <i>"d-bar"</i> average of the differences</div>
       <div><b>&#956;<sub>d</sub></b> true mean difference; H&#8320;: &#956;<sub>d</sub> = 0</div>
       <div><b>s&#8321; s&#8322;</b> the two sample SDs</div>
@@ -145,8 +152,8 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
       <div><b>df</b> 2-sample n&#8321;+n&#8322;&minus;2 &middot; paired n&minus;1</div>
       <div><b>n&#8321; n&#8322;</b> the two sample sizes</div>
       <div><b>&#945;</b> <i>"alpha"</i> the bar you compare p to</div>
-      <div><b>H&#8320;</b> the null &mdash; always has an =</div>
-      <div><b>H&#8321;</b> the alternative: &lt;, &gt; or &#8800;</div>
+      <div><b>H&#8320;</b> the "no difference" <b>tie</b> &mdash; always has an =</div>
+      <div><b>H&#8321;</b> "higher"&#8594;<b>&gt;</b> &middot; "lower"&#8594;<b>&lt;</b> &middot; "different"&#8594;<b>&#8800;</b></div>
       <div><b>F</b> ANOVA test statistic; big F = real effect</div>
       <div><b>MSE</b> Mean Square Error = s<sub>p</sub>&#178;</div>
       <div><b>RMSE</b> &#8730;MSE, the typical error</div>
@@ -190,36 +197,36 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="nb">That one click-set answers conditions, test statistic, p-value and CI.</span></p>
 
   <p class="st"><b><s>c</s> Variables and parameters</b>
-  <span class="say"><em>say</em>The explanatory variable is <span class="bl w3"></span>, which is <b>categorical</b> with 2 levels. The response is <span class="bl w3"></span>, which is <b>quantitative</b>.</span>
-  <span class="say"><em>say</em>&#956;&#8321; = the true mean <span class="bl w3"></span> for <b>all</b> <span class="bl w2"></span>, and &#956;&#8322; = the true mean for <b>all</b> <span class="bl w2"></span>.</span>
-  <span class="say"><em>say</em>The point estimate of the difference is x&#772;&#8321; &minus; x&#772;&#8322; = <span class="bl"></span> &minus; <span class="bl"></span> = <span class="bl"></span>.</span>
+  <span class="say"><em>say</em>The explanatory variable is <span class="bh">what splits the groups</span>, which is <b>categorical</b> with 2 levels. The response is <span class="bh">what you measured + units</span>, which is <b>quantitative</b>.</span>
+  <span class="say"><em>say</em>&#956;&#8321; = the true mean <span class="bh">what + units</span> for <b>all</b> <span class="bh">group 1</span>, and &#956;&#8322; = the true mean for <b>all</b> <span class="bh">group 2</span>.</span>
+  <span class="say"><em>say</em>The point estimate is x&#772;&#8321; &minus; x&#772;&#8322; = <span class="bh">mean 1</span> &minus; <span class="bh">mean 2</span> = <span class="bh">answer</span>.</span>
   <span class="nb">Parameters are about the whole population, never the numbers you were handed.</span></p>
 
   <p class="st"><b><s>d</s> Hypotheses &mdash; watch the wording</b>
   <span class="jmp"><em>two-sided</em>"a difference", "differ", "changed" &#8594; H&#8321;: &#956;&#8321; &#8800; &#956;&#8322;</span>
   <span class="jmp"><em>one-sided</em>"higher", "greater", "more than", "improved" &#8594; H&#8321;: &#956;&#8321; &gt; &#956;&#8322;</span>
-  <span class="say"><em>say</em>H&#8320;: &#956;&#8321; = &#956;&#8322; &nbsp;&nbsp; H&#8321;: &#956;&#8321; <span class="bl"></span> &#956;&#8322;</span></p>
+  <span class="say"><em>say</em>H&#8320;: &#956;&#8321; = &#956;&#8322; &nbsp;&nbsp; H&#8321;: &#956;&#8321; <span class="bh">&lt; &gt; or &#8800;</span> &#956;&#8322;</span></p>
 
   <p class="st"><b><s>e</s> Conditions &mdash; all three, in this order</b>
   <span class="say"><em>say</em><b>Independence:</b> subjects were <b>randomly assigned</b> (or randomly sampled) and each appears in only one group, so the two samples are independent.</span>
-  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bl"></span> per group. <i>If n &#8805; 30:</i> the Central Limit Theorem applies, so no plot is needed. <i>If n &lt; 30:</i> the Normal Quantile Plot shows the points following their lines with no curve or outliers.</span>
-  <span class="say"><em>say</em><b>Equal variances:</b> the SDs are <span class="bl"></span> and <span class="bl"></span>, a ratio of <span class="bl"></span> which is under 2, and Brown-Forsythe gives p = <span class="bl w2"></span> &gt; 0.05, so pooling is appropriate.</span>
+  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bh">group size</span> per group. <i>If n &#8805; 30:</i> the Central Limit Theorem applies, so no plot is needed. <i>If n &lt; 30:</i> the Normal Quantile Plot shows the points following their lines with no curve or outliers.</span>
+  <span class="say"><em>say</em><b>Equal variances:</b> the SDs are <span class="bh">s1</span> and <span class="bh">s2</span>, a ratio of <span class="bh">bigger&#247;smaller</span> which is under 2, and Brown-Forsythe gives p = <span class="bh">p-value</span> &gt; 0.05, so pooling is appropriate.</span>
   <span class="nb">SD ratio under <b>2</b> = variance ratio under <b>4</b>. Fails? Don't stop &mdash; quote the <b>t Test</b> (Welch) box instead of Pooled t. Conditions 1 and 2 are required either way.</span></p>
 
   <p class="st"><b><s>f</s> Test statistic and p-value</b>
   <span class="jmp"><em>equal var</em><b>Pooled t Test</b> box &#8594; t Ratio, DF = n&#8321;+n&#8322;&minus;2, Prob &gt; |t|</span>
   <span class="jmp"><em>unequal</em><b>t Test</b> box ("Assuming unequal variances") &#8594; decimal DF</span>
-  <span class="say"><em>say</em>If H&#8320; were true, there would be about a <span class="bl"></span> chance of getting a difference in sample means this far from 0 just by random chance.</span>
+  <span class="say"><em>say</em>If H&#8320; were true, there would be about a <span class="bh">p as a %</span> chance of getting a difference in sample means this far from 0 just by random chance.</span>
   <span class="nb"><b>One-sided?</b> Use <b>Prob &gt; t</b> or <b>Prob &lt; t</b>, never Prob &gt; |t|. Read the header (e.g. <i>B&minus;A</i>) to see the subtraction order. Safety check: the right one-sided p is <b>below 0.5</b> when the data lean the way H&#8321; says. Got 0.9997? Take the other row.</span></p>
 
   <p class="st"><b><s>g</s> Conclusion</b>
-  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> is <b>less than</b> &#945; = <span class="bl"></span>, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> to say that <span class="bl w3"></span>.</span>
-  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> is <b>greater than</b> &#945; = <span class="bl"></span>, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> to say that <span class="bl w3"></span>.</span>
+  <span class="say"><em>say</em>Since p = <span class="bh">p-value</span> is <b>less than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> to say that <span class="bh">H&#8321; in plain words</span>.</span>
+  <span class="say"><em>say</em>Since p = <span class="bh">p-value</span> is <b>greater than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> to say that <span class="bh">H&#8321; in plain words</span>.</span>
   <span class="nb">Never "accept H&#8320;". Never "prove".</span></p>
 
   <p class="st"><b><s>h</s> Confidence interval</b>
   <span class="jmp"><em>read</em><b>Upper CL Dif</b> and <b>Lower CL Dif</b> in the same t-test box</span>
-  <span class="say"><em>say</em>We are 95% confident the true difference in mean <span class="bl w2"></span> is between <span class="bl"></span> and <span class="bl"></span>.</span>
+  <span class="say"><em>say</em>We are 95% confident the true difference in mean <span class="bh">what + units</span> is between <span class="bh">Lower CL</span> and <span class="bh">Upper CL</span>.</span>
   <span class="nb">CI excludes 0 &#8596; you rejected H&#8320;. They always agree. If asked "will it contain 0?" before computing &#8594; answer from the p-value.</span></p>
 
   <p class="qh c">T2 &middot; Matched pairs <em>&mdash; same subject measured twice</em></p>
@@ -235,8 +242,8 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="nb">Identical t and p. The difference column is also how you check normality.</span></p>
 
   <p class="st"><b><s>c</s> Hypotheses</b>
-  <span class="say"><em>say</em>Let &#956;<sub>d</sub> be the true mean difference (<span class="bl w2"></span> minus <span class="bl w2"></span>) for all <span class="bl w2"></span>.</span>
-  <span class="say"><em>say</em>H&#8320;: &#956;<sub>d</sub> = 0 &nbsp;&nbsp; H&#8321;: &#956;<sub>d</sub> <span class="bl"></span> 0</span></p>
+  <span class="say"><em>say</em>Let &#956;<sub>d</sub> be the true mean difference (<span class="bh">after</span> minus <span class="bh">before</span>) for all <span class="bh">subjects</span>.</span>
+  <span class="say"><em>say</em>H&#8320;: &#956;<sub>d</sub> = 0 &nbsp;&nbsp; H&#8321;: &#956;<sub>d</sub> <span class="bh">&lt; &gt; or &#8800;</span> 0</span></p>
 
   <p class="st"><b><s>d</s> Conditions &mdash; only two, and one is different</b>
   <span class="say"><em>say</em><b>Independence:</b> the <b>pairs</b> were randomly sampled and one pair does not affect another. The two values <i>within</i> a pair are dependent by design, which is the point.</span>
@@ -246,11 +253,11 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <p class="st"><b><s>e</s> Read it and conclude</b>
   <span class="jmp"><em>read</em>Mean Difference &middot; t-Ratio &middot; <b>DF = n&minus;1</b> &middot; Prob &gt; |t| &middot; Upper95% / Lower95%</span>
   <span class="nb">5 pairs &#8594; <b>df = 4</b>, not 8. JMP prints the subtraction order in the label (e.g. <i>2022-2020</i>); the second column minus the first flips only the <b>sign</b>, never the p-value.</span>
-  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> &lt; &#945; = <span class="bl"></span>, we reject H&#8320;. There is sufficient evidence of a difference in mean <span class="bl w2"></span> between <span class="bl w2"></span> and <span class="bl w2"></span>.</span></p>
+  <span class="say"><em>say</em>Since p = <span class="bh">p-value</span> &lt; &#945; = <span class="bh">.05</span>, we reject H&#8320;. There is sufficient evidence of a difference in mean <span class="bh">what + units</span> between <span class="bh">time 1</span> and <span class="bh">time 2</span>.</span></p>
 
   <p class="st"><b><s>f</s> Confidence interval for the difference</b>
   <span class="jmp"><em>read</em><b>Upper95%</b> and <b>Lower95%</b> in the same box</span>
-  <span class="say"><em>say</em>We are 95% confident the true mean difference in <span class="bl w2"></span> is between <span class="bl"></span> and <span class="bl"></span>. The interval <b>excludes 0</b>, which agrees with rejecting H&#8320;.</span></p>
+  <span class="say"><em>say</em>We are 95% confident the true mean difference in <span class="bh">what + units</span> is between <span class="bh">Lower95%</span> and <span class="bh">Upper95%</span>. It <b>excludes 0</b>, agreeing with rejecting H&#8320;.</span></p>
 
   <p class="st"><b><s>g</s> Why pairing is worth it</b>
   <span class="nb">Pairing strips out subject-to-subject variation, so t gets bigger. Run wrongly as two independent samples the same data gives a much weaker result. That's the answer if asked why you paired.</span></p>
@@ -282,21 +289,12 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>CI</em>95% CI (132,935 , 219,451) &mdash; <b>excludes 0</b>, agreeing with the rejection.</span>
   <span class="nb">df = <b>4</b> (5 pairs &minus; 1), not 8. Run wrongly as independent samples t drops to 5.53.</span></p>
 
-  <p class="qh c">Five traps</p>
-
-  <p class="st"><b>Check these before you hand it in</b>
-  <span class="nb"><b>1</b> "higher / greater / more" = one-sided &#8594; Prob &gt; t or Prob &lt; t; "a difference / differ" = two-sided &#8594; Prob &gt; |t|. The right one-sided p is under 0.5.</span>
-  <span class="nb"><b>2</b> Forgetting <b>Cross</b> &#8594; three effects in the box and Model DF matches the formula, or the interaction never got tested.</span>
-  <span class="nb"><b>3</b> Reading main effects over a significant interaction &#8594; interaction row first, every time.</span>
-  <span class="nb"><b>4</b> Wrong layout: Fit Y by X = stacked, Matched Pairs = side by side. X must be Nominal.</span>
-  <span class="nb"><b>5</b> H&#8321; for ANOVA is <b>at least one</b> mean differs, never "all means are different".</span></p>
-
   </div>
 </div>
 
 <!-- ================= BACK ================= -->
 <div class="page">
-  <div class="hdr"><b>JMP TEST 2 &middot; BACK</b><span>one-way ANOVA &middot; two-way ANOVA &middot; Tukey &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it, fill the blanks</b></span></div>
+  <div class="hdr"><b>JMP TEST 2 &middot; BACK</b><span>one-way ANOVA &middot; two-way ANOVA &middot; Tukey &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it &middot; faint word in a blank = what goes there</b></span></div>
 
   <div class="cols">
 
@@ -318,14 +316,14 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
   <p class="st"><b><s>d</s> Conditions</b>
   <span class="say"><em>say</em><b>Independence:</b> subjects were randomly assigned to the groups.</span>
-  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bl"></span> per group and the quantile plots show points near their lines.</span>
-  <span class="say"><em>say</em><b>Equal variances:</b> largest SD / smallest SD = <span class="bl"></span>, under 2, and Brown-Forsythe p = <span class="bl w2"></span> &gt; 0.05.</span>
+  <span class="say"><em>say</em><b>Normality:</b> n = <span class="bh">group size</span> per group and the quantile plots show points near their lines.</span>
+  <span class="say"><em>say</em><b>Equal variances:</b> largest SD / smallest SD = <span class="bh">ratio</span>, under 2, and Brown-Forsythe p = <span class="bh">p-value</span> &gt; 0.05.</span>
   <span class="nb">With 3+ groups the rule is <b>largest over smallest</b>, not pairwise.</span></p>
 
   <p class="st"><b><s>e</s> The F test and your conclusion</b>
   <span class="jmp"><em>read</em>Analysis of Variance table &#8594; <b>F Ratio</b> and <b>Prob &gt; F</b></span>
-  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> &lt; &#945; = <span class="bl"></span>, we reject H&#8320;. There is sufficient evidence that at least one mean <span class="bl w3"></span> differs.</span>
-  <span class="say"><em>say</em>Since p = <span class="bl w2"></span> &gt; &#945; = <span class="bl"></span>, we fail to reject H&#8320;. There is not sufficient evidence that the means differ, so we do <b>not</b> make multiple comparisons.</span></p>
+  <span class="say"><em>say</em>Since p = <span class="bh">Prob &gt; F</span> &lt; &#945; = <span class="bh">.05</span>, we reject H&#8320;. There is sufficient evidence that at least one mean <span class="bh">what + units</span> differs.</span>
+  <span class="say"><em>say</em>Since p = <span class="bh">Prob &gt; F</span> &gt; &#945; = <span class="bh">.05</span>, we fail to reject H&#8320;. There is not sufficient evidence that the means differ, so we do <b>not</b> make multiple comparisons.</span></p>
 
   <p class="st"><b><s>f</s> Multiple comparisons &mdash; only if F was significant</b>
   <span class="jmp"><em>&#9660;</em>Compare Means &#8250; <b>All Pairs, Tukey HSD</b></span>
@@ -333,14 +331,14 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
   <p class="st"><b><s>g</s> Reading connecting letters</b>
   <span class="jmp"><em>rule</em>share a letter &#8594; <b>NOT</b> different &nbsp;&middot;&nbsp; no letter in common &#8594; <b>different</b></span>
-  <span class="say"><em>say</em>Tukey HSD comparisons at an overall 0.05 level showed that <span class="bl w3"></span> did not differ significantly, while <span class="bl w3"></span> was significantly <span class="bl"></span> than <span class="bl w2"></span>.</span></p>
+  <span class="say"><em>say</em>Tukey HSD comparisons at an overall 0.05 level showed that <span class="bh">groups sharing a letter</span> did not differ, while <span class="bh">group</span> was significantly <span class="bh">higher/lower</span> than <span class="bh">group</span>.</span></p>
 
   <p class="qh a">T4 &middot; Two-way ANOVA <em>&mdash; two factors, Fit Model</em></p>
 
   <p class="st"><b><s>a</s> Name the factors, their levels, and the response</b>
-  <span class="say"><em>say</em>The two factors are <span class="bl w2"></span>, which is <b>categorical</b> with <span class="bl"></span> levels (<span class="bl w2"></span>), and <span class="bl w2"></span>, which is <b>categorical</b> with <span class="bl"></span> levels (<span class="bl w2"></span>).</span>
-  <span class="say"><em>say</em>The response variable is <span class="bl w2"></span>, which is <b>quantitative</b>.</span>
-  <span class="say"><em>say</em>There are <span class="bl"></span> treatment combinations with <span class="bl"></span> units each, so the design is balanced and the interaction can be tested.</span></p>
+  <span class="say"><em>say</em>The two factors are <span class="bh">factor A</span>, <b>categorical</b> with <span class="bh">#</span> levels (<span class="bh">list them</span>), and <span class="bh">factor B</span>, <b>categorical</b> with <span class="bh">#</span> levels (<span class="bh">list them</span>).</span>
+  <span class="say"><em>say</em>The response variable is <span class="bh">what + units</span>, which is <b>quantitative</b>.</span>
+  <span class="say"><em>say</em>There are <span class="bh">a&times;b</span> treatment combinations with <span class="bh">n per cell</span> units each, so the design is balanced and the interaction can be tested.</span></p>
 
   <p class="st"><b><s>b</s> Run it &mdash; the Cross step is everything</b>
   <span class="jmp"><em>1</em>Analyze &#8250; <b>Fit Model</b> &#8250; Y, Response = the response</span>
@@ -356,7 +354,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="nb">Model DF too small &#8594; no interaction in the model. Go back and Cross. This check catches the wrong-file mistake too.</span></p>
 
   <p class="st"><b><s>d</s> Three sets of hypotheses &mdash; write all three</b>
-  <span class="say"><em>say</em><b>Interaction</b> &mdash; H&#8320;: there is no interaction between <span class="bl w2"></span> and <span class="bl w2"></span>. H&#8321;: there is an interaction.</span>
+  <span class="say"><em>say</em><b>Interaction</b> &mdash; H&#8320;: there is no interaction between <span class="bh">factor A</span> and <span class="bh">factor B</span>. H&#8321;: there is an interaction.</span>
   <span class="say"><em>say</em><b>Factor A</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322; = &#956;&#8323;. H&#8321;: at least one differs.</span>
   <span class="say"><em>say</em><b>Factor B</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322;. H&#8321;: they differ.</span></p>
 
@@ -434,6 +432,15 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
     <tr><td>two-way pairwise</td><td><span class="rt">&#9660;</span> on the effect &#8250; LSMeans Differences Tukey HSD</td></tr>
     <tr><td>residual check</td><td>Row Diagnostics &#8250; Plot Residual by Predicted</td></tr>
   </table>
+
+  <p class="qh c">Five traps</p>
+
+  <p class="st"><b>Check these before you hand it in</b>
+  <span class="nb"><b>1</b> "higher / greater / more" = one-sided &#8594; Prob &gt; t or Prob &lt; t; "a difference / differ" = two-sided &#8594; Prob &gt; |t|. The right one-sided p is under 0.5.</span>
+  <span class="nb"><b>2</b> Forgetting <b>Cross</b> &#8594; three effects in the box and Model DF matches the formula, or the interaction never got tested.</span>
+  <span class="nb"><b>3</b> Reading main effects over a significant interaction &#8594; interaction row first, every time.</span>
+  <span class="nb"><b>4</b> Wrong layout: Fit Y by X = stacked, Matched Pairs = side by side. X must be Nominal.</span>
+  <span class="nb"><b>5</b> H&#8321; for ANOVA is <b>at least one</b> mean differs, never "all means are different".</span></p>
 
   </div>
 </div>
