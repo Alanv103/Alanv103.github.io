@@ -326,25 +326,30 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
   <p class="qh a">T4 &middot; Two-way ANOVA <em>&mdash; two factors, Fit Model</em></p>
 
-  <p class="st"><b><s>a</s> Run it &mdash; the Cross step is everything</b>
+  <p class="st"><b><s>a</s> Name the factors, their levels, and the response</b>
+  <span class="say"><em>say</em>The two factors are <span class="bl w2"></span>, which is <b>categorical</b> with <span class="bl"></span> levels (<span class="bl w2"></span>), and <span class="bl w2"></span>, which is <b>categorical</b> with <span class="bl"></span> levels (<span class="bl w2"></span>).</span>
+  <span class="say"><em>say</em>The response variable is <span class="bl w2"></span>, which is <b>quantitative</b>.</span>
+  <span class="say"><em>say</em>There are <span class="bl"></span> treatment combinations with <span class="bl"></span> units each, so the design is balanced and the interaction can be tested.</span></p>
+
+  <p class="st"><b><s>b</s> Run it &mdash; the Cross step is everything</b>
   <span class="jmp"><em>1</em>Analyze &#8250; <b>Fit Model</b> &#8250; Y, Response = the response</span>
   <span class="jmp"><em>2</em>Add <b>both</b> factors</span>
   <span class="jmp"><em>3</em>select <b>BOTH</b> inside Construct Model Effects &#8250; click <b>Cross</b></span>
   <span class="jmp"><em>4</em>Run</span>
   <span class="nb">Three lines must show before Run: <i>A</i>, <i>B</i>, <i>A*B</i>. Only two &#8594; you skipped Cross and the interaction is missing. (<i>Macros &#8250; Full Factorial</i> does all of it in one click.)</span></p>
 
-  <p class="st"><b><s>b</s> DF check &mdash; your safety net</b>
+  <p class="st"><b><s>c</s> DF check &mdash; your safety net</b>
   <span class="jmp"><em>formula</em>Model DF = (a&minus;1) + (b&minus;1) + (a&minus;1)(b&minus;1)</span>
   <span class="jmp"><em>3&times;3, n=4</em>Model <b>8</b> &middot; Error <b>27</b> &middot; C. Total <b>35</b></span>
   <span class="jmp"><em>3&times;2, n=5</em>Model <b>5</b> &middot; Error <b>24</b> &middot; C. Total <b>29</b></span>
   <span class="nb">Model DF too small &#8594; no interaction in the model. Go back and Cross. This check catches the wrong-file mistake too.</span></p>
 
-  <p class="st"><b><s>c</s> Three sets of hypotheses &mdash; write all three</b>
+  <p class="st"><b><s>d</s> Three sets of hypotheses &mdash; write all three</b>
   <span class="say"><em>say</em><b>Interaction</b> &mdash; H&#8320;: there is no interaction between <span class="bl w2"></span> and <span class="bl w2"></span>. H&#8321;: there is an interaction.</span>
   <span class="say"><em>say</em><b>Factor A</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322; = &#956;&#8323;. H&#8321;: at least one differs.</span>
   <span class="say"><em>say</em><b>Factor B</b> &mdash; H&#8320;: &#956;&#8321; = &#956;&#8322;. H&#8321;: they differ.</span></p>
 
-  <div class="st"><b><s>d</s> Read the INTERACTION row first. Always.</b>
+  <div class="st"><b><s>e</s> Read the INTERACTION row first. Always.</b>
   <span class="jmp"><em>read</em><b>Effect Tests</b> table &#8594; the <b>A*B</b> row &#8594; Prob &gt; F</span>
   <table>
     <tr><th>A*B p-value</th><th>What you must do</th></tr>
@@ -353,28 +358,28 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   </table>
   <span class="nb">This single decision controls the whole rest of the problem.</span></div>
 
-  <p class="st"><b><s>e</s> If the interaction IS significant</b>
+  <p class="st"><b><s>f</s> If the interaction IS significant</b>
   <span class="jmp"><em>&#9660; on A*B</em><b>LSMeans Differences Tukey HSD</b> &#8594; all cell combinations</span>
   <span class="jmp"><em>&#9660;</em>Factor Profiling &#8250; <b>Interaction Plots</b> &#8594; non-parallel lines confirm it</span>
   <span class="say"><em>say</em>Because the interaction is significant, the main effects cannot be interpreted separately. The effect of <span class="bl w2"></span> on <span class="bl w2"></span> <b>depends on</b> <span class="bl w2"></span>.</span></p>
 
-  <p class="st"><b><s>f</s> If the interaction is NOT significant</b>
+  <p class="st"><b><s>g</s> If the interaction is NOT significant</b>
   <span class="jmp"><em>&#9660; on a factor</em><b>LSMeans Differences Tukey HSD</b> &#8594; that factor's levels</span>
   <span class="nb">Only run Tukey on a <b>significant</b> main effect with <b>3+ levels</b>. A 2-level factor needs no Tukey &mdash; the F test already answered it; just report which level had the higher LSMean.</span></p>
 
-  <p class="st"><b><s>g</s> The circle diagram, step by step</b>
+  <p class="st"><b><s>h</s> The circle diagram, step by step</b>
   <span class="jmp"><em>1</em>list every cell mean, <b>sorted high to low</b></span>
   <span class="jmp"><em>2</em>get the cutoff: HSD = q &#8730;(MSE/n) &nbsp;&mdash;&nbsp; JMP prints it</span>
   <span class="jmp"><em>3</em>circle each run of means that stays <b>within</b> the cutoff</span>
   <span class="jmp"><em>4</em>circles <b>overlap</b> &mdash; a mean can sit in two</span>
   <span class="nb">Same thing as connecting letters: share a circle &#8594; not significantly different. The overlap is the point &mdash; X can match both the one above and the one below, while those two still differ from each other.</span></p>
 
-  <p class="st"><b><s>h</s> Summary template</b>
+  <p class="st"><b><s>i</s> Summary template</b>
   <span class="say"><em>say</em>A two-way ANOVA examined the effects of <span class="bl w2"></span> and <span class="bl w2"></span> on <span class="bl w2"></span>. The interaction was <b>[significant / not significant]</b> (F = <span class="bl"></span>, p = <span class="bl w2"></span>).</span>
   <span class="say"><em>say</em><i>If significant:</i> the main effects cannot be interpreted separately; the effect of one factor depends on the other. Tukey comparisons of all cells showed <span class="bl w3"></span>.</span>
   <span class="say"><em>say</em><i>If not:</i> the main effects were interpreted separately. <span class="bl w2"></span> was significant (F = <span class="bl"></span>, p = <span class="bl w2"></span>) and Tukey showed <span class="bl w3"></span>.</span></p>
 
-  <p class="st"><b><s>i</s> Conditions for ANOVA models</b>
+  <p class="st"><b><s>j</s> Conditions for ANOVA models</b>
   <span class="jmp"><em>&#9660;</em>Row Diagnostics &#8250; Plot Residual by Predicted &#8594; shapeless cloud, no funnel</span>
   <span class="jmp"><em>&#9660;</em>Save Columns &#8250; Residuals &#8594; Distribution &#8250; Normal Quantile Plot</span>
   <span class="say"><em>say</em><b>Independence:</b> the <span class="bl"></span> units were randomly assigned, <span class="bl"></span> to each of the <span class="bl"></span> treatment combinations. <b>Normality:</b> the residual quantile plot shows points near the line. <b>Equal variances:</b> the residual by predicted plot shows even spread with no funnel.</span>
