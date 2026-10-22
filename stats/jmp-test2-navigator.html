@@ -94,31 +94,31 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
   .page:last-of-type{break-after:auto}
   .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
-  .hdr b{font-size:11.04pt} .hdr span{font-size:6.52pt;color:#444}
+  .hdr b{font-size:10.17pt} .hdr span{font-size:6.01pt;color:#444}
   .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4.4pt}
-  .symwrap h4{font-size:6.52pt;margin-bottom:1.54pt}
+  .symwrap h4{font-size:6.01pt;margin-bottom:1.54pt}
   .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
-  .syms div{font-size:6.31pt;line-height:1.17;color:#111}
+  .syms div{font-size:5.81pt;line-height:1.17;color:#111}
   .syms div b,.syms div i{color:#000}
   .cols{column-gap:13pt}
-  .qh{font-size:7.36pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+  .qh{font-size:6.79pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
       -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .qh:not(:first-child){margin-top:5.5pt}
-  .qh em{font-size:6.95pt}
-  h5{font-size:6.52pt;margin:4.4pt 0 1.6pt}
+  .qh em{font-size:6.41pt}
+  h5{font-size:6.01pt;margin:4.4pt 0 1.6pt}
   .st{margin-bottom:2.42pt}
-  .st>b{font-size:6.63pt;margin-bottom:0.88pt}
-  .st>b s{font-size:5.68pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp,.st .say{font-size:6.42pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
-  .st .jmp{font-size:6.25pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st>b{font-size:6.11pt;margin-bottom:0.88pt}
+  .st>b s{font-size:5.24pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:5.92pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:5.76pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp em,.st .say em{font-size:5.68pt;color:#444}
-  .st .nb{font-size:6.21pt;color:#444}
-  .f{font-size:6.25pt}
-  table{font-size:6.31pt;margin-bottom:2.86pt}
-  th{font-size:5.68pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  .st .jmp em,.st .say em{font-size:5.24pt;color:#444}
+  .st .nb{font-size:5.72pt;color:#444}
+  .f{font-size:5.76pt}
+  table{font-size:5.81pt;margin-bottom:2.86pt}
+  th{font-size:5.24pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
   td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
-  td.m{font-size:6.21pt}
+  td.m{font-size:5.72pt}
   .bl{border-bottom:.5pt solid #333}
   .rt{color:#000}
 }
@@ -255,30 +255,41 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <p class="st"><b><s>g</s> Why pairing is worth it</b>
   <span class="nb">Pairing strips out subject-to-subject variation, so t gets bigger. Run wrongly as two independent samples the same data gives a much weaker result. That's the answer if asked why you paired.</span></p>
 
-  <p class="qh d">Review Session 2 &middot; check your work</p>
+  <p class="qh d">Worked example 1 &middot; Snap Beans <em>&mdash; two-sample t</em></p>
 
-  <p class="st"><b>Snap Beans <i>&mdash; two-sample t, summary stats, one-sided, &#945;=0.01</i></b>
-  <span class="jmp"><em>path</em>Calculators &#8250; TestTwoSampleMeans &#8250; Assume Equal Variances</span>
-  <span class="jmp"><em>answer</em>s<sub>p</sub>=27.61 &middot; SE=6.903 &middot; <b>t=5.65</b> &middot; df=<b>62</b> &middot; p&lt;0.0001 &#8594; reject</span>
-  <span class="nb">SD ratio 1.2 &#10003; &middot; n=32 so CLT covers normality &#10003;</span></p>
+  <p class="st"><b>Given</b>
+  <span class="jmp"><em>data</em>Old: n=32 x&#772;=410 s=30 &nbsp;&middot;&nbsp; New: n=32 x&#772;=449 s=25 &nbsp;&middot;&nbsp; &#945;=0.01</span>
+  <span class="jmp"><em>path</em>Calculators &#8250; TestTwoSampleMeans &#8250; t-test &#8250; Equal Variances &#8250; <b>upper tail</b> (New = Sample 1)</span></p>
 
-  <p class="st"><b>Sports Attendance <i>&mdash; matched pairs, &#945;=0.05</i></b>
-  <span class="jmp"><em>answer</em>d&#772;=176,192.8 &middot; s<sub>d</sub>=34,838.6 &middot; <b>t=11.31</b> &middot; df=<b>4</b> &middot; p=0.0003 &#8594; reject</span>
-  <span class="jmp"><em>95% CI</em>(132,935 , 219,451) &mdash; excludes 0 &#10003;</span>
-  <span class="nb">As independent samples it drops to t=5.53. Pairing doubled it.</span></p>
+  <p class="st"><b>Answers</b>
+  <span class="say"><em>a</em>Method is <b>categorical</b>, 2 levels. Ascorbic acid (mg/kg) is <b>quantitative</b>.</span>
+  <span class="say"><em>b</em>&#956;&#8321; = true mean ascorbic acid for <b>all</b> packages stored the new way; &#956;&#8322; = same for the old way.</span>
+  <span class="say"><em>c</em>H&#8320;: &#956;&#8321; = &#956;&#8322; &nbsp; H&#8321;: &#956;&#8321; <b>&gt;</b> &#956;&#8322; &nbsp;<i>("higher" = one-sided)</i></span>
+  <span class="say"><em>d</em>64 pkgs <b>randomly assigned</b> &#10003; &middot; n=32 &#8805; 30 so <b>CLT</b> covers normality, no plot needed &#10003; &middot; SD ratio 30/25 = <b>1.2</b> &lt; 2 &#10003;</span>
+  <span class="say"><em>e</em>s<sub>p</sub>=27.61, SE=6.903, <b>t=5.65, df=62, p&lt;0.0001</b>. Since p &lt; &#945;=0.01 we <b>reject H&#8320;</b>. There is sufficient evidence that mean ascorbic acid is <b>higher</b> for the new method.</span>
+  <span class="nb">No Brown-Forsythe and no quantile plot exist on this route &mdash; part d is argued from the text and the SD ratio.</span></p>
 
-  <p class="st"><b>Fruit Flies <i>&mdash; one-way ANOVA, 5 groups of 25</i></b>
-  <span class="jmp"><em>DF check</em>Treatment <b>4</b> &middot; Error <b>120</b> &middot; C. Total <b>124</b></span>
-  <span class="nb">Handout says "four treatments" but the factor has <b>5</b> levels. F large, p tiny &#8594; Tukey.</span></p>
+  <p class="qh c">Worked example 2 &middot; Sports Attendance <em>&mdash; matched pairs</em></p>
 
-  <p class="st"><b>Battery Life <i>&mdash; two-way, 3&times;3, n=4 per cell</i></b>
-  <span class="jmp"><em>DF check</em>Model <b>8</b> &middot; Error <b>27</b> &middot; C. Total <b>35</b></span>
-  <span class="jmp"><em>Effect Tests</em>Material F=7.91 p=0.0020 &middot; Temp F=28.97 p&lt;.0001 &middot; <b>Material*Temp F=3.56 p=0.0186</b></span>
-  <span class="nb">Interaction <b>IS</b> significant &#8594; compare all 9 cells, not the main effects. MSE=675.21, HSD=61.82.</span>
-  <span class="jmp"><em>circle A</em>B15 155.75 &middot; C70 145.75 &middot; C15 144.00 &middot; A15 134.75 &middot; B70 119.75</span>
-  <span class="jmp"><em>circle B</em>C70 &middot; C15 &middot; A15 &middot; B70 &middot; C125 85.50</span>
-  <span class="jmp"><em>circle C</em>C125 85.50 &middot; A125 57.50 &middot; A70 57.25 &middot; B125 49.50</span>
-  <span class="nb">C125 is in two circles: matches B70 above and A125 below, yet those two differ. <b>Material C holds up best &#8594; recommend C.</b></span></p>
+  <p class="st"><b>Given</b>
+  <span class="jmp"><em>data</em>5 NBA teams, attendance in 2020 and 2022 &mdash; <b>same teams</b> &#8594; paired &middot; &#945;=0.05</span>
+  <span class="jmp"><em>path</em>Analyze &#8250; Specialized Modeling &#8250; Matched Pairs &#8250; both columns in Y</span></p>
+
+  <p class="st"><b>Answer</b>
+  <span class="say"><em>H</em>&#956;<sub>d</sub> = true mean difference (2022 &minus; 2020). H&#8320;: &#956;<sub>d</sub> = 0 &nbsp; H&#8321;: &#956;<sub>d</sub> <b>&#8800;</b> 0</span>
+  <span class="say"><em>cond</em>teams <b>randomly sampled</b> and independent of each other &#10003; &middot; the <b>differences</b> show no outliers or skew &#10003;</span>
+  <span class="say"><em>test</em>d&#772;=176,192.8, s<sub>d</sub>=34,838.6, <b>t=11.31, df=4, p=0.0003</b>. Since p &lt; 0.05 we <b>reject H&#8320;</b>. There is sufficient evidence of a difference in mean attendance; 2022 was higher.</span>
+  <span class="say"><em>CI</em>95% CI (132,935 , 219,451) &mdash; <b>excludes 0</b>, agreeing with the rejection.</span>
+  <span class="nb">df = <b>4</b> (5 pairs &minus; 1), not 8. Run wrongly as independent samples t drops to 5.53.</span></p>
+
+  <p class="qh c">Five traps</p>
+
+  <p class="st"><b>Check these before you hand it in</b>
+  <span class="nb"><b>1</b> "higher / greater / more" = one-sided &#8594; Prob &gt; t or Prob &lt; t; "a difference / differ" = two-sided &#8594; Prob &gt; |t|. The right one-sided p is under 0.5.</span>
+  <span class="nb"><b>2</b> Forgetting <b>Cross</b> &#8594; three effects in the box and Model DF matches the formula, or the interaction never got tested.</span>
+  <span class="nb"><b>3</b> Reading main effects over a significant interaction &#8594; interaction row first, every time.</span>
+  <span class="nb"><b>4</b> Wrong layout: Fit Y by X = stacked, Matched Pairs = side by side. X must be Nominal.</span>
+  <span class="nb"><b>5</b> H&#8321; for ANOVA is <b>at least one</b> mean differs, never "all means are different".</span></p>
 
   </div>
 </div>
@@ -318,7 +329,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
   <p class="st"><b><s>f</s> Multiple comparisons &mdash; only if F was significant</b>
   <span class="jmp"><em>&#9660;</em>Compare Means &#8250; <b>All Pairs, Tukey HSD</b></span>
-  <span class="nb">"If appropriate" means exactly this: F not significant &#8594; stop. Why not 10 t-tests? 10 tests at 5% each = ~40% chance of a false positive; Tukey holds the <b>overall</b> rate at 5%.</span></p>
+  <span class="nb">"If appropriate" means exactly this: F not significant &#8594; stop. 10 t-tests at 5% each = ~40% false-positive risk; Tukey holds the <b>overall</b> rate at 5%.</span></p>
 
   <p class="st"><b><s>g</s> Reading connecting letters</b>
   <span class="jmp"><em>rule</em>share a letter &#8594; <b>NOT</b> different &nbsp;&middot;&nbsp; no letter in common &#8594; <b>different</b></span>
@@ -372,7 +383,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em>2</em>get the cutoff: HSD = q &#8730;(MSE/n) &nbsp;&mdash;&nbsp; JMP prints it</span>
   <span class="jmp"><em>3</em>circle each run of means that stays <b>within</b> the cutoff</span>
   <span class="jmp"><em>4</em>circles <b>overlap</b> &mdash; a mean can sit in two</span>
-  <span class="nb">Same thing as connecting letters: share a circle &#8594; not significantly different. The overlap is the point &mdash; X can match both the one above and the one below, while those two still differ from each other.</span></p>
+  <span class="nb">Same as connecting letters: share a circle &#8594; not significantly different. The overlap is the point.</span></p>
 
   <p class="st"><b><s>i</s> Summary template</b>
   <span class="say"><em>say</em>A two-way ANOVA examined the effects of <span class="bl w2"></span> and <span class="bl w2"></span> on <span class="bl w2"></span>. The interaction was <b>[significant / not significant]</b> (F = <span class="bl"></span>, p = <span class="bl w2"></span>).</span>
@@ -383,36 +394,46 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em>&#9660;</em>Row Diagnostics &#8250; Plot Residual by Predicted &#8594; shapeless cloud, no funnel</span>
   <span class="jmp"><em>&#9660;</em>Save Columns &#8250; Residuals &#8594; Distribution &#8250; Normal Quantile Plot</span>
   <span class="say"><em>say</em><b>Independence:</b> the <span class="bl"></span> units were randomly assigned, <span class="bl"></span> to each of the <span class="bl"></span> treatment combinations. <b>Normality:</b> the residual quantile plot shows points near the line. <b>Equal variances:</b> the residual by predicted plot shows even spread with no funnel.</span>
-  <span class="nb">Two-way checks <b>residuals</b>, not raw data. Cell SD ratio over 2 with only 4&ndash;5 per cell? Say the estimates are imprecise at that n and lean on the residual plot &mdash; don't claim a ratio you don't have.</span></p>
+  <span class="nb">Two-way checks <b>residuals</b>, not raw data. Cell SD ratio over 2 at n=4&ndash;5? Say the estimates are imprecise and lean on the residual plot.</span></p>
+
+  <p class="qh d">Worked example 3 &middot; Fruit Flies <em>&mdash; one-way ANOVA</em></p>
+
+  <p class="st"><b>Given &amp; answer</b>
+  <span class="jmp"><em>data</em>125 males &#8594; <b>5</b> groups of 25 &middot; 1 factor, 5 levels &middot; &#945;=0.05</span>
+  <span class="jmp"><em>path</em>Fit Y by X &#8250; <span class="rt">&#9660;</span> Means/Anova &#8250; then Compare Means &#8250; All Pairs, Tukey HSD</span>
+  <span class="say"><em>a</em>H&#8320;: &#956;&#8321;=&#956;&#8322;=&#956;&#8323;=&#956;&#8324;=&#956;&#8325; &nbsp; H&#8321;: at least one differs. DF check <b>4 / 120 / 124</b>. F is large and p &lt; 0.0001, so <b>reject H&#8320;</b> &mdash; there is sufficient evidence that reproductive activity affects mean longevity.</span>
+  <span class="say"><em>b</em>Because F was significant, Tukey HSD comparisons were made at an overall 0.05 level. Groups sharing a letter did not differ; the males given <b>8 virgin females</b> lived significantly shorter than the others, so reproductive activity <b>reduces</b> longevity.</span>
+  <span class="nb">Handout says "four treatments" but the factor has <b>5</b> levels.</span></p>
+
+  <p class="qh c">Worked example 4 &middot; Battery Life <em>&mdash; two-way ANOVA</em></p>
+
+  <p class="st"><b>Given &amp; answer</b>
+  <span class="jmp"><em>data</em>3 materials &times; 3 temps &times; 4 reps = <b>36</b> rows</span>
+  <span class="say"><em>a</em>Factors: <b>Material Type</b>, categorical, <b>3</b> levels (A,B,C) and <b>Temperature</b>, categorical, <b>3</b> levels (15, 70, 125&#8457;). Response: <b>battery life in hours</b>, quantitative. 9 combinations &times; 4 each, so the design is balanced and the interaction can be tested.</span>
+  <span class="jmp"><em>DF</em>Model <b>8</b> &middot; Error <b>27</b> &middot; C. Total <b>35</b></span>
+  <span class="jmp"><em>Effect Tests</em>Material F=7.91 p=.0020 &middot; Temp F=28.97 p&lt;.0001 &middot; <b>Mat*Temp F=3.56 p=.0186</b></span>
+  <span class="say"><em>b</em>The <b>interaction is significant</b> (p=0.0186), so the main effects cannot be interpreted separately &mdash; the effect of temperature <b>depends on</b> the material. Tukey on all 9 cells (MSE=675.21, <b>HSD=61.82</b>) gives:</span>
+  <span class="jmp"><em>circles</em><b>A:</b> B15 155.8, C70 145.8, C15 144.0, A15 134.8, B70 119.8 &nbsp; <b>B:</b> C70&#8230;B70 + C125 85.5 &nbsp; <b>C:</b> C125 85.5, A125 57.5, A70 57.3, B125 49.5</span>
+  <span class="say"><em>d</em>All materials peak at 15&#8457; and fall by 125&#8457;, but A collapses fastest while <b>C holds up best</b> as temperature rises. <b>Recommend material C.</b></span>
+  <span class="nb">C125 sits in two circles: matches B70 above and A125 below, yet those two differ from each other.</span></p>
 
   <p class="qh b">Where every number lives</p>
 
   <table>
     <tr><th>You need</th><th>Where</th></tr>
-    <tr><td>group means, n</td><td>Means for Oneway Anova</td></tr>
     <tr><td>group SDs</td><td>Tests that the Variances are Equal</td></tr>
     <tr><td>equal-var p</td><td>Brown-Forsythe row</td></tr>
     <tr><td>t, df, p pooled</td><td><b>Pooled t Test</b> box</td></tr>
     <tr><td>t, df, p Welch</td><td><b>t Test</b> box</td></tr>
     <tr><td>CI for difference</td><td>Upper / Lower CL Dif</td></tr>
-    <tr><td>paired mean diff</td><td>Mean Difference row</td></tr>
     <tr><td>paired t, df, p</td><td>t-Ratio, DF, Prob &gt; |t|</td></tr>
     <tr><td>paired CI</td><td>Upper95% / Lower95%</td></tr>
     <tr><td>one-way F, p</td><td>Analysis of Variance table</td></tr>
     <tr><td>one-way pairwise</td><td>Compare Means &#8250; All Pairs, Tukey HSD</td></tr>
     <tr><td><b>interaction test</b></td><td><b>Effect Tests</b>, the A*B row</td></tr>
-    <tr><td>main effect tests</td><td>Effect Tests, single-factor rows</td></tr>
     <tr><td>two-way pairwise</td><td><span class="rt">&#9660;</span> on the effect &#8250; LSMeans Differences Tukey HSD</td></tr>
     <tr><td>residual check</td><td>Row Diagnostics &#8250; Plot Residual by Predicted</td></tr>
   </table>
-
-  <p class="qh c">Five traps</p>
-
-  <p class="st"><b>1 &middot; One-sided vs two-sided</b><span class="nb">"higher / greater / more" = one-sided &#8594; Prob &gt; t or Prob &lt; t. "a difference / differ" = two-sided &#8594; Prob &gt; |t|. The right one-sided p is under 0.5.</span></p>
-  <p class="st"><b>2 &middot; Forgetting Cross</b><span class="nb">Three effects in the box, and Model DF matches the formula. Otherwise your interaction never got tested.</span></p>
-  <p class="st"><b>3 &middot; Reading main effects over a significant interaction</b><span class="nb">Interaction row first, every time.</span></p>
-  <p class="st"><b>4 &middot; Wrong layout or modeling type</b><span class="nb">Fit Y by X = stacked. Matched Pairs = side by side. X must be Nominal.</span></p>
-  <p class="st"><b>5 &middot; "All means are different"</b><span class="nb">H&#8321; for ANOVA is <b>at least one</b> mean differs.</span></p>
 
   </div>
 </div>
