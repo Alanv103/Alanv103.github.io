@@ -97,31 +97,31 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
   .page:last-of-type{break-after:auto}
   .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
-  .hdr b{font-size:9.99pt} .hdr span{font-size:5.9pt;color:#444}
+  .hdr b{font-size:9.71pt} .hdr span{font-size:5.73pt;color:#444}
   .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4.4pt}
-  .symwrap h4{font-size:5.9pt;margin-bottom:1.54pt}
+  .symwrap h4{font-size:5.73pt;margin-bottom:1.54pt}
   .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
-  .syms div{font-size:5.71pt;line-height:1.17;color:#111}
+  .syms div{font-size:5.55pt;line-height:1.17;color:#111}
   .syms div b,.syms div i{color:#000}
   .cols{column-gap:13pt}
-  .qh{font-size:6.67pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+  .qh{font-size:6.48pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
       -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .qh:not(:first-child){margin-top:5.5pt}
-  .qh em{font-size:6.29pt}
-  h5{font-size:5.9pt;margin:4.4pt 0 1.6pt}
+  .qh em{font-size:6.11pt}
+  h5{font-size:5.73pt;margin:4.4pt 0 1.6pt}
   .st{margin-bottom:2.42pt}
-  .st>b{font-size:6pt;margin-bottom:0.88pt}
-  .st>b s{font-size:5.15pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp,.st .say{font-size:5.81pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
-  .st .jmp{font-size:5.66pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st>b{font-size:5.83pt;margin-bottom:0.88pt}
+  .st>b s{font-size:5.01pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:5.65pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:5.5pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .st .jmp em,.st .say em{font-size:5.15pt;color:#444}
-  .st .nb{font-size:5.62pt;color:#444}
-  .f{font-size:5.66pt}
-  table{font-size:5.71pt;margin-bottom:2.86pt}
-  th{font-size:5.15pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  .st .jmp em,.st .say em{font-size:5.01pt;color:#444}
+  .st .nb{font-size:5.46pt;color:#444}
+  .f{font-size:5.5pt}
+  table{font-size:5.55pt;margin-bottom:2.86pt}
+  th{font-size:5.01pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
   td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
-  td.m{font-size:5.62pt}
+  td.m{font-size:5.46pt}
   .bl{border-bottom:.5pt solid #333}
   .bh{border-bottom:.5pt solid #333;color:#555;font-size:.82em;min-width:18pt;padding:0 2pt;margin:0 1.5pt}
   .rt{color:#000}
@@ -170,6 +170,24 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   </div>
 
   <div class="cols">
+
+  <p class="qh b">The decision rule <em>&mdash; same for all four tests</em></p>
+
+  <p class="st"><b>Compare p to &#945;. That is the whole decision.</b>
+  <span class="jmp"><em>p &lt; &#945;</em><b>REJECT H&#8320;</b> &#8594; "there <b>IS</b> sufficient evidence that &#8230;"</span>
+  <span class="jmp"><em>p &gt; &#945;</em><b>FAIL TO REJECT H&#8320;</b> &#8594; "there is <b>NOT</b> sufficient evidence that &#8230;"</span>
+  <span class="nb">Never write "<b>accept</b> H&#8320;" and never write "<b>prove</b>". You only ever reject or fail to reject.</span></p>
+
+  <p class="st"><b>Comparing the decimals &mdash; line them up</b>
+  <span class="jmp"><em>example</em>&#945; = 0.01<b>00</b> &nbsp;&middot;&nbsp; p &lt; 0.0<b>001</b> &nbsp;&#8594;&nbsp; p is <b>smaller</b> &#8594; <b>reject</b></span>
+  <span class="nb"><b>More zeros after the point = smaller number.</b> 0.0001 is 1 in 10,000; 0.01 is 1 in 100. A <b>tiny p is strong evidence against H&#8320;</b>.</span>
+  <span class="nb">JMP prints <span class="f">0.0000</span> or <span class="f">&lt;.0001</span> because it ran out of decimals &mdash; you write <b>p &lt; 0.0001</b>, never p = 0.</span>
+  <span class="nb">Same p can flip the answer: p = 0.032 <b>rejects</b> at &#945;=0.05 but <b>fails to reject</b> at &#945;=0.01. <b>Find &#945; in the question first.</b></span></p>
+
+  <p class="st"><b>Write it p first</b>
+  <span class="say"><em>say</em>Since p <span class="bh">p-value</span> is <b>less than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>reject H&#8320;</b>. There is sufficient evidence that <span class="bh">H&#8321; in plain words</span>.</span>
+  <span class="say"><em>say</em>Since p <span class="bh">p-value</span> is <b>greater than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>fail to reject H&#8320;</b>. There is not sufficient evidence that <span class="bh">H&#8321; in plain words</span>.</span>
+  <span class="nb">One-sided? Name the <b>direction</b> ("higher for the new method"), not just "different".</span></p>
 
   <p class="qh a">Which test? <em>&mdash; decide this first, every time</em></p>
 
@@ -220,9 +238,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="nb"><b>One-sided?</b> Use <b>Prob &gt; t</b> or <b>Prob &lt; t</b>, never Prob &gt; |t|. Read the header (e.g. <i>B&minus;A</i>) to see the subtraction order. Safety check: the right one-sided p is <b>below 0.5</b> when the data lean the way H&#8321; says. Got 0.9997? Take the other row.</span></p>
 
   <p class="st"><b><s>g</s> Conclusion</b>
-  <span class="say"><em>say</em>Since p = <span class="bh">p-value</span> is <b>less than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> to say that <span class="bh">H&#8321; in plain words</span>.</span>
-  <span class="say"><em>say</em>Since p = <span class="bh">p-value</span> is <b>greater than</b> &#945; = <span class="bh">.05 or .01</span>, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> to say that <span class="bh">H&#8321; in plain words</span>.</span>
-  <span class="nb">Never "accept H&#8320;". Never "prove".</span></p>
+  <span class="nb">Use <b>The decision rule</b> at the top of this page: compare p to &#945;, then write the sentence <b>in context</b>, naming the direction.</span></p>
 
   <p class="st"><b><s>h</s> Confidence interval</b>
   <span class="jmp"><em>read</em><b>Upper CL Dif</b> and <b>Lower CL Dif</b> in the same t-test box</span>
