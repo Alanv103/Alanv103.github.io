@@ -511,17 +511,29 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   </table>
   <span class="nb">"Differ" = two-sided &#8594; the <b>Prob &gt; |t|</b> row. Ignore Prob &gt; t and Prob &lt; t.</span></div>
 
-  <div class="st"><b><s>e</s> By hand &mdash; rank the ABSOLUTE differences</b>
+  <div class="st"><b><s>e</s> By hand &mdash; TABLE 1: the differences</b>
   <table class="dt out">
-    <caption>step 1: differences, step 2: rank |d|, step 3: put the sign back</caption>
-    <tr><th>pair</th><th>without</th><th>with</th><th>d</th><th>|d|</th><th>rank</th><th>signed</th></tr>
-    <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td><td class="n">+0.8</td><td class="n">0.8</td><td class="n">2</td><td class="n">+2</td></tr>
-    <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td><td class="n">&minus;1.0</td><td class="n">1.0</td><td class="n">3</td><td class="n">&minus;3</td></tr>
-    <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td><td class="n">+0.1</td><td class="n">0.1</td><td class="n">1</td><td class="n">+1</td></tr>
-    <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td><td class="n">&minus;2.9</td><td class="n">2.9</td><td class="n">4</td><td class="n">&minus;4</td></tr>
-    <tr class="hi"><td colspan="6">W&#8314; = sum of POSITIVE ranks = 1+2 &nbsp;&middot;&nbsp; W&#8315; = 3+4</td><td class="n">3 / 7</td></tr>
+    <caption>step 1 &mdash; subtract, keeping the sign</caption>
+    <tr><th>pair</th><th>without</th><th>with</th><th>d = without &minus; with</th></tr>
+    <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td><td class="n">+0.8</td></tr>
+    <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td><td class="n">&minus;1.0</td></tr>
+    <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td><td class="n">+0.1</td></tr>
+    <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td><td class="n">&minus;2.9</td></tr>
+  </table></div>
+
+  <div class="st"><b>&nbsp;&nbsp;&nbsp;TABLE 2: rank the |d|, then put the sign back</b>
+  <table class="dt out">
+    <caption>step 2 &mdash; sort by |d| SMALLEST first, rank 1, 2, 3&#8230;</caption>
+    <tr><th>|d|</th><th>rank</th><th>sign</th><th>signed rank</th></tr>
+    <tr><td class="n">0.1</td><td class="n">1</td><td class="n">+</td><td class="n">+1</td></tr>
+    <tr><td class="n">0.8</td><td class="n">2</td><td class="n">+</td><td class="n">+2</td></tr>
+    <tr><td class="n">1.0</td><td class="n">3</td><td class="n">&minus;</td><td class="n">&minus;3</td></tr>
+    <tr><td class="n">2.9</td><td class="n">4</td><td class="n">&minus;</td><td class="n">&minus;4</td></tr>
+    <tr class="hi"><td colspan="3">W&#8314; = add the <b>+</b> ranks = 1 + 2</td><td class="n">3</td></tr>
+    <tr class="hi"><td colspan="3">W&#8315; = add the <b>&minus;</b> ranks = 3 + 4</td><td class="n">7</td></tr>
   </table>
-  <span class="nb"><b>Rank by size ignoring the sign</b> (smallest = rank 1), then reattach the signs. <b>Check: W&#8314; + W&#8315; = n(n+1)/2</b> = 4(5)/2 = <b>10</b> &#10003;. JMP's S = W&#8314; &minus; n(n+1)/4 = 3 &minus; 5 = <b>&minus;2</b>.</span></div>
+  <span class="nb"><b>Rank by SIZE, ignoring the sign</b> &mdash; smallest |d| gets rank 1. Then reattach each original sign.<br>
+  <b>Check: W&#8314; + W&#8315; = n(n+1)/2</b> = 4(5)/2 = <b>10</b> &#10003; &nbsp;&middot;&nbsp; JMP's S = W&#8314; &minus; n(n+1)/4 = 3 &minus; 5 = <b>&minus;2</b></span></div>
 
   <div class="st"><b><s>f</s> The full answer template</b>
   <span class="say"><em>hyp</em>Let the median difference be the median of (<span class="bh">col 1</span> &minus; <span class="bh">col 2</span>). &nbsp;H&#8320;: the median difference is <b>0</b>. &nbsp;H&#8321;: the median difference is <b>not 0</b>.</span>
