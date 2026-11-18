@@ -90,6 +90,10 @@ table{border-collapse:collapse;width:100%;font-size:10.5px;margin:0 0 5px;break-
 .dt td.use{font-family:var(--sans);font-size:8.5px;font-weight:700;color:var(--q3);
            border:0;background:none;letter-spacing:.04em;white-space:nowrap}
 .dt.out th{background:var(--saybg)}
+.dtpair{display:flex;gap:7px;align-items:flex-start;break-inside:avoid}
+.dtpair>div{flex:0 1 auto;min-width:0}
+.dtpair .dt{margin:2px 0 3px;width:100%}
+.dtpair .dt caption{white-space:normal}
 .ans{border:1px solid var(--rule);border-left:3px solid var(--q4);border-radius:2px;
      padding:3px 6px 4px;margin:4px 0 5px;break-inside:avoid;background:var(--jmpbg)}
 .ans h6{margin:0 0 2px;font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--q4)}
@@ -151,6 +155,8 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
                -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .dt td.use{font-size:3.88pt;border:0;background:none!important;color:#1c6b56}
   .dt.out th{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .dtpair{gap:4pt}
+  .dtpair .dt{margin:1pt 0 1.6pt}
   .ans{border:.5pt solid #999;border-left:1.6pt solid #7b2d3b;border-radius:1pt;padding:1.6pt 3.4pt 2pt;margin:2pt 0 2.6pt;
        background:#f3f5f7!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .ans h6{font-size:4.55pt;margin-bottom:1pt;color:#7b2d3b}
@@ -511,28 +517,32 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   </table>
   <span class="nb">"Differ" = two-sided &#8594; the <b>Prob &gt; |t|</b> row. Ignore Prob &gt; t and Prob &lt; t.</span></div>
 
-  <div class="st"><b><s>e</s> By hand &mdash; TABLE 1: the differences</b>
-  <table class="dt out">
-    <caption>step 1 &mdash; subtract, keeping the sign</caption>
-    <tr><th>pair</th><th>without</th><th>with</th><th>d = without &minus; with</th></tr>
-    <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td><td class="n">+0.8</td></tr>
-    <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td><td class="n">&minus;1.0</td></tr>
-    <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td><td class="n">+0.1</td></tr>
-    <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td><td class="n">&minus;2.9</td></tr>
-  </table></div>
-
-  <div class="st"><b>&nbsp;&nbsp;&nbsp;TABLE 2: rank the |d|, then put the sign back</b>
-  <table class="dt out">
-    <caption>step 2 &mdash; sort by |d| SMALLEST first, rank 1, 2, 3&#8230;</caption>
-    <tr><th>|d|</th><th>rank</th><th>sign</th><th>signed rank</th></tr>
-    <tr><td class="n">0.1</td><td class="n">1</td><td class="n">+</td><td class="n">+1</td></tr>
-    <tr><td class="n">0.8</td><td class="n">2</td><td class="n">+</td><td class="n">+2</td></tr>
-    <tr><td class="n">1.0</td><td class="n">3</td><td class="n">&minus;</td><td class="n">&minus;3</td></tr>
-    <tr><td class="n">2.9</td><td class="n">4</td><td class="n">&minus;</td><td class="n">&minus;4</td></tr>
-    <tr class="hi"><td colspan="3">W&#8314; = add the <b>+</b> ranks = 1 + 2</td><td class="n">3</td></tr>
-    <tr class="hi"><td colspan="3">W&#8315; = add the <b>&minus;</b> ranks = 3 + 4</td><td class="n">7</td></tr>
-  </table>
-  <span class="nb"><b>Rank by SIZE, ignoring the sign</b> &mdash; smallest |d| gets rank 1. Then reattach each original sign.<br>
+  <div class="st"><b><s>e</s> By hand &mdash; two tables</b>
+  <div class="dtpair">
+    <div>
+      <table class="dt out">
+        <caption>1 &mdash; subtract, keep the sign</caption>
+        <tr><th>pair</th><th>w/out</th><th>with</th><th>d</th></tr>
+        <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td><td class="n">+0.8</td></tr>
+        <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td><td class="n">&minus;1.0</td></tr>
+        <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td><td class="n">+0.1</td></tr>
+        <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td><td class="n">&minus;2.9</td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dt out">
+        <caption>2 &mdash; sort by |d|, rank, re-sign</caption>
+        <tr><th>|d|</th><th>rank</th><th>sign</th><th>signed</th></tr>
+        <tr><td class="n">0.1</td><td class="n">1</td><td class="n">+</td><td class="n">+1</td></tr>
+        <tr><td class="n">0.8</td><td class="n">2</td><td class="n">+</td><td class="n">+2</td></tr>
+        <tr><td class="n">1.0</td><td class="n">3</td><td class="n">&minus;</td><td class="n">&minus;3</td></tr>
+        <tr><td class="n">2.9</td><td class="n">4</td><td class="n">&minus;</td><td class="n">&minus;4</td></tr>
+        <tr class="hi"><td colspan="3">W&#8314; = 1+2</td><td class="n">3</td></tr>
+        <tr class="hi"><td colspan="3">W&#8315; = 3+4</td><td class="n">7</td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="nb"><b>Rank by SIZE ignoring the sign</b> (smallest |d| = rank 1), then reattach each original sign. <b>The rows reorder between the two tables</b> &mdash; pair 3 has the smallest |d| so it ranks first.<br>
   <b>Check: W&#8314; + W&#8315; = n(n+1)/2</b> = 4(5)/2 = <b>10</b> &#10003; &nbsp;&middot;&nbsp; JMP's S = W&#8314; &minus; n(n+1)/4 = 3 &minus; 5 = <b>&minus;2</b></span></div>
 
   <div class="st"><b><s>f</s> The full answer template</b>
