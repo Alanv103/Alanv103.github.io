@@ -171,7 +171,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
 <!-- ================= FRONT ================= -->
 <div class="page">
-  <div class="hdr"><b>JMP TEST 3 &middot; CHI-SQUARE</b><span>chi-square &middot; logistic &middot; nonparametric &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it &middot; faint word in a blank = what goes there</b></span></div>
+  <div class="hdr"><b>JMP TEST 3 &middot; FRONT</b><span>chi-square &middot; logistic &middot; nonparametric &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it &middot; faint word in a blank = what goes there</b></span></div>
 
   <div class="symwrap">
     <h4>Symbols</h4>
@@ -391,6 +391,79 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em>one cell</em>(11&minus;9.9083)&#178;/9.9083 = <b>0.1203</b> &#8594; 0.1203/8.6794 = <b>1.4%</b> of &#967;&#178;</span>
   <span class="say"><em>say</em><span class="bh">group</span> are <b>over-represented</b> among <span class="bh">level</span> (<span class="bh">obs</span> observed vs <span class="bh">exp</span> expected) and under-represented among <span class="bh">level</span>, while <span class="bh">group</span> show the opposite. These cells contribute <span class="bh">%</span> of the statistic, so the association is driven by <span class="bh">which split</span>.</span>
   <span class="nb">Vision: the four near/far cells are <b>97%</b> of &#967;&#178;; both bifocals cells together are 2.7%.</span></p>
+
+  </div>
+</div>
+
+<!-- ================= BACK ================= -->
+<div class="page">
+  <div class="hdr"><b>JMP TEST 3 &middot; BACK</b><span>logistic regression &middot; nonparametric &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it</b></span></div>
+
+  <div class="cols">
+
+  <p class="qh a">T3 &middot; Logistic Regression <em>&mdash; predict a YES/NO from numbers</em></p>
+
+  <p class="st"><b><s>a</s> Spot it</b>
+  <span class="nb">The <b>response is yes/no</b> (has central air? developed infection?) and the predictors are <b>numbers</b>. This is the <b>one test where Y is the categorical variable</b> &mdash; backwards from ANOVA and t tests.</span></p>
+
+  <p class="st"><b><s>b</s> Which columns? The question tells you</b>
+  <span class="jmp"><em>read it</em>"Using <b>price, living area, age</b> &#8230; <b>to predict</b> <b>central air</b>"</span>
+  <span class="jmp"><em>rule</em>whatever follows "<b>to predict</b>" is <b>Y</b> &middot; everything else listed goes in <b>Add</b></span>
+  <span class="nb">The file has extra columns (Lot.Size, Bedrooms&#8230;). Ignore them &mdash; the question picks, not the file.</span></p>
+
+  <p class="st"><b><s>c</s> Run it in JMP</b>
+  <span class="jmp"><em>check first</em>Y column must show <b>ılı Nominal</b> (red bars), not a blue triangle</span>
+  <span class="jmp"><em>path</em>Analyze &#8250; <b>Fit Model</b> &#8250; Y = Central.Air &#8250; <b>Add</b> each predictor &#8250; <b>Run</b></span>
+  <span class="jmp"><em>confirm</em>Personality box reads <b>Nominal Logistic</b> &#8594; title says "Nominal Logistic Fit for &#8230;"</span>
+  <span class="nb">No Cross, no Macros, no Freq. If it says <i>Standard Least Squares</i>, your Y is still Continuous &mdash; fix the modeling type.</span></p>
+
+  <div class="st"><b><s>d</s> Read Parameter Estimates &#8594; that IS the model (part a)</b>
+  <table class="dt out">
+    <caption>JMP output &mdash; Parameter Estimates</caption>
+    <tr><th>Term</th><th>Estimate</th><th>Std Error</th><th>Prob&gt;ChiSq</th></tr>
+    <tr><td>Intercept</td><td class="n">1.52418464</td><td class="n">0.2043652</td><td class="n">&lt;.0001</td></tr>
+    <tr><td>Price</td><td class="n">-5.9908e-6</td><td class="n">8.7821e-7</td><td class="n">&lt;.0001</td></tr>
+    <tr><td>Age</td><td class="n">0.02854011</td><td class="n">0.0032087</td><td class="n">&lt;.0001</td></tr>
+    <tr><td>Living.Area</td><td class="n">-0.0002064</td><td class="n">0.0001311</td><td class="n">0.1155</td></tr>
+    <tr class="hi"><td colspan="4">For log odds of <b>yes/no</b> &nbsp; &#8592; READ THIS FOOTNOTE</td></tr>
+  </table>
+  <span class="nb"><b>-5.9908e-6 means -0.0000059908</b> (move the decimal 6 places left). <b>The footnote decides everything:</b> "yes/no" &#8594; p is P(yes), use it. "no/yes" &#8594; p is P(no), answer with <b>1 &minus; p</b>.</span>
+  <span class="say"><em>write</em>y = <span class="bh">intercept</span> + <span class="bh">b&#8321;</span>(x&#8321;) + <span class="bh">b&#8322;</span>(x&#8322;) + <span class="bh">b&#8323;</span>(x&#8323;) &nbsp;&middot;&nbsp; p = e<sup>y</sup>/(1+e<sup>y</sup>)</span></div>
+
+  <div class="st"><b><s>e</s> Plug in &#8594; y &nbsp;<i>(fill this table every time, it stops sign errors)</i></b>
+  <table class="dt out">
+    <caption>one row per term, then ADD the last column</caption>
+    <tr><th>term</th><th>coefficient</th><th>&times; value</th><th>= product</th></tr>
+    <tr><td>Intercept</td><td class="n">1.52418464</td><td class="n">&mdash;</td><td class="n">+1.524185</td></tr>
+    <tr><td>Price</td><td class="n">&minus;0.0000059908</td><td class="n">180000</td><td class="n">&minus;1.078344</td></tr>
+    <tr><td>Age</td><td class="n">0.02854011</td><td class="n">36</td><td class="n">+1.027444</td></tr>
+    <tr><td>Living.Area</td><td class="n">&minus;0.0002064</td><td class="n">24400</td><td class="n">&minus;5.036160</td></tr>
+    <tr class="hi"><td colspan="3"><b>y</b> = add the products</td><td class="n">&minus;3.562875</td></tr>
+  </table>
+  <span class="nb">The <b>intercept has no variable</b> &mdash; it just carries over. Keep each minus sign with its coefficient.</span></div>
+
+  <div class="st"><b><s>f</s> y &#8594; probability &#8594; odds &#8594; odds ratio</b>
+  <table class="dt out">
+    <caption>press e<sup>x</sup> ONCE on y, then everything comes from it</caption>
+    <tr><th>want</th><th>formula</th><th>example</th><th>range</th></tr>
+    <tr><td>e<sup>y</sup></td><td class="n">e<sup>x</sup> of y</td><td class="n">0.028357</td><td>0 to &#8734;</td></tr>
+    <tr class="hi"><td><b>probability</b></td><td class="n">e<sup>y</sup> &#247; (1+e<sup>y</sup>)</td><td class="n">0.0276</td><td>0 to 1</td></tr>
+    <tr class="hi"><td><b>odds</b></td><td class="n">p &#247; (1&minus;p) &nbsp;<b>= e<sup>y</sup></b></td><td class="n">0.028357</td><td>0 to &#8734;</td></tr>
+    <tr class="hi"><td><b>odds ratio</b></td><td class="n">odds&#8321; &#247; odds&#8322;</td><td class="n">1.0290</td><td><b>1 = no diff</b></td></tr>
+  </table>
+  <span class="nb"><b>Odds = e<sup>y</sup> exactly</b>, so part "odds" needs no new work. <b>Check:</b> p &gt; 0.5 &#8596; odds &gt; 1. Negative y &#8594; p &lt; 0.5.</span>
+  <span class="nb"><b>For the odds RATIO always divide the RAW odds.</b> Flipping (1&#247;odds) is only for wording a sentence &mdash; flip both and divide and you get the <b>reciprocal</b>, which reverses the meaning.</span></div>
+
+  <div class="st"><b><s>g</s> The shortcut the last part is testing</b>
+  <span class="jmp"><em>exp(&#946;)</em>odds ratio for a <b>1-unit</b> rise in that x = <b>e<sup>b</sup></b> &#8594; e<sup>0.02854011</sup> = <b>1.0290</b></span>
+  <span class="nb">Same answer as dividing the two odds, because every <b>other</b> term is identical in both houses and <b>cancels</b>. That is exactly what "holding the others constant" means.</span></div>
+
+  <p class="st"><b><s>h</s> Interpretation templates</b>
+  <span class="say"><em>prob</em>A <span class="bh">unit</span> with <span class="bh">x&#8321; = value</span> and <span class="bh">x&#8322; = value</span> has about a <span class="bh">p as %</span> chance of <span class="bh">the yes outcome</span>.</span>
+  <span class="say"><em>odds &gt;1</em>Such a <span class="bh">unit</span> is <span class="bh">odds</span> times <b>more likely</b> to <span class="bh">yes</span> than not.</span>
+  <span class="say"><em>odds &lt;1</em>The odds are <span class="bh">odds</span>, about <span class="bh">odds&times;100</span> with central air for every 100 without.</span>
+  <span class="say"><em>OR / exp(&#946;)</em>For each <b>one-unit</b> increase in <span class="bh">variable</span>, the odds of <span class="bh">yes outcome</span> are <b>multiplied by</b> <span class="bh">e^b</span> (about <span class="bh">%</span> higher), <b>holding all other variables constant</b>.</span>
+  <span class="nb"><b>OR above 1</b> = odds go up &middot; <b>below 1</b> = down &middot; <b>exactly 1</b> = no effect. Always end with "holding the other variables constant".</span></p>
 
   </div>
 </div>
