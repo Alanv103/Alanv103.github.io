@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JMP Test 3 Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --paper:#eceff2; --sheet:#fff;
+  --ink:#10181f; --ink-2:#3a4855; --ink-3:#6d7c89;
+  --rule:#b9c4cd; --hair:#dde4ea;
+  --q1:#1f4e6b; --q2:#8a5512; --q3:#14614f; --q4:#7b2d3b;
+  --rt:#b0301f; --saybg:#f1f6f4; --jmpbg:#f3f5f7;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
+}}
+:root[data-theme="dark"]{
+  --paper:#0d1319; --sheet:#151d25; --ink:#e8eef4; --ink-2:#aebcc8; --ink-3:#8493a0;
+  --rule:#33414d; --hair:#26323d;
+  --q1:#5f9cc4; --q2:#d59b48; --q3:#49b79a; --q4:#d4818f;
+  --rt:#ff8574; --saybg:#16282a; --jmpbg:#1a222b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.4}
+.tips{max-width:1080px;margin:0 auto;padding:14px 16px 0;color:var(--ink-2);font-size:12.5px}
+.tips b{color:var(--ink);font-weight:600}
+.page{max-width:1080px;margin:14px auto;background:var(--sheet);border:1px solid var(--rule);border-radius:5px;padding:14px 16px 16px}
+
+.hdr{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-bottom:6px}
+.hdr b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.hdr span{font-size:9.5px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.symwrap{border-bottom:1.5px solid var(--ink);padding:0 0 5px;margin:0 0 8px}
+.symwrap h4{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 3px;color:var(--ink)}
+.syms{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 16px}
+.syms div{font-size:10.5px;line-height:1.24;color:var(--ink-2)}
+.syms div b{color:var(--ink);font-weight:700}
+.syms div i{font-style:normal;color:var(--ink-3)}
+
+.cols{columns:2;column-gap:20px}
+
+.qh{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;
+    padding:3px 8px;margin:0 0 5px;border-radius:3px;break-after:avoid;break-inside:avoid}
+.qh.a{background:var(--q1)} .qh.b{background:var(--q2)} .qh.c{background:var(--q3)} .qh.d{background:var(--q4)}
+.qh:not(:first-child){margin-top:9px}
+.qh em{font-style:normal;font-weight:500;letter-spacing:.01em;text-transform:none;opacity:.85}
+
+h5{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   margin:7px 0 3px;break-after:avoid;break-inside:avoid}
+
+.st{margin:0 0 4px;break-inside:avoid}
+.st>b{display:block;font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.28;margin-bottom:1.5px}
+.st>b s{text-decoration:none;display:inline-block;min-width:11px;font-weight:700;color:#fff;background:var(--ink-3);
+        border-radius:2px;text-align:center;font-size:9px;padding:0 3px;margin-right:3px;vertical-align:1px}
+.st .jmp,.st .say{display:block;font-size:11px;line-height:1.3;padding:2px 6px;border-left:2px solid var(--hair)}
+.st .jmp{font-family:var(--mono);font-size:10.5px;background:var(--jmpbg);color:var(--ink);border-left-color:var(--ink-3)}
+.st .say{background:var(--saybg);color:var(--ink);border-left-color:var(--q3);margin-top:1.5px}
+.st .jmp em,.st .say em{font-style:normal;font-weight:700;font-family:var(--sans);font-size:9px;letter-spacing:.07em;
+   text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+.st .say em{color:var(--q3)}
+.st .jmp i{font-style:normal;color:var(--ink-3)}
+.st .say b{font-weight:600}
+.st .nb{display:block;font-size:10px;color:var(--ink-3);line-height:1.28;margin-top:1px}
+.rt{color:var(--rt);font-weight:700}
+.f{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+.bl{display:inline-block;width:30px;border-bottom:1px solid var(--ink-3);margin:0 3px 0 2px;vertical-align:baseline}
+.bl.w2{width:54px} .bl.w3{width:86px}
+.bh{display:inline-block;border-bottom:1px solid var(--ink-3);min-width:26px;text-align:center;
+    font-style:italic;font-size:.82em;color:var(--ink-3);padding:0 3px;margin:0 2px;line-height:1.05;
+    white-space:nowrap}
+
+table{border-collapse:collapse;width:100%;font-size:10.5px;margin:0 0 5px;break-inside:avoid}
+th{text-align:left;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+   border-bottom:1px solid var(--ink-3);padding:2px 4px;font-weight:700}
+td{padding:1.5px 4px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--ink-2);line-height:1.25}
+td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--ink)}
+
+@media screen and (max-width:760px){
+  .page{padding:12px 11px 14px;border-radius:0;border-left:0;border-right:0;margin:10px 0}
+  .cols{columns:1}
+  .syms{grid-template-columns:repeat(2,1fr)}
+}
+
+@page{size:letter portrait;margin:.32in}
+@media print{
+  .tips{display:none}
+  html,body{background:#fff;color:#000}
+  .page{max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#fff;break-after:page}
+  .page:last-of-type{break-after:auto}
+  .hdr{padding-bottom:1.5px;margin-bottom:3px;border-bottom:1.3pt solid #000}
+  .hdr b{font-size:9.71pt} .hdr span{font-size:5.73pt;color:#444}
+  .symwrap{border-bottom:1pt solid #000;padding-bottom:2pt;margin-bottom:4.4pt}
+  .symwrap h4{font-size:5.73pt;margin-bottom:1.54pt}
+  .syms{grid-template-columns:repeat(4,1fr);gap:.6pt 10pt}
+  .syms div{font-size:5.55pt;line-height:1.17;color:#111}
+  .syms div b,.syms div i{color:#000}
+  .cols{column-gap:13pt}
+  .qh{font-size:6.48pt;padding:1.8pt 5pt;margin:0 0 2.6pt;border-radius:1.5pt;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qh:not(:first-child){margin-top:5.5pt}
+  .qh em{font-size:6.11pt}
+  h5{font-size:5.73pt;margin:4.4pt 0 1.6pt}
+  .st{margin-bottom:2.42pt}
+  .st>b{font-size:5.83pt;margin-bottom:0.88pt}
+  .st>b s{font-size:5.01pt;min-width:7pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp,.st .say{font-size:5.65pt;line-height:1.22;padding:1pt 4pt;border-left-width:1pt}
+  .st .jmp{font-size:5.5pt;background:#f2f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .say{background:#eef4f2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st .jmp em,.st .say em{font-size:5.01pt;color:#444}
+  .st .nb{font-size:5.46pt;color:#444}
+  .f{font-size:5.5pt}
+  table{font-size:5.55pt;margin-bottom:2.86pt}
+  th{font-size:5.01pt;padding:1pt 3pt;border-bottom:.7pt solid #555}
+  td{padding:.8pt 3pt;border-bottom:.35pt solid #ccc;color:#111}
+  td.m{font-size:5.46pt}
+  .bl{border-bottom:.5pt solid #333}
+  .bh{border-bottom:.5pt solid #333;color:#555;font-size:.82em;min-width:18pt;padding:0 2pt;margin:0 1.5pt}
+  .rt{color:#000}
+}
+</style>
+</head>
+<body>
+
+<p class="tips"><b>Print:</b> Ctrl/&#8984;-P &rarr; Letter, Portrait, Scale <b>100%</b>, Margins <b>Default</b>, <b>two-sided / flip on long edge</b>. <i>In progress &mdash; sections added as we work through them.</i></p>
+
+<!-- ================= FRONT ================= -->
+<div class="page">
+  <div class="hdr"><b>JMP TEST 3 &middot; FRONT</b><span>chi-square &middot; logistic &middot; nonparametric &nbsp;|&nbsp; <span class="rt">&#9660;</span> red triangle &middot; <b>GREEN = write it &middot; faint word in a blank = what goes there</b></span></div>
+
+  <div class="symwrap">
+    <h4>Symbols</h4>
+    <div class="syms">
+      <div><b>O</b> <i>observed</i> the count you actually got</div>
+      <div><b>E</b> <i>expected</i> the count H&#8320; predicts</div>
+      <div><b>&#967;&#178;</b> <i>"chi-square"</i> &#931;(O&minus;E)&#178;/E &mdash; total mismatch</div>
+      <div><b>df</b> GOF: k&minus;1 &middot; indep: (r&minus;1)(c&minus;1) &middot; KW: groups&minus;1</div>
+      <div><b>k</b> how many categories</div>
+      <div><b>r, c</b> rows, columns of the table</div>
+      <div><b>residual</b> O &minus; E for one cell</div>
+      <div><b>std. residual</b> (O&minus;E)/&#8730;E &mdash; <b>past &#177;2 = big</b></div>
+      <div><b>p</b> a probability, 0 to 1</div>
+      <div><b>odds</b> p/(1&minus;p) &mdash; 0 to &#8734;</div>
+      <div><b>odds ratio</b> one odds &#247; another; <b>1 = no difference</b></div>
+      <div><b>exp(&#946;)</b> odds ratio per <b>1-unit</b> rise in that x</div>
+      <div><b>median</b> the middle value &#8594; use a <b>nonparametric</b> test</div>
+      <div><b>&#945;</b> <i>"alpha"</i> the bar you compare p to</div>
+      <div><b>H&#8320;</b> the "nothing going on" tie &mdash; always has an =</div>
+      <div><b>H&#8321;</b> what the question is trying to show</div>
+    </div>
+  </div>
+
+  <div class="cols">
+
+  <p class="qh b">The decision rule <em>&mdash; same for every test</em></p>
+
+  <p class="st"><b>Compare p to &#945;. That is the whole decision.</b>
+  <span class="jmp"><em>p &lt; &#945;</em><b>REJECT H&#8320;</b> &#8594; "there <b>IS</b> sufficient evidence that &#8230;"</span>
+  <span class="jmp"><em>p &gt; &#945;</em><b>FAIL TO REJECT H&#8320;</b> &#8594; "there is <b>NOT</b> sufficient evidence that &#8230;"</span>
+  <span class="nb">Never "<b>accept</b> H&#8320;", never "<b>prove</b>". &#945;=0.0<b>100</b> vs p&lt;0.0<b>001</b>: <b>more zeros = smaller</b>. JMP prints <span class="f">0.0000</span> &#8594; you write <b>p &lt; 0.0001</b>.</span>
+  <span class="say"><em>say</em>Since p <span class="bh">p-value</span> is <b>less than</b> &#945; = <span class="bh">.05</span>, we <b>reject H&#8320;</b>. There is sufficient evidence that <span class="bh">H&#8321; in plain words</span>.</span>
+  <span class="say"><em>say</em>Since p <span class="bh">p-value</span> is <b>greater than</b> &#945; = <span class="bh">.05</span>, we <b>fail to reject H&#8320;</b>. There is not sufficient evidence that <span class="bh">H&#8321; in plain words</span>.</span></p>
+
+  <p class="qh a">Which test? <em>&mdash; two questions sort all five</em></p>
+
+  <p class="st"><b>1. What is the RESPONSE you measured?</b>
+  <span class="jmp"><em>a category</em>&#8594; chi-square, or logistic regression</span>
+  <span class="jmp"><em>a number</em>&#8594; t / ANOVA, or a nonparametric test</span></p>
+
+  <div class="st"><b>2. Does the problem say "mean" or "median"?</b>
+  <span class="jmp"><em>"mean"</em>&#8594; t test or ANOVA</span>
+  <span class="jmp"><em>"median"</em>&#8594; <b>nonparametric</b> (Wilcoxon / Kruskal-Wallis)</span>
+  <table>
+    <tr><th>what you see</th><th>test</th></tr>
+    <tr><td><b>1</b> category column + the problem <b>gives you percentages</b></td><td><b>Goodness of Fit</b></td></tr>
+    <tr><td><b>2</b> category columns in a table, word "<b>associated</b>"</td><td><b>Test of Independence</b></td></tr>
+    <tr><td>response is <b>yes/no</b>, predictors are numbers</td><td><b>Logistic Regression</b></td></tr>
+    <tr><td>"median" + <b>same subjects twice</b></td><td><b>Wilcoxon Signed Rank</b></td></tr>
+    <tr><td>"median" + <b>3+ separate groups</b></td><td><b>Kruskal-Wallis</b></td></tr>
+  </table>
+  <span class="nb">Counts given in a table? You will need a <b>Freq</b> column in every one of these.</span></div>
+
+  <p class="qh c">T1 &middot; Chi-square Goodness of Fit <em>&mdash; one variable vs claimed percentages</em></p>
+
+  <p class="st"><b><s>a</s> Spot it</b>
+  <span class="nb"><b>One</b> categorical variable, and the problem <b>hands you percentages or a ratio</b> &mdash; 25/50/25, 1:2:1, "equally likely".</span></p>
+
+  <p class="st"><b><s>b</s> Type the data: 2 columns, 1 row per category</b>
+  <span class="jmp"><em>table</em>color <i>(Character/Nominal)</i> &nbsp;|&nbsp; freq <i>(Continuous)</i> &nbsp;&middot;&nbsp; red 54 / pink 122 / white 58</span>
+  <span class="nb">Text won't type? Right-click header &#8250; Column Info &#8250; Data Type &#8594; <b>Character</b>.</span></p>
+
+  <p class="st"><b><s>c</s> Run it</b>
+  <span class="jmp"><em>path</em>Analyze &#8250; <b>Distribution</b> &#8250; Y, Columns = color &#8250; <b>Freq = freq</b> &#8250; OK</span>
+  <span class="jmp"><em><span class="rt">&#9660;</span> on color</em><b>Test Probabilities</b> &#8250; type the hypothesized probs &#8250; <b>Done</b></span>
+  <span class="nb"><b>TRAP 1: Freq, not By.</b> <i>By</i> runs a separate analysis per row. Check <b>Total = n</b> and <b>3 Levels</b>, not 1.<br>
+  <b>TRAP 2:</b> JMP lists levels <b>alphabetically</b> (pink, red, white), not in your typed order. Match each probability to the <b>level name on screen</b>.</span></p>
+
+  <p class="st"><b><s>d</s> Read it</b>
+  <span class="jmp"><em>Frequencies</em>Count = observed &middot; Total must equal n</span>
+  <span class="jmp"><em>Test Probs</em>Estim Prob = what you got &middot; Hypoth Prob = the claim</span>
+  <span class="jmp"><em>&#967;&#178;, df, p</em>the <b>Pearson</b> row &mdash; <b>not</b> Likelihood Ratio</span>
+  <span class="nb">df = <b>categories &minus; 1</b> (3 colors &#8594; df = 2), never n&minus;1.</span></p>
+
+  <p class="st"><b><s>e</s> Hypotheses</b>
+  <span class="say"><em>say</em>H&#8320;: p<sub>1</sub> = <span class="bh">.25</span>, p<sub>2</sub> = <span class="bh">.50</span>, p<sub>3</sub> = <span class="bh">.25</span></span>
+  <span class="say"><em>say</em>H&#8321;: <b>at least one</b> proportion differs from the stated values</span></p>
+
+  <p class="st"><b><s>f</s> Conditions</b>
+  <span class="say"><em>say</em>The <span class="bh">n</span> <span class="bh">units</span> were a <b>random sample</b>. Expected counts are <span class="bh">n&times;p</span>, <span class="bh">n&times;p</span>, <span class="bh">n&times;p</span>. <b>All expected counts are at least 5</b>, so the chi-square approximation is valid.</span>
+  <span class="nb"><b>Expected = n &times; hypothesized prob.</b> JMP does NOT print these &mdash; compute them. 234(.25)=58.5, 234(.50)=117.</span></p>
+
+  <p class="st"><b><s>g</s> Calculations</b>
+  <span class="jmp"><em>formula</em>&#967;&#178; = &#931; (O &minus; E)&#178; / E</span>
+  <span class="say"><em>say</em>&#967;&#178; = <span class="bh">Pearson</span>, df = <span class="bh">k&minus;1</span>, p-value = <span class="bh">Prob&gt;Chisq</span></span>
+  <span class="nb">Worked: (54&minus;58.5)&#178;/58.5 + (122&minus;117)&#178;/117 + (58&minus;58.5)&#178;/58.5 = <b>0.5641</b>, df 2, p = <b>0.7542</b>.</span></p>
+
+  <p class="st"><b><s>h</s> Conclusion</b>
+  <span class="nb">Use <b>The decision rule</b> at the top of this page, then name the context.</span>
+  <span class="say"><em>say</em>&#8230; There is not sufficient evidence to conclude the <span class="bh">what</span> proportions differ from the stated ratio. The data are <b>consistent with</b> the theory.</span></p>
+
+  <p class="st"><b><s>i</s> Comment on residuals</b>
+  <span class="jmp"><em>residual</em>O &minus; E for each category &mdash; by hand, JMP doesn't print it here</span>
+  <span class="jmp"><em>contribution</em>(O&minus;E)&#178;/E &mdash; these <b>add up to &#967;&#178;</b></span>
+  <span class="jmp"><em>is it big?</em>std. residual = (O&minus;E)/&#8730;E &#8594; <b>past &#177;2 = big</b></span>
+  <span class="say"><em>say</em>For <span class="bh">cat</span> the residual is <span class="bh">#</span> <b>below</b> the expected count, <span class="bh">cat</span> is <span class="bh">#</span> above, and <span class="bh">cat</span> is <span class="bh">#</span> below. All three residuals are <b>small</b>, so no single <span class="bh">category</span> is driving the result and the data fit the model well.</span>
+  <span class="nb"><b>Shortcut:</b> if the overall test is <b>not significant, no residual can be big</b> &mdash; say so and move on. Only hunt for big cells when p &lt; 0.05. <b>O &lt; E = below.</b></span></p>
+
+  </div>
+</div>
+
+</body>
+</html>
