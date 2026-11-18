@@ -233,6 +233,59 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>say</em>For <span class="bh">cat</span> the residual is <span class="bh">#</span> <b>below</b> the expected count, <span class="bh">cat</span> is <span class="bh">#</span> above, and <span class="bh">cat</span> is <span class="bh">#</span> below. All three residuals are <b>small</b>, so no single <span class="bh">category</span> is driving the result and the data fit the model well.</span>
   <span class="nb"><b>Shortcut:</b> if the overall test is <b>not significant, no residual can be big</b> &mdash; say so and move on. Only hunt for big cells when p &lt; 0.05. <b>O &lt; E = below.</b></span></p>
 
+
+  <p class="qh d">T2 &middot; Chi-square Test of Independence <em>&mdash; two variables, are they associated?</em></p>
+
+  <p class="st"><b><s>a</s> Spot it</b>
+  <span class="nb"><b>Two</b> categorical variables in a <b>table with rows and columns</b>, and the word "<b>associated</b>" / "related" / "independent". <b>No percentages given</b> &mdash; that is what separates it from T1.</span></p>
+
+  <p class="st"><b><s>b</s> Type the data: 3 columns, <b>one row per CELL</b></b>
+  <span class="jmp"><em>6 rows</em>Gender <i>(Nominal)</i> | Vision <i>(Nominal)</i> | count <i>(Continuous)</i></span>
+  <span class="jmp"><em>e.g.</em>Male/Near 28 &middot; Male/Far 18 &middot; Male/Bi 9 &middot; Female/Near 13 &middot; Female/Far 30 &middot; Female/Bi 11</span>
+  <span class="nb">A 2&times;3 table is <b>6 rows</b>. Do <b>not</b> type the Total row or Total column &mdash; JMP computes them.</span></p>
+
+  <p class="st"><b><s>c</s> Run it</b>
+  <span class="jmp"><em>path</em>Analyze &#8250; <b>Fit Y by X</b> &#8250; Y = Vision, X = Gender &#8250; <b>Freq = count</b> &#8250; OK</span>
+  <span class="jmp"><em><span class="rt">&#9660;</span></em><b>Expected</b> <i>(for the conditions)</i> &nbsp;&middot;&nbsp; <b>Cell Chi Square</b> <i>(for the residuals)</i></span>
+  <span class="nb">Unlike ANOVA, it does <b>not matter</b> which variable is Y and which is X &mdash; &#967;&#178;, df and p are identical either way. Turn off Total %, Col %, Row % to declutter.</span></p>
+
+  <p class="st"><b><s>d</s> Read it</b>
+  <span class="jmp"><em>&#967;&#178;, p</em>the <b>Pearson</b> row of the <b>Tests</b> table</span>
+  <span class="jmp"><em>df</em><b>(rows &minus; 1)(cols &minus; 1)</b> &#8594; 2&times;3 table gives (2&minus;1)(3&minus;1) = <b>2</b></span>
+  <span class="jmp"><em>expected</em>row total &times; col total &#247; grand total &#8594; 55&times;41/109 = 20.688</span></p>
+
+  <p class="st"><b><s>e</s> Hypotheses</b>
+  <span class="say"><em>say</em>H&#8320;: <span class="bh">var 1</span> and <span class="bh">var 2</span> are <b>independent</b> (not associated)</span>
+  <span class="say"><em>say</em>H&#8321;: <span class="bh">var 1</span> and <span class="bh">var 2</span> are <b>associated</b></span></p>
+
+  <p class="st"><b><s>f</s> Conditions</b>
+  <span class="say"><em>say</em>The data come from a <b>random sample</b> of <span class="bh">units</span>. The expected counts are <span class="bh">list them</span>. <b>All expected counts are at least 5</b>, so the chi-square approximation is valid.</span></p>
+
+  <p class="st"><b><s>g</s> Calculations &amp; conclusion</b>
+  <span class="say"><em>say</em>&#967;&#178; = <span class="bh">Pearson</span>, df = <span class="bh">(r&minus;1)(c&minus;1)</span>, p-value = <span class="bh">Prob&gt;ChiSq</span></span>
+  <span class="say"><em>say</em>Since p <span class="bh">p-value</span> is less than &#945; = <span class="bh">.05</span>, we reject H&#8320;. There is sufficient evidence that <span class="bh">var 1</span> and <span class="bh">var 2</span> are <b>associated</b>.</span>
+  <span class="nb">Worked: &#967;&#178; = <b>8.6794</b>, df <b>2</b>, p = <b>0.0130</b> &#8594; reject.</span></p>
+
+  <p class="st"><b><s>h</s> Residuals &mdash; now they matter (test IS significant)</b>
+  <span class="jmp"><em>one cell</em>contribution = (O&minus;E)&#178;/E &nbsp;&middot;&nbsp; e.g. (11&minus;9.9083)&#178;/9.9083 = <b>0.1203</b></span>
+  <span class="jmp"><em>its share</em>0.1203 / 8.6794 = <b>1.4%</b> of the statistic &#8594; that cell is nearly irrelevant</span>
+  <span class="say"><em>say</em><span class="bh">group</span> are <b>over-represented</b> among <span class="bh">level</span> (<span class="bh">obs</span> observed vs <span class="bh">exp</span> expected) and under-represented among <span class="bh">level</span>, while <span class="bh">group</span> show the opposite. These cells contribute <span class="bh">%</span> of the statistic, so the association is driven by <span class="bh">which split</span>.</span>
+  <span class="nb">Vision example: the four near/far cells are <b>97%</b> of &#967;&#178;; both bifocals cells together are 2.7%.</span></p>
+
+  <p class="qh b">T1 vs T2 &mdash; the only differences</p>
+
+  <table>
+    <tr><th></th><th>Goodness of Fit</th><th>Independence</th></tr>
+    <tr><td>variables</td><td><b>1</b></td><td><b>2</b></td></tr>
+    <tr><td>problem gives</td><td><b>percentages</b></td><td>just a table</td></tr>
+    <tr><td>expected</td><td><b>n &times; p</b></td><td><b>row&times;col &#247; grand</b></td></tr>
+    <tr><td>df</td><td><b>k &minus; 1</b></td><td><b>(r&minus;1)(c&minus;1)</b></td></tr>
+    <tr><td>JMP</td><td>Distribution &#8250; Test Probabilities</td><td><b>Fit Y by X</b></td></tr>
+    <tr><td>expected shown?</td><td>no, compute</td><td>yes, <span class="rt">&#9660;</span> Expected</td></tr>
+    <tr><td>contributions shown?</td><td>no</td><td>yes, <span class="rt">&#9660;</span> Cell Chi Square</td></tr>
+  </table>
+  <p class="st"><span class="nb">Same formula &#931;(O&minus;E)&#178;/E, same <b>Pearson</b> row, same <b>all expected &#8805; 5</b> condition. Only the source of E and the df formula change.</span></p>
+
   </div>
 </div>
 
