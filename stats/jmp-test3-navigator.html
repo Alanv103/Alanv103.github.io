@@ -256,33 +256,35 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em><span class="rt">&#9660;</span> on COLOR</em><b>Test Probabilities</b> &#8250; type the probs &#8250; <b>Done</b></span>
   <span class="nb"><b>TRAP 1: Freq, not By.</b> <i>By</i> runs a separate analysis per row. <b>TRAP 2:</b> JMP lists levels <b>alphabetically</b> (pink, red, white), not in your typed order &mdash; match each probability to the <b>level name on screen</b>.</span></p>
 
-  <div class="st"><b><s>e</s> Read the Frequencies table</b>
-  <table class="dt out">
-    <caption>JMP output &mdash; Frequencies</caption>
-    <tr><th>Level</th><th>Count</th><th>Prob</th></tr>
-    <tr><td>pink</td><td class="n">122</td><td class="n">0.52137</td></tr>
-    <tr><td>red</td><td class="n">54</td><td class="n">0.23077</td></tr>
-    <tr><td>white</td><td class="n">58</td><td class="n">0.24786</td></tr>
-    <tr class="hi"><td>Total</td><td class="n">234</td><td class="n">1.00000</td></tr>
-  </table>
-  <span class="nb"><b>Count = observed (O).</b> <b>Total must equal n</b> and it must say <b>3 Levels</b> &mdash; if it says 1, freq went in the By box.</span></div>
+  <div class="st"><b><s>e</s> Observed (O) from JMP &nbsp;&#8594;&nbsp; Expected (E) by hand</b>
+  <div class="dtpair">
+    <div>
+      <table class="dt out">
+        <caption>JMP &mdash; Frequencies = <b>O</b></caption>
+        <tr><th>Level</th><th>Count</th><th>Prob</th></tr>
+        <tr><td>pink</td><td class="n">122</td><td class="n">0.52137</td></tr>
+        <tr><td>red</td><td class="n">54</td><td class="n">0.23077</td></tr>
+        <tr><td>white</td><td class="n">58</td><td class="n">0.24786</td></tr>
+        <tr class="hi"><td>Total</td><td class="n">234</td><td class="n">1.00000</td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dt out">
+        <caption><b>E = n &times; p</b> &mdash; JMP does NOT print these</caption>
+        <tr><th>cat</th><th>p</th><th>n &times; p</th><th>E</th></tr>
+        <tr><td>red</td><td class="n">.25</td><td class="n">234&times;.25</td><td class="n">58.5</td></tr>
+        <tr><td>pink</td><td class="n">.50</td><td class="n">234&times;.50</td><td class="n">117</td></tr>
+        <tr><td>white</td><td class="n">.25</td><td class="n">234&times;.25</td><td class="n">58.5</td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="nb"><b>Total must equal n</b> and it must say <b>3 Levels</b> &mdash; if it says 1, freq went in the By box. <b>Check:</b> expected add to n &#8594; 58.5+117+58.5 = <b>234</b> &#10003;</span></div>
 
-  <div class="st"><b><s>f</s> Expected counts &mdash; compute these, JMP does NOT print them</b>
-  <span class="jmp"><em>formula</em><b>E = n &times; hypothesized p</b></span>
-  <table class="dt out">
-    <caption>expected</caption>
-    <tr><th>category</th><th>p</th><th>E = n &times; p</th><th>E</th></tr>
-    <tr><td>red</td><td class="n">.25</td><td class="n">234&times;.25</td><td class="n">58.5</td></tr>
-    <tr><td>pink</td><td class="n">.50</td><td class="n">234&times;.50</td><td class="n">117</td></tr>
-    <tr><td>white</td><td class="n">.25</td><td class="n">234&times;.25</td><td class="n">58.5</td></tr>
-  </table>
-  <span class="nb"><b>Check:</b> expected must add to <b>n</b> &mdash; 58.5+117+58.5 = <b>234</b> &#10003;</span></div>
-
-  <p class="st"><b><s>g</s> Conditions &mdash; uses the expected counts from <s>f</s></b>
+  <p class="st"><b><s>f</s> Conditions &mdash; uses the expected counts from <s>e</s></b>
   <span class="say"><em>say</em>The <span class="bh">n</span> <span class="bh">units</span> were a <b>random sample</b>. The expected counts are <span class="bh">list all</span>. <b>All expected counts are at least 5</b>, so the chi-square approximation is valid.</span>
   <span class="nb">Check the <b>EXPECTED</b> counts, not the observed. "At least 5" = <b>&#8805; 5</b>. Smallest here is <b>58.5</b> &#10003;</span></p>
 
-  <div class="st"><b><s>h</s> Cell contributions &#8594; add them up to get &#967;&#178;</b>
+  <div class="st"><b><s>g</s> Cell contributions &#8594; add them up to get &#967;&#178;</b>
   <span class="jmp"><em>formula</em>contribution = <b>(O &minus; E)&#178; / E</b></span>
   <table class="dt out">
     <caption>by hand &mdash; JMP doesn't print these for GOF</caption>
@@ -293,7 +295,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
     <tr class="hi"><td colspan="3">&#967;&#178; = ADD the last column</td><td class="n">0.5641</td></tr>
   </table></div>
 
-  <div class="st"><b><s>i</s> df and p-value</b>
+  <div class="st"><b><s>h</s> df and p-value</b>
   <span class="jmp"><em>df</em><b>categories &minus; 1</b> = 3 &minus; 1 = <b>2</b> &nbsp;<i>never n&minus;1</i></span>
   <table class="dt out">
     <caption>JMP output &mdash; Test Probabilities</caption>
@@ -303,11 +305,11 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   </table>
   <span class="say"><em>write</em>&#967;&#178; = <span class="bh">Pearson</span> &nbsp;&middot;&nbsp; d.f. = <span class="bh">k&minus;1</span> &nbsp;&middot;&nbsp; p-value = <span class="bh">Prob&gt;Chisq</span></span></div>
 
-  <p class="st"><b><s>j</s> Conclusion</b>
+  <p class="st"><b><s>i</s> Conclusion</b>
   <span class="say"><em>p &gt; &#945;</em>Since p = <span class="bh">.7542</span> is <b>greater than</b> &#945; = 0.05, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> to conclude the <span class="bh">what</span> proportions differ from the stated ratio. The data are <b>consistent with</b> the theory.</span>
   <span class="say"><em>p &lt; &#945;</em>Since p = <span class="bh">p-value</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that at least one <span class="bh">what</span> proportion differs from the stated ratio.</span></p>
 
-  <p class="st"><b><s>k</s> Residuals</b>
+  <p class="st"><b><s>j</s> Residuals</b>
   <span class="jmp"><em>is it big?</em>std. residual = (O&minus;E)/&#8730;E &#8594; <b>past &#177;2 = big</b>. Here: &minus;0.59, +0.46, &minus;0.07</span>
   <span class="say"><em>say</em>For <span class="bh">cat</span> the residual is <span class="bh">#</span> <b>below</b> the expected count, <span class="bh">cat</span> is <span class="bh">#</span> above, and <span class="bh">cat</span> is <span class="bh">#</span> below. All residuals are <b>small</b>, so no single <span class="bh">category</span> is driving the result and the data fit the model well.</span>
   <span class="nb"><b>Shortcut:</b> test <b>not significant &#8594; no residual can be big</b>. Only hunt for big cells when p &lt; 0.05. <b>O &lt; E = below.</b></span></p>
@@ -340,31 +342,33 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em>same <span class="rt">&#9660;</span></em><b>CHECK Expected</b> <i>(step f)</i> &nbsp;&middot;&nbsp; <b>CHECK Cell Chi Square</b> <i>(step h)</i></span>
   <span class="nb">Use the red triangle on <b>Contingency Table</b>, not the top one. Y/X order does <b>not</b> matter here &mdash; &#967;&#178;, df and p are the same either way.</span></p>
 
-  <div class="st"><b><s>e</s> Read the contingency table &#8594; the totals are your only inputs</b>
-  <table class="dt out">
-    <caption>observed, with Count only</caption>
-    <tr><th></th><th>bi</th><th>far</th><th>near</th><th>Total</th></tr>
-    <tr><td class="rn">female</td><td class="n">11</td><td class="n">30</td><td class="n">13</td><td class="n"><b>54</b></td></tr>
-    <tr><td class="rn">male</td><td class="n">9</td><td class="n">18</td><td class="n">28</td><td class="n"><b>55</b></td></tr>
-    <tr><td class="rn">Total</td><td class="n"><b>20</b></td><td class="n"><b>48</b></td><td class="n"><b>41</b></td><td class="n"><b>109</b></td></tr>
-  </table>
-  <span class="nb">JMP sorts the levels <b>alphabetically</b> (bi, far, near), not in the problem's order. Same answer. Everything below is built from the <b>bold totals</b>.</span></div>
+  <div class="st"><b><s>e</s> Observed (O) from JMP &nbsp;&#8594;&nbsp; Expected (E)</b>
+  <div class="dtpair">
+    <div>
+      <table class="dt out">
+        <caption>Contingency Table = <b>O</b></caption>
+        <tr><th></th><th>bi</th><th>far</th><th>near</th><th>Tot</th></tr>
+        <tr><td class="rn">F</td><td class="n">11</td><td class="n">30</td><td class="n">13</td><td class="n"><b>54</b></td></tr>
+        <tr><td class="rn">M</td><td class="n">9</td><td class="n">18</td><td class="n">28</td><td class="n"><b>55</b></td></tr>
+        <tr class="hi"><td class="rn">Tot</td><td class="n"><b>20</b></td><td class="n"><b>48</b></td><td class="n"><b>41</b></td><td class="n"><b>109</b></td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dt out">
+        <caption><b>E = row&times;col&#247;grand</b> &mdash; <span class="rt">&#9660;</span> Expected</caption>
+        <tr><th></th><th>bi</th><th>far</th><th>near</th></tr>
+        <tr><td class="rn">F</td><td class="n">9.9083<br><i>54&times;20/109</i></td><td class="n">23.7798<br><i>54&times;48/109</i></td><td class="n">20.3119<br><i>54&times;41/109</i></td></tr>
+        <tr><td class="rn">M</td><td class="n">10.0917<br><i>55&times;20/109</i></td><td class="n">24.2202<br><i>55&times;48/109</i></td><td class="n">20.6881<br><i>55&times;41/109</i></td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="nb">JMP sorts levels <b>alphabetically</b> (bi, far, near), not in the problem's order &mdash; same answer. <b>Check:</b> expected add to the same totals &#8594; 9.9083+23.7798+20.3119 = <b>54</b> &#10003;, 9.9083+10.0917 = <b>20</b> &#10003;. If not, you swapped a row and column total.</span></div>
 
-  <div class="st"><b><s>f</s> Expected counts</b>
-  <span class="jmp"><em>formula</em><b>E = row total &times; col total &#247; grand total</b></span>
-  <table class="dt out">
-    <caption><span class="rt">&#9660;</span> Expected prints these for you</caption>
-    <tr><th></th><th>bi</th><th>far</th><th>near</th></tr>
-    <tr><td class="rn">female</td><td class="n">9.9083<br><i>54&times;20/109</i></td><td class="n">23.7798<br><i>54&times;48/109</i></td><td class="n">20.3119<br><i>54&times;41/109</i></td></tr>
-    <tr><td class="rn">male</td><td class="n">10.0917<br><i>55&times;20/109</i></td><td class="n">24.2202<br><i>55&times;48/109</i></td><td class="n">20.6881<br><i>55&times;41/109</i></td></tr>
-  </table>
-  <span class="nb"><b>Check:</b> expected must add to the <b>same totals as observed</b> &mdash; 9.9083+23.7798+20.3119 = <b>54</b> &#10003;, 9.9083+10.0917 = <b>20</b> &#10003;. If not, you swapped a row and column total.</span></div>
-
-  <p class="st"><b><s>g</s> Conditions &mdash; uses the expected counts from <s>f</s></b>
+  <p class="st"><b><s>f</s> Conditions &mdash; uses the expected counts from <s>e</s></b>
   <span class="say"><em>say</em>The data come from a <b>random sample</b> of <span class="bh">units</span>. The expected counts are <span class="bh">list all of them</span>. <b>All expected counts are at least 5</b>, so the chi-square approximation is valid.</span>
   <span class="nb">Check the <b>EXPECTED</b> counts, not the observed ones. "At least 5" means <b>&#8805; 5</b>. Smallest here is <b>9.91</b> &#10003;. If it fails: combine categories, or use <b>Fisher's Exact Test</b> (2&times;2 only).</span></p>
 
-  <div class="st"><b><s>h</s> Cell contributions &#8594; add them up to get &#967;&#178;</b>
+  <div class="st"><b><s>g</s> Cell contributions &#8594; add them up to get &#967;&#178;</b>
   <span class="jmp"><em>formula</em>contribution = <b>(O &minus; E)&#178; / E</b> for each cell</span>
   <table class="dt out">
     <caption><span class="rt">&#9660;</span> Cell Chi Square prints these</caption>
@@ -378,7 +382,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
     <tr class="hi"><td colspan="3">&#967;&#178; = ADD the last column</td><td class="n">8.6794</td></tr>
   </table></div>
 
-  <div class="st"><b><s>i</s> df and p-value</b>
+  <div class="st"><b><s>h</s> df and p-value</b>
   <span class="jmp"><em>df</em><b>(rows &minus; 1)(cols &minus; 1)</b> = (2&minus;1)(3&minus;1) = <b>2</b> &nbsp;<i>JMP prints it above Tests</i></span>
   <table class="dt out">
     <caption>JMP output &mdash; Tests</caption>
@@ -389,11 +393,11 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="nb">The <b>*</b> is JMP flagging significance at 0.05. Your hand-computed 8.6794 should match JMP's <b>8.679</b>.</span>
   <span class="say"><em>write</em>&#967;&#178; = <span class="bh">Pearson</span> &nbsp;&middot;&nbsp; d.f. = <span class="bh">(r&minus;1)(c&minus;1)</span> &nbsp;&middot;&nbsp; p-value = <span class="bh">Prob&gt;ChiSq</span></span></div>
 
-  <p class="st"><b><s>j</s> Conclusion</b>
+  <p class="st"><b><s>i</s> Conclusion</b>
   <span class="say"><em>p &lt; &#945;</em>Since p = <span class="bh">.0130</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that <span class="bh">var 1</span> and <span class="bh">var 2</span> are <b>associated</b>.</span>
   <span class="say"><em>p &gt; &#945;</em>Since p = <span class="bh">p-value</span> is <b>greater than</b> &#945; = 0.05, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> that <span class="bh">var 1</span> and <span class="bh">var 2</span> are associated.</span></p>
 
-  <p class="st"><b><s>k</s> Residuals &mdash; now they matter (test IS significant)</b>
+  <p class="st"><b><s>j</s> Residuals &mdash; now they matter (test IS significant)</b>
   <span class="jmp"><em>one cell</em>(11&minus;9.9083)&#178;/9.9083 = <b>0.1203</b> &#8594; 0.1203/8.6794 = <b>1.4%</b> of &#967;&#178;</span>
   <span class="say"><em>say</em><span class="bh">group</span> are <b>over-represented</b> among <span class="bh">level</span> (<span class="bh">obs</span> observed vs <span class="bh">exp</span> expected) and under-represented among <span class="bh">level</span>, while <span class="bh">group</span> show the opposite. These cells contribute <span class="bh">%</span> of the statistic, so the association is driven by <span class="bh">which split</span>.</span>
   <span class="nb">Vision: the four near/far cells are <b>97%</b> of &#967;&#178;; both bifocals cells together are 2.7%.</span></p>
