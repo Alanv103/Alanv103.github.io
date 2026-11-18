@@ -478,6 +478,59 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>answer</em>For each <b>one-unit</b> increase in <span class="bh">variable</span>, the odds of <span class="bh">yes outcome</span> are <b>multiplied by</b> <span class="bh">e^b</span> (about <span class="bh">%</span> higher), <b>holding all other variables constant</b>.</span>
   <span class="nb"><b>OR above 1</b> = odds go up &middot; <b>below 1</b> = down &middot; <b>exactly 1</b> = no effect. Always end with "<b>holding all other variables constant</b>".</span></div>
 
+  <p class="qh c">T4 &middot; Wilcoxon Signed Rank <em>&mdash; paired medians</em></p>
+
+  <p class="st"><b><s>a</s> Spot it &mdash; two signals together</b>
+  <span class="jmp"><em>1</em>the word "<b>median</b>" &#8594; nonparametric</span>
+  <span class="jmp"><em>2</em><b>same subjects measured twice</b> &#8594; paired</span>
+  <span class="nb">median + paired = <b>Signed Rank</b>. Tiny n (4 cars) is why they ask for the median: normality can't be assumed.</span></p>
+
+  <div class="st"><b><s>b</s> Type the data &mdash; <b>side by side</b>, like Matched Pairs</b>
+  <table class="dt">
+    <tr><th></th><th>Without <i>Continuous</i></th><th>With <i>Continuous</i></th></tr>
+    <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td></tr>
+    <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td></tr>
+    <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td></tr>
+    <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td></tr>
+  </table>
+  <span class="nb">Row 1 is the <b>same car</b> in both columns. <b>Do NOT stack this.</b></span></div>
+
+  <p class="st"><b><s>c</s> Run it in JMP &mdash; two steps</b>
+  <span class="jmp"><em>1 make col</em>Cols &#8250; New Column &#8250; name <i>Difference</i> &#8250; Column Properties &#8250; <b>Formula</b> &#8594; Without &minus; With</span>
+  <span class="jmp"><em>2 test it</em>Analyze &#8250; <b>Distribution</b> &#8250; Y = Difference &#8250; OK &#8250; <span class="rt">&#9660;</span> <b>Test Mean</b> &#8250; enter <b>0</b> &#8250; <b>&#9745; Wilcoxon Signed Rank</b> &#8250; OK</span>
+  <span class="nb"><b>That checkbox IS the test.</b> Without it you only get the t test.</span></p>
+
+  <div class="st"><b><s>d</s> Read it &mdash; the Signed-Rank COLUMN, not the t Test column</b>
+  <table class="dt out">
+    <caption>JMP output &mdash; Test Mean</caption>
+    <tr><th></th><th>t Test</th><th>Signed-Rank</th><th></th></tr>
+    <tr><td>Test Statistic</td><td class="n">-0.9297</td><td class="n">-2.0000</td><td class="use"></td></tr>
+    <tr class="hi"><td>Prob &gt; |t|</td><td class="n">0.4211</td><td class="n">0.6250</td><td class="use">&#8592; USE THIS</td></tr>
+    <tr><td>Prob &gt; t</td><td class="n">0.7894</td><td class="n">0.7812</td><td class="use"></td></tr>
+    <tr><td>Prob &lt; t</td><td class="n">0.2106</td><td class="n">0.3125</td><td class="use"></td></tr>
+  </table>
+  <span class="nb">"Differ" = two-sided &#8594; the <b>Prob &gt; |t|</b> row. Ignore Prob &gt; t and Prob &lt; t.</span></div>
+
+  <div class="st"><b><s>e</s> By hand &mdash; rank the ABSOLUTE differences</b>
+  <table class="dt out">
+    <caption>step 1: differences, step 2: rank |d|, step 3: put the sign back</caption>
+    <tr><th>pair</th><th>without</th><th>with</th><th>d</th><th>|d|</th><th>rank</th><th>signed</th></tr>
+    <tr><td class="rn">1</td><td class="n">27.3</td><td class="n">26.5</td><td class="n">+0.8</td><td class="n">0.8</td><td class="n">2</td><td class="n">+2</td></tr>
+    <tr><td class="rn">2</td><td class="n">18.9</td><td class="n">19.9</td><td class="n">&minus;1.0</td><td class="n">1.0</td><td class="n">3</td><td class="n">&minus;3</td></tr>
+    <tr><td class="rn">3</td><td class="n">30.0</td><td class="n">29.9</td><td class="n">+0.1</td><td class="n">0.1</td><td class="n">1</td><td class="n">+1</td></tr>
+    <tr><td class="rn">4</td><td class="n">18.8</td><td class="n">21.7</td><td class="n">&minus;2.9</td><td class="n">2.9</td><td class="n">4</td><td class="n">&minus;4</td></tr>
+    <tr class="hi"><td colspan="6">W&#8314; = sum of POSITIVE ranks = 1+2 &nbsp;&middot;&nbsp; W&#8315; = 3+4</td><td class="n">3 / 7</td></tr>
+  </table>
+  <span class="nb"><b>Rank by size ignoring the sign</b> (smallest = rank 1), then reattach the signs. <b>Check: W&#8314; + W&#8315; = n(n+1)/2</b> = 4(5)/2 = <b>10</b> &#10003;. JMP's S = W&#8314; &minus; n(n+1)/4 = 3 &minus; 5 = <b>&minus;2</b>.</span></div>
+
+  <div class="st"><b><s>f</s> The full answer template</b>
+  <span class="say"><em>hyp</em>Let the median difference be the median of (<span class="bh">col 1</span> &minus; <span class="bh">col 2</span>). &nbsp;H&#8320;: the median difference is <b>0</b>. &nbsp;H&#8321;: the median difference is <b>not 0</b>.</span>
+  <span class="say"><em>cond</em>The <span class="bh">n</span> <span class="bh">subjects</span> were measured under both conditions <b>in random order</b>, so the pairs are independent. Because n = <span class="bh">n</span> is small and normality cannot be assumed, a <b>nonparametric test on the median</b> is appropriate.</span>
+  <span class="say"><em>calc</em>S = <span class="bh">Signed-Rank</span>, &nbsp;p-value = <span class="bh">Prob&gt;|t|</span></span>
+  <span class="say"><em>p &gt; &#945;</em>Since p = <span class="bh">.6250</span> is <b>greater than</b> &#945; = 0.05, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> that the median <span class="bh">what</span> differs between <span class="bh">cond 1</span> and <span class="bh">cond 2</span>.</span>
+  <span class="say"><em>p &lt; &#945;</em>Since p = <span class="bh">p-value</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that the median <span class="bh">what</span> differs between <span class="bh">cond 1</span> and <span class="bh">cond 2</span>.</span>
+  <span class="nb">Worth adding: W&#8314;=3 vs W&#8315;=7 &mdash; two improved, two got worse, roughly cancelling. With <b>n = 4</b> there are only 2&#8308; = 16 sign patterns, so the smallest possible two-sided p is <b>2/16 = 0.125</b> &mdash; this design <b>cannot</b> reach 0.05 no matter what.</span></div>
+
   </div>
 </div>
 
