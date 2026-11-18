@@ -429,34 +429,43 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>answer</em>y = <span class="bh">intercept</span> + <span class="bh">b&#8321;</span>(x&#8321;) + <span class="bh">b&#8322;</span>(x&#8322;) + <span class="bh">b&#8323;</span>(x&#8323;), &nbsp;and &nbsp;p = e<sup>y</sup>/(1+e<sup>y</sup>)</span></div>
 
   <div class="st"><b><s>b</s> PART B &mdash; probability for a given case</b>
-  <span class="nb"><b>Fill this table every time.</b> One row per term; the intercept has <b>no variable</b>. Then ADD the products.</span>
+  <span class="nb"><b>Write one line per term</b>, then add them. The intercept has <b>no variable</b> &mdash; it just carries down.</span>
   <table class="dt out">
     <caption>Price 180,000 &middot; Age 36 &middot; LA 24,400</caption>
-    <tr><th>term</th><th>coefficient</th><th>&times; value</th><th>= product</th></tr>
-    <tr><td>Intercept</td><td class="n">1.52418464</td><td class="n">&mdash;</td><td class="n">+1.524185</td></tr>
-    <tr><td>Price</td><td class="n">&minus;0.0000059908</td><td class="n">180000</td><td class="n">&minus;1.078344</td></tr>
-    <tr><td>Age</td><td class="n">0.02854011</td><td class="n">36</td><td class="n">+1.027444</td></tr>
-    <tr><td>Living.Area</td><td class="n">&minus;0.0002064</td><td class="n">24400</td><td class="n">&minus;5.036160</td></tr>
-    <tr class="hi"><td colspan="3"><b>y</b> = add the products</td><td class="n">&minus;3.562875</td></tr>
+    <tr><th>term</th><th>computation</th><th>=</th></tr>
+    <tr><td>intercept</td><td class="n">&mdash;</td><td class="n">+1.524185</td></tr>
+    <tr><td>Price</td><td class="n">&minus;0.0000059908(180,000)</td><td class="n">&minus;1.078344</td></tr>
+    <tr><td>Age</td><td class="n">0.02854011(36)</td><td class="n">+1.027444</td></tr>
+    <tr><td>LA</td><td class="n">&minus;0.0002064(24,400)</td><td class="n">&minus;5.036160</td></tr>
+    <tr class="hi"><td><b>y</b></td><td class="n">add the column &#8594;</td><td class="n">&minus;3.562875</td></tr>
   </table>
-  <span class="jmp"><em>then</em>press <b>e<sup>x</sup></b> on y &#8594; <b>0.028357</b> &nbsp;&#8594;&nbsp; p = 0.028357 &#247; (1+0.028357) = <b>0.0276</b></span>
+  <span class="jmp"><em>then</em>p = <sup>e<sup>y</sup></sup>/<sub>1+e<sup>y</sup></sub> = <sup>e<sup>&minus;3.5629</sup></sup>/<sub>1+e<sup>&minus;3.5629</sup></sub> = <sup>0.028357</sup>/<sub>1.028357</sub> = <b>0.0276 = 2.8%</b></span>
   <span class="say"><em>answer</em>A <span class="bh">unit</span> with <span class="bh">x&#8321; = value</span> and <span class="bh">x&#8322; = value</span> has about a <span class="bh">p as %</span> chance of <span class="bh">the yes outcome</span>.</span></div>
 
   <div class="st"><b><s>c</s> PART C &mdash; odds for part B</b>
-  <span class="jmp"><em>formula</em>odds = p &#247; (1&minus;p) &nbsp;=&nbsp; <b>e<sup>y</sup></b> &mdash; <i>you already have it from part B</i></span>
-  <span class="jmp"><em>worked</em>0.027575 &#247; 0.972425 = <b>0.028357</b></span>
-  <span class="say"><em>if odds &gt; 1</em>Such a <span class="bh">unit</span> is <span class="bh">odds</span> times <b>more likely</b> to <span class="bh">yes</span> than not.</span>
-  <span class="say"><em>if odds &lt; 1</em>The odds are <span class="bh">odds</span>, about <span class="bh">odds&times;100</span> <span class="bh">yes</span> for every 100 <span class="bh">no</span>.</span>
-  <span class="nb"><b>Check:</b> p &gt; 0.5 &#8596; odds &gt; 1. Negative y &#8594; p &lt; 0.5 &#8594; odds &lt; 1.</span></div>
+  <span class="jmp"><em>formula</em>odds = <sup>p</sup>/<sub>1&minus;p</sub> = <sup>0.027575</sup>/<sub>1&minus;0.027575</sub> = <sup>0.027575</sup>/<sub>0.972425</sub> = <b>0.028357</b></span>
+  <span class="jmp"><em>shortcut</em>odds = <b>e<sup>y</sup></b> &mdash; the same number you already pressed in part B</span>
+  <span class="jmp"><em>to say it</em>odds &lt; 1? flip it: <sup>1</sup>/<sub>0.0284</sub> = <b>35.3</b></span>
+  <span class="say"><em>odds &lt; 1</em>The <span class="bh">unit</span> is <span class="bh">1&#247;odds</span> times more likely <b>NOT</b> to <span class="bh">yes</span> than to <span class="bh">yes</span>.</span>
+  <span class="say"><em>odds &gt; 1</em>Such a <span class="bh">unit</span> is <span class="bh">odds</span> times <b>more likely</b> to <span class="bh">yes</span> than not.</span>
+  <span class="nb"><b>Check:</b> p &gt; 0.5 &#8596; odds &gt; 1. Negative y &#8594; p &lt; 0.5 &#8594; odds &lt; 1. <b>The flip is only for the sentence</b> &mdash; part F still divides the RAW odds.</span></div>
 
   <div class="st"><b><s>d</s> PART D &mdash; probability with ONE value changed</b>
-  <span class="nb">Same table as part B. <b>Only the changed term is recomputed</b> &mdash; everything else carries over.</span>
-  <span class="jmp"><em>here</em>Age 36 &#8594; 37: &nbsp;0.02854011 &times; 37 = <b>+1.055984</b> &nbsp;(was +1.027444)</span>
-  <span class="jmp"><em>new y</em>&minus;3.562875 + 0.02854011 = <b>&minus;3.534335</b> &#8594; p = <b>0.0284</b></span>
-  <span class="nb">Shortcut: a 1-unit rise in x just <b>adds that coefficient</b> to y.</span></div>
+  <span class="nb">Same four lines as part B. <b>Only the changed term is recomputed</b>; copy the rest down.</span>
+  <table class="dt out">
+    <caption>same house, Age 36 &#8594; 37</caption>
+    <tr><th>term</th><th>computation</th><th>=</th></tr>
+    <tr><td>intercept</td><td class="n">&mdash;</td><td class="n">+1.524185</td></tr>
+    <tr><td>Price</td><td class="n">same as B</td><td class="n">&minus;1.078344</td></tr>
+    <tr class="hi"><td><b>Age</b></td><td class="n"><b>0.02854011(37)</b></td><td class="n"><b>+1.055984</b></td></tr>
+    <tr><td>LA</td><td class="n">same as B</td><td class="n">&minus;5.036160</td></tr>
+    <tr class="hi"><td><b>y</b></td><td class="n">add the column &#8594;</td><td class="n">&minus;3.534335</td></tr>
+  </table>
+  <span class="jmp"><em>then</em>p = <sup>e<sup>&minus;3.5343</sup></sup>/<sub>1+e<sup>&minus;3.5343</sup></sub> = <b>0.0284 = 2.84%</b></span>
+  <span class="nb"><b>Faster:</b> a 1-unit rise in x just <b>adds that coefficient</b> to y &#8594; &minus;3.562875 + 0.02854011 = &minus;3.534335.</span></div>
 
   <div class="st"><b><s>e</s> PART E &mdash; odds for part D</b>
-  <span class="jmp"><em>same formula</em>e<sup>&minus;3.534335</sup> = <b>0.029178</b></span></div>
+  <span class="jmp"><em>same formula</em>odds = <sup>0.028351</sup>/<sub>0.971649</sub> = e<sup>&minus;3.5343</sup> = <b>0.029178</b></span></div>
 
   <div class="st"><b><s>f</s> PART F &mdash; odds ratio between E and C</b>
   <span class="jmp"><em>formula</em>OR = odds<sub>E</sub> &#247; odds<sub>C</sub> = 0.029178 &#247; 0.028357 = <b>1.0290</b></span>
