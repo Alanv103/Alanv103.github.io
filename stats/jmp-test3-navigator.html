@@ -557,6 +557,93 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>p &lt; &#945;</em>Since p = <span class="bh">p-value</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that the median <span class="bh">what</span> differs between <span class="bh">cond 1</span> and <span class="bh">cond 2</span>.</span>
   <span class="nb">Worth adding: W&#8314;=3 vs W&#8315;=7 &mdash; two improved, two got worse, roughly cancelling. With <b>n = 4</b> there are only 2&#8308; = 16 sign patterns, so the smallest possible two-sided p is <b>2/16 = 0.125</b> &mdash; this design <b>cannot</b> reach 0.05 no matter what.</span></div>
 
+  <p class="qh d">T5 &middot; Kruskal-Wallis <em>&mdash; 3+ independent groups, medians</em></p>
+
+  <p class="st"><b><s>a</s> Spot it &mdash; two signals</b>
+  <span class="jmp"><em>1</em>the word "<b>median</b>" &#8594; nonparametric</span>
+  <span class="jmp"><em>2</em><b>3+ groups, different subjects in each</b> &#8594; independent</span>
+  <span class="nb">It is <b>one-way ANOVA for medians</b>. (Same subjects twice &#8594; T4 instead.)</span></p>
+
+  <div class="st"><b><s>b</s> Type the data &mdash; <b>STACKED</b>, like one-way ANOVA</b>
+  <table class="dt">
+    <tr><th></th><th>Approach <i>Nominal</i></th><th>Contribution <i>Continuous</i></th></tr>
+    <tr><td class="rn">1</td><td>A</td><td class="n">1000</td></tr>
+    <tr><td class="rn">2</td><td>A</td><td class="n">1500</td></tr>
+    <tr><td class="rn">&#8942;</td><td>&#8942;</td><td class="n">&#8942;</td></tr>
+    <tr><td class="rn">9</td><td>B</td><td class="n">1500</td></tr>
+    <tr><td class="rn">&#8942;</td><td>&#8942;</td><td class="n">&#8942;</td></tr>
+    <tr><td class="rn">24</td><td>C</td><td class="n">1100</td></tr>
+  </table>
+  <span class="nb">3 groups of 8 = <b>24 rows</b>. <b>Not</b> three side-by-side columns.</span></div>
+
+  <p class="st"><b><s>c</s> Run it in JMP &mdash; two red-triangle picks</b>
+  <span class="jmp"><em>path</em>Analyze &#8250; <b>Fit Y by X</b> &#8250; Y = Contribution, X = Approach &#8250; OK</span>
+  <span class="jmp"><em>overall</em><span class="rt">&#9660;</span> Nonparametric &#8250; <b>Wilcoxon Test</b></span>
+  <span class="jmp"><em>pairwise</em><span class="rt">&#9660;</span> Nonparametric &#8250; Nonparametric Multiple Comparisons &#8250; <b>Wilcoxon Each Pair</b></span>
+  <span class="nb">Output is titled "Wilcoxon / <b>Kruskal-Wallis</b> Tests" &mdash; same test, two names. <b>Only do the pairwise step if the overall test REJECTS.</b></span></p>
+
+  <div class="st"><b><s>d</s> Read it</b>
+  <div class="dtpair">
+    <div>
+      <table class="dt out">
+        <caption>rank sums</caption>
+        <tr><th>Lvl</th><th>n</th><th>Score Sum</th><th>Exp</th><th>Mean</th></tr>
+        <tr><td>A</td><td class="n">8</td><td class="n">86.000</td><td class="n">100</td><td class="n">10.750</td></tr>
+        <tr><td>B</td><td class="n">8</td><td class="n">150.500</td><td class="n">100</td><td class="n">18.813</td></tr>
+        <tr><td>C</td><td class="n">8</td><td class="n">63.500</td><td class="n">100</td><td class="n">7.938</td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dt out">
+        <caption>Kruskal-Wallis, ChiSquare Approx</caption>
+        <tr><th>ChiSquare</th><th>DF</th><th>Prob&gt;ChiSq</th></tr>
+        <tr class="hi"><td class="n">10.3310</td><td class="n">2</td><td class="n">0.0057*</td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="nb"><b>Check: Score Sums add to N(N+1)/2</b> = 24(25)/2 = <b>300</b> &#10003; &nbsp;&middot;&nbsp; each <b>Expected = n &times; (N+1)/2</b> = 8(12.5) = 100. <b>df = groups &minus; 1</b> = 2. The test ranks <b>all N values together</b>, then compares rank sums &mdash; the dollar amounts are never used directly.</span></div>
+
+  <div class="st"><b><s>e</s> Pairwise &mdash; only if the overall test rejected</b>
+  <table class="dt out">
+    <caption>Nonparametric Comparisons For Each Pair Using <b>Wilcoxon</b> Method</caption>
+    <tr><th>Lvl</th><th>&minus;Lvl</th><th>Z</th><th>p-value</th><th>Hodges-Lehmann</th></tr>
+    <tr class="hi"><td>B</td><td>A</td><td class="n">2.37700</td><td class="n">0.0175*</td><td class="n">500</td></tr>
+    <tr><td>C</td><td>A</td><td class="n">&minus;0.90337</td><td class="n">0.3663</td><td class="n">&minus;100</td></tr>
+    <tr class="hi"><td>C</td><td>B</td><td class="n">&minus;2.85240</td><td class="n">0.0043*</td><td class="n">&minus;600</td></tr>
+  </table>
+  <span class="nb"><b>Hodges-Lehmann</b> = estimated median difference in real units (B beats A by about $500). Use it in the summary.</span></div>
+
+  <div class="st"><b><s>f</s> Connecting letters &#8594; Venn diagram</b>
+  <div class="dtpair">
+    <div>
+      <table class="dt out">
+        <caption>JMP prints this</caption>
+        <tr><th>Level</th><th></th><th></th></tr>
+        <tr><td>A</td><td class="n">A</td><td class="n"></td></tr>
+        <tr><td>B</td><td class="n"></td><td class="n">B</td></tr>
+        <tr><td>C</td><td class="n">A</td><td class="n"></td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="dt out">
+        <caption>draw it &mdash; medians high to low</caption>
+        <tr><th>circle</th><th>members</th></tr>
+        <tr class="hi"><td class="n">B</td><td>B &nbsp;$1,800</td></tr>
+        <tr class="hi"><td class="n">A</td><td>A &nbsp;$1,225 &nbsp;&middot;&nbsp; C &nbsp;$1,150</td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="nb"><b>One circle per letter.</b> A and C both carry letter A &#8594; same circle. B carries B alone &#8594; its own circle. <b>No level has two letters &#8594; the circles do NOT overlap.</b><br>
+  <b>Same circle = NOT significantly different &middot; different circles = significantly different.</b></span></div>
+
+  <div class="st"><b><s>g</s> The answer template</b>
+  <span class="say"><em>hyp</em>H&#8320;: the median <span class="bh">what</span> is the <b>same</b> for all <span class="bh">k</span> <span class="bh">groups</span>. &nbsp;H&#8321;: <b>at least one</b> group has a different median.</span>
+  <span class="say"><em>cond</em>The <span class="bh">N</span> <span class="bh">units</span> were <b>randomly divided</b> into <span class="bh">k</span> groups and each received only one <span class="bh">treatment</span>, so the groups are <b>independent</b>. Because the question asks about <b>medians</b> and normality is not assumed, Kruskal-Wallis is appropriate.</span>
+  <span class="say"><em>calc</em>&#967;&#178; = <span class="bh">ChiSquare</span>, df = <span class="bh">k&minus;1</span>, p-value = <span class="bh">Prob&gt;ChiSq</span></span>
+  <span class="say"><em>concl</em>Since p = <span class="bh">.0057</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that at least one <span class="bh">group</span> has a different median <span class="bh">what</span>.</span>
+  <span class="say"><em>summary</em>Because the test was significant, pairwise Wilcoxon rank sum tests were run. <b><span class="bh">Group</span> is significantly better than both <span class="bh">grp</span> (p = <span class="bh">p</span>) and <span class="bh">grp</span> (p = <span class="bh">p</span>).</b> <span class="bh">Grp</span> and <span class="bh">grp</span> are not significantly different (p = <span class="bh">p</span>). <b>Use <span class="bh">the winner</span>.</b></span>
+  <span class="nb">Not significant? <b>Stop</b> &mdash; "because the test was not significant, multiple comparisons are not appropriate." H&#8321; is <b>at least one</b> differs, never "all are different".</span></div>
+
   </div>
 </div>
 
