@@ -683,7 +683,8 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="say"><em>calc</em>&#967;&#178; = <span class="bh">ChiSquare</span>, df = <span class="bh">k&minus;1</span>, p-value = <span class="bh">Prob&gt;ChiSq</span></span>
   <span class="say"><em>concl</em>Since p = <span class="bh">.0057</span> is <b>less than</b> &#945; = 0.05, we <b>reject H&#8320;</b>. There is <b>sufficient evidence</b> that at least one <span class="bh">group</span> has a different median <span class="bh">what</span>.</span>
   <span class="say"><em>summary</em>Because the test was significant, pairwise Wilcoxon rank sum tests were run. <b><span class="bh">Group</span> is significantly better than both <span class="bh">grp</span> (p = <span class="bh">p</span>) and <span class="bh">grp</span> (p = <span class="bh">p</span>).</b> <span class="bh">Grp</span> and <span class="bh">grp</span> are not significantly different (p = <span class="bh">p</span>). <b>Use <span class="bh">the winner</span>.</b></span>
-  <span class="nb">Not significant? <b>Stop</b> &mdash; "because the test was not significant, multiple comparisons are not appropriate." H&#8321; is <b>at least one</b> differs, never "all are different".</span></div>
+  <span class="say"><em>if p &gt; &#945;</em>Since p = <span class="bh">p-value</span> is <b>greater than</b> &#945; = 0.05, we <b>fail to reject H&#8320;</b>. There is <b>not sufficient evidence</b> that the medians differ. <b>Because the Kruskal-Wallis test was not significant, multiple comparisons are not appropriate.</b></span>
+  <span class="nb">That last sentence is the whole answer when it does not reject &mdash; <b>do not run the pairwise tests anyway</b>. H&#8321; is <b>at least one</b> differs, never "all are different".</span></div>
 
   </div>
 </div>
