@@ -621,7 +621,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
   <span class="jmp"><em>path</em>Analyze &#8250; <b>Fit Y by X</b> &#8250; Y = Contribution, X = Approach &#8250; OK</span>
   <span class="jmp"><em>overall</em><span class="rt">&#9660;</span> Nonparametric &#8250; <b>Wilcoxon Test</b></span>
   <span class="jmp"><em>pairwise</em><span class="rt">&#9660;</span> Nonparametric &#8250; Nonparametric Multiple Comparisons &#8250; <b>Wilcoxon Each Pair</b></span>
-  <span class="nb">Output is titled "Wilcoxon / <b>Kruskal-Wallis</b> Tests" &mdash; same test, two names. <b>Only do the pairwise step if the overall test REJECTS.</b></span></p>
+  <span class="nb">Output is titled "Wilcoxon / <b>Kruskal-Wallis</b> Tests" &mdash; same test, two names.<br><b>"Wilcoxon Each Pair" IS the pairwise WILCOXON RANK SUM test</b> (not Steel-Dwass) &mdash; JMP runs one per pair and puts them in one table.<br><b>KW rejects &#8594; run it. KW does NOT reject &#8594; STOP</b> and write "because the test was not significant, multiple comparisons are not appropriate."</span></p>
 
   <div class="st"><b><s>d</s> Read it</b>
   <div class="dtpair">
@@ -646,7 +646,7 @@ td b{color:var(--ink)} td.m{font-family:var(--mono);font-size:10px;color:var(--i
 
   <div class="st"><b><s>e</s> Pairwise &mdash; only if the overall test rejected</b>
   <table class="dt out">
-    <caption>Nonparametric Comparisons For Each Pair Using <b>Wilcoxon</b> Method</caption>
+    <caption>Each Pair Using <b>Wilcoxon</b> Method = <b>rank sum</b>, one per pair</caption>
     <tr><th>Lvl</th><th>&minus;Lvl</th><th>Z</th><th>p-value</th><th>Hodges-Lehmann</th></tr>
     <tr class="hi"><td>B</td><td>A</td><td class="n">2.37700</td><td class="n">0.0175*</td><td class="n">500</td></tr>
     <tr><td>C</td><td>A</td><td class="n">&minus;0.90337</td><td class="n">0.3663</td><td class="n">&minus;100</td></tr>
